@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layoutDirection="ltr">
+
+    <item android:title="Item"
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_input_whit_24dp"
+        android:showAsAction="always"
+        app:showAsAction="always"
+        android:orderInCategory="1">
+    <menu >
+        <item android:title="מטפלים"
+            android:showAsAction="always|withText" />
+        <item android:title="אירועים"
+            android:showAsAction="always" />
+        <item android:title="חנות"
+        android:id="@+id/blaa"
+            android:showAsAction="always" />
+    </menu>
+</item>
+    <item android:title="logIn"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_input_white_24dp"
+        android:id="@+id/logIn"
+        android:visible="true"
+        app:showAsAction="always"
+        android:orderInCategory="2" />
+
+
+</menu>

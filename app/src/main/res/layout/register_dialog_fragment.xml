@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtUserName"
+        android:hint="הכנס שם משתמש"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtPassword"
+        android:hint="הכנס סיסמא"
+        android:textAlignment="textEnd"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtPasswordConfirmation"
+        android:hint="אימות סיסמא"
+        android:textAlignment="textEnd"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/txtEmail"
+        android:hint="הכנס כתובת אימייל"
+        android:layout_weight="1" />
+
+    <CheckBox
+        android:text="אפשר קבלת מידע פרסומי ועידכונים"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cbAddsConfirm"
+        android:layoutDirection="rtl"
+        android:layout_weight="1"
+        android:textAlignment="textStart" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtLastName"
+            android:layout_weight="1"
+            android:hint="שם משפחה" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtFirstName"
+            android:hint="שם פרטי"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/txtDateOfBirth"
+        android:hint="בחר תאריך לידה"
+        android:layout_weight="1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtPhone1"
+        android:hint="הכנס מספר טלפון 1"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <CheckBox
+            android:text="פרטי"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cbPhone1Privacy"
+            android:layout_weight="2.5"
+            android:textAlignment="textStart"
+            android:layoutDirection="rtl"
+            android:layout_marginRight="15dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:paddingEnd="12dp"
+            android:id="@+id/phone1Group">
+
+            <RadioButton
+                android:text="נייד"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButton5"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="משרד"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButton6"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="בית"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButton4"
+                android:layout_weight="1" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtPhone2"
+        android:hint="הכנס מספר טלפון 2"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <CheckBox
+            android:text="פרטי"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cbPhone2Privacy"
+            android:layout_weight="2.5"
+            android:layoutDirection="rtl"
+            android:textAlignment="textStart"
+            android:layout_marginRight="15dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:paddingEnd="12dp"
+            android:id="@+id/phone2Group">
+
+            <RadioButton
+                android:text="נייד"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButton"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="משרד"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioBut"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="בית"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/radioButt"
+                android:layout_weight="1" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:text="ביטול"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnCancel"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="שלח טופס"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSubmit"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
