@@ -12,8 +12,9 @@
         app:showAsAction="always"
         android:orderInCategory="1">
     <menu >
-        <item android:title="מטפלים"
-            android:showAsAction="always|withText" />
+        <item android:title="חברי הקהילה"
+            android:showAsAction="always|withText"
+            android:id="@+id/communityMembers" />
         <item android:title="אירועים"
             android:showAsAction="always" />
         <item android:title="חנות"

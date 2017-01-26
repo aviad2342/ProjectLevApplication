@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import app.projectlevapplication.model.LinkToDataBase;
+import app.projectlevapplication.viewComponents.MembersListActivity;
 
 
 public class MainActivity extends AppCompatActivity implements LogInDialog.DialogFragmentListener{
@@ -63,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             case R.id.logIn:
                 LogInDialog dialog = new LogInDialog();
                 dialog.show(getFragmentManager(),"dialog");
+                return true;
+            case R.id.communityMembers:
+                Intent membersListIntent = new Intent(this, MembersListActivity.class);
+                startActivity(membersListIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

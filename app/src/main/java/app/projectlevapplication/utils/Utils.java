@@ -11,7 +11,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import app.projectlevapplication.core.Member;
 
@@ -20,6 +22,16 @@ import app.projectlevapplication.core.Member;
  */
 
 public class Utils {
+
+    private static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
+
+    private static final String EVENTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/events/";
+
+    private static final String TESTIMONY_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/testimony/";
+
+    private static final String THERAPISTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/therapists/";
+
+    private static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
 
     private static Utils _instance;
 
@@ -43,17 +55,14 @@ public class Utils {
         }
         Member member = new Member();
         try {
-           // JSONArray jsonArray = new JSONArray(response);
-           // JSONObject jsonObject = jsonArray.getJSONObject(0);
-            String noob = "{\"memberID\":\"1\",\"username\":\"Admin\",\"password\":\"Admin\",\"fullName\":\"איתמר פרנקל\",\"birthdate\":\"1988-09-29\",\"email\":\"ifrenkelr@gmail.com\",\"gender\":\"0\",\"status\":\"0\",\"children\":\"0\",\"state\":\"קריית מוצקין\",\"street\":\"קדיש לוז 50 \",\"houseNum\":\"3\",\"zipCode\":\"-1\",\"education\":\"0\",\"profilePic\":\"lzCDiG0XmblnE3sadmin_profile.jpg\",\"isApproved\":\"1\",\"registrationDate\":\"2016-07-06 14:21:19\",\"lastVisited\":\"2017-01-21 17:57:00\",\"newVisit\":\"2017-01-21 23:40:00\",\"subExpire\":\"2017-07-06 00:00:00\",\"sendMails\":\"1\"}";
-            JSONObject jsonObject = new JSONObject(noob);
+            JSONObject jsonObject = new JSONObject(response);
 
             member.setMemberID(Integer.parseInt(jsonObject.getString("memberID")));
             member.setUsername(jsonObject.getString("username"));
             member.setPassword(jsonObject.getString("password"));
             member.setFullName(jsonObject.getString("fullName"));
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             member.setBirthDate(format.parse(jsonObject.getString("birthdate")));
 
             member.setEmail(jsonObject.getString("email"));
@@ -83,6 +92,62 @@ public class Utils {
             return null;
         }
         return member;
+    }
+
+    public ArrayList<Member> responseToMembersList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Member> members = new ArrayList<>();
+        Member member;
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i = 0; i < jsonArray.length(); i++){
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                member = new Member();
+
+                member.setMemberID(Integer.parseInt(jsonObject.getString("memberID")));
+                member.setUsername(jsonObject.getString("username"));
+                member.setPassword(jsonObject.getString("password"));
+                member.setFullName(jsonObject.getString("fullName"));
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                member.setBirthDate(format.parse(jsonObject.getString("birthdate")));
+
+                member.setEmail(jsonObject.getString("email"));
+                member.setGender(Integer.parseInt(jsonObject.getString("gender")));
+                member.setStatus(Integer.parseInt(jsonObject.getString("status")));
+                member.setChildren(Integer.parseInt(jsonObject.getString("children")));
+                member.setState(jsonObject.getString("state"));
+                member.setStreet(jsonObject.getString("street"));
+                member.setHouseNum(Integer.parseInt(jsonObject.getString("houseNum")));
+                member.setZipCode(Integer.parseInt(jsonObject.getString("zipCode")));
+                member.setEducation(Integer.parseInt(jsonObject.getString("education")));
+                member.setProfilePic(MEMBER_IMAGE+jsonObject.getString("profilePic"));
+                member.setApproved(Boolean.parseBoolean(jsonObject.getString("isApproved")));
+
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                member.setRegistrationDate(format2.parse(jsonObject.getString("registrationDate")));
+                member.setSubExpire(format2.parse(jsonObject.getString("subExpire")));
+
+                member.setSendMails(Boolean.parseBoolean(jsonObject.getString("sendMails")));
+
+                members.add(member);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return members;
     }
 
     /**
