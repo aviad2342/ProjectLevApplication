@@ -9,14 +9,32 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.80">
+        android:layout_weight="0.75">
 
-        <ImageView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:id="@+id/imageView2"
-            android:layout_weight="1.5" />
+            android:layout_weight="1.5">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/imageView2"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="בחר תמונת פרופיל"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/btnChooseImage"
+                android:layout_weight="2.9"
+                android:textAllCaps="false"
+                android:layoutDirection="rtl"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -63,7 +81,7 @@
         android:ems="10"
         android:id="@+id/txtEmail"
         android:hint="הכנס כתובת אימייל"
-        android:layout_weight="1" />
+        android:layout_weight="1.05" />
 
     <CheckBox
         android:text="אפשר קבלת מידע פרסומי ועידכונים"
@@ -71,14 +89,14 @@
         android:layout_height="match_parent"
         android:id="@+id/cbAddsConfirm"
         android:layoutDirection="rtl"
-        android:layout_weight="1"
-        android:textAlignment="textStart" />
+        android:textAlignment="textStart"
+        android:layout_weight="1.1" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1.05">
 
         <EditText
             android:layout_width="match_parent"
@@ -106,7 +124,7 @@
         android:ems="10"
         android:id="@+id/txtDateOfBirth"
         android:hint="בחר תאריך לידה"
-        android:layout_weight="1" />
+        android:layout_weight="1.05" />
 
     <EditText
         android:layout_width="match_parent"
@@ -115,13 +133,13 @@
         android:ems="10"
         android:id="@+id/txtPhone1"
         android:hint="הכנס מספר טלפון 1"
-        android:layout_weight="1" />
+        android:layout_weight="1.05" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1.1">
 
         <CheckBox
             android:text="פרטי"
@@ -169,7 +187,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1.05">
 
         <Button
             android:text="ביטול"

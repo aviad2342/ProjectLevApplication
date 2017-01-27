@@ -1,10 +1,11 @@
 package app.projectlevapplication.core;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Member {
+public class Member implements Serializable {
 	
 	private int memberID;
 	

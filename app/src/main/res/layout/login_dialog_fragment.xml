@@ -25,11 +25,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:inputType="textPassword"
+        android:inputType="textWebPassword"
         android:ems="10"
         android:id="@+id/loginPassword"
         android:layout_weight="1"
         android:hint="סיסמא"
+        android:textDirection="rtl"
         android:textAlignment="textEnd" />
 
     <Button

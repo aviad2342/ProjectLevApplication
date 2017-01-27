@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -78,6 +80,25 @@ public class LogInDialog extends DialogFragment {
         password = (EditText) view.findViewById(R.id.loginPassword);
         userName.setText("Admin");
         password.setText("Admin");
+
+
+
+
+        password.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+               if(password.getText().length() == 0){
+                   password.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+               }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                password.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            }
+        });
 
         Button login = (Button)view.findViewById(R.id.btnLogin);
         login.setOnClickListener(new View.OnClickListener() {

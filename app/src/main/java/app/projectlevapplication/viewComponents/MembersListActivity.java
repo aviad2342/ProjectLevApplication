@@ -42,7 +42,9 @@ public class MembersListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Member selectedItem = adapter.getItem(position);
-
+                Intent intent = new Intent(MembersListActivity.this, MemberProfileActivity.class);
+                intent.putExtra("selectedMember", selectedItem);
+                startActivity(intent);
             }
         });
     }

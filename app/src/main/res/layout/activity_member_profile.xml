@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_member_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="app.projectlevapplication.viewComponents.MemberProfileActivity"
+    android:layout_weight="1"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="148dp"
+        android:layout_height="148dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:id="@+id/profileImage"
+            android:layout_weight="1"
+            android:layoutDirection="rtl" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layoutDirection="rtl">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:layoutDirection="rtl">
+
+            <TextView
+                android:text="@string/member_profile_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView7"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textDirection="rtl"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="@string/member_profile_birth_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView5"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="@string/member_profile_email_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView3"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="@string/member_profile_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="rtl">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtMemberName"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtBirthDate"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtEmail"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/txtGender"
+                android:textDirection="rtl"
+                android:layout_weight="1"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></LinearLayout>
+
+</LinearLayout>

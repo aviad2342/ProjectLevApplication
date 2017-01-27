@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".viewComponents.MembersListActivity"></activity>
+        <activity android:name=".viewComponents.MembersListActivity" />
+        <activity android:name=".viewComponents.MemberProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -15,4 +15,8 @@
         completions."
     </string>
     <string name="title_activity_menu_bar">menuBarActivity</string>
+    <string name="member_profile_full_name">:שם מלא</string>
+    <string name="member_profile_birth_date">תאריך לידה:</string>
+    <string name="member_profile_email_address">דואר אלקטרוני:</string>
+    <string name="member_profile_gender">מגדר:</string>
 </resources>
