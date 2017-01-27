@@ -315,8 +315,6 @@ public class Member implements Serializable {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-
-	
 	
 	public ArrayList<Phone> getPhones() {
 		return phones;
@@ -324,6 +322,13 @@ public class Member implements Serializable {
 
 	public void setPhones(ArrayList<Phone> phones) {
 		this.phones = phones;
+	}
+
+	public String getMemberGender() {
+		if(gender == 0){
+			return "זכר";
+		}
+		return "נקבה";
 	}
 
 	@Override
@@ -347,11 +352,5 @@ public class Member implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
 
 }

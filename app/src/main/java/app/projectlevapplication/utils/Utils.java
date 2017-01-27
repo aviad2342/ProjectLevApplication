@@ -1,9 +1,12 @@
 package app.projectlevapplication.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,15 +26,15 @@ import app.projectlevapplication.core.Member;
 
 public class Utils {
 
-    private static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
+    public static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
 
-    private static final String EVENTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/events/";
+    public static final String EVENTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/events/";
 
-    private static final String TESTIMONY_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/testimony/";
+    public static final String TESTIMONY_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/testimony/";
 
-    private static final String THERAPISTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/therapists/";
+    public static final String THERAPISTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/therapists/";
 
-    private static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
+    public static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
 
     private static Utils _instance;
 
@@ -46,6 +49,20 @@ public class Utils {
             _instance = new Utils();
         }
         return _instance;
+    }
+
+    public static void loadMemberImage(Activity activity, String imageToLoad, ImageView view)  {
+        Picasso.with(activity).load(MEMBER_IMAGE+imageToLoad).into(view);
+    }
+
+    public static String getBirthDate(Date date)  {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(date);
+    }
+
+    public static String getGender(Date date)  {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return date.toString();
     }
 
     public Member responseToMember(String response)  {
@@ -116,7 +133,7 @@ public class Utils {
                 member.setPassword(jsonObject.getString("password"));
                 member.setFullName(jsonObject.getString("fullName"));
 
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 member.setBirthDate(format.parse(jsonObject.getString("birthdate")));
 
                 member.setEmail(jsonObject.getString("email"));
@@ -136,7 +153,7 @@ public class Utils {
                 member.setSubExpire(format2.parse(jsonObject.getString("subExpire")));
 
                 member.setSendMails(Boolean.parseBoolean(jsonObject.getString("sendMails")));
-
+                System.out.print(member);
                 members.add(member);
             }
 
