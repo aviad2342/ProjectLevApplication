@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,9 +21,10 @@ import java.io.Serializable;
 import app.projectlevapplication.LogInDialog;
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Member;
+import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
 
-public class MembersListActivity extends AppCompatActivity {
+public class MembersListActivity extends MyMenuBar {
 
     ListView list;
     MembersListAdapter adapter;
@@ -51,8 +53,9 @@ public class MembersListActivity extends AppCompatActivity {
     }
 
     public void loadList(){
-        loading = ProgressDialog.show(MembersListActivity.this,"Please wait...","Fetching...",false,false);
-        String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
+        loading = ProgressDialog.show(MembersListActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
+
+        String url = Utils.ALL_COMMUNITY_MEMBERS;
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override

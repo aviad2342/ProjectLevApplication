@@ -13,9 +13,10 @@ import com.squareup.picasso.Picasso;
 
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Member;
+import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
 
-public class MemberProfileActivity extends AppCompatActivity {
+public class MemberProfileActivity extends MyMenuBar {
 
     Member memberToDisplay;
     ImageView profileImage;

@@ -26,6 +26,13 @@ import app.projectlevapplication.core.Member;
 
 public class Utils {
 
+    // --------------------------------------------------------Data URLs----------------------------------------------------------------------------
+
+
+    public static final String ALL_COMMUNITY_MEMBERS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
+
+   // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
+
     public static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
 
     public static final String EVENTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/events/";
@@ -35,6 +42,8 @@ public class Utils {
     public static final String THERAPISTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/therapists/";
 
     public static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
+
+    public static final String DEFAULT_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/profile.jpg";
 
     private static Utils _instance;
 
@@ -91,7 +100,14 @@ public class Utils {
             member.setHouseNum(Integer.parseInt(jsonObject.getString("houseNum")));
             member.setZipCode(Integer.parseInt(jsonObject.getString("zipCode")));
             member.setEducation(Integer.parseInt(jsonObject.getString("education")));
-            member.setProfilePic(jsonObject.getString("profilePic"));
+
+            String proImage = jsonObject.getString("profilePic");
+            if(proImage == "null"){
+                member.setProfilePic(DEFAULT_IMAGE);
+            }else {
+                member.setProfilePic(MEMBER_IMAGE+proImage);
+            }
+
             member.setApproved(Boolean.parseBoolean(jsonObject.getString("isApproved")));
 
             SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -145,7 +161,13 @@ public class Utils {
                 member.setHouseNum(Integer.parseInt(jsonObject.getString("houseNum")));
                 member.setZipCode(Integer.parseInt(jsonObject.getString("zipCode")));
                 member.setEducation(Integer.parseInt(jsonObject.getString("education")));
-                member.setProfilePic(MEMBER_IMAGE+jsonObject.getString("profilePic"));
+
+                String proImage = jsonObject.getString("profilePic");
+                if(proImage == "null"){
+                    member.setProfilePic(DEFAULT_IMAGE);
+                }else {
+                    member.setProfilePic(MEMBER_IMAGE+proImage);
+                }
                 member.setApproved(Boolean.parseBoolean(jsonObject.getString("isApproved")));
 
                 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
