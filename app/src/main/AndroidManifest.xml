@@ -17,15 +17,20 @@
         android:label=""
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".viewComponents.MembersListActivity" />
-        <activity android:name=".viewComponents.MemberProfileActivity"></activity>
+        <activity
+            android:name=".viewComponents.MembersListActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".viewComponents.MemberProfileActivity" />
+        <activity android:name=".viewComponents.ArticlesListActivity"></activity>
     </application>
 
 </manifest>

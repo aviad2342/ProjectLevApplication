@@ -8,8 +8,8 @@
         android:id="@+id/menu"
         android:icon="@drawable/ic_input_whit_24dp"
         android:showAsAction="always"
-        app:showAsAction="always"
-        android:orderInCategory="2">
+        android:orderInCategory="2"
+        app:showAsAction="always">
     <menu >
         <item android:title="חברי הקהילה"
             android:showAsAction="always|withText"

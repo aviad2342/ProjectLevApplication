@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:weightSum="1"
+    android:textDirection="rtl">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/articleName"
+        android:layout_weight="0.04"
+        android:textDirection="rtl"
+        android:gravity="center_vertical" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl">
+
+        <TextView
+            android:text="שם המחבר:"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView9"
+            android:gravity="center_vertical"
+            android:layout_weight="3.5" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/authorName"
+            android:gravity="center_vertical"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:textDirection="rtl">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/publishDate"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:text="מועד פרסום:"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView18"
+            android:layout_weight="3.5"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:textDirection="rtl">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/commentsNumber"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:text="תגובות:"
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView14"
+            android:gravity="center_vertical"
+            android:paddingRight="15dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/viewsNumber"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:text="צפיות:"
+            android:layout_width="47dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView12"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+</LinearLayout>

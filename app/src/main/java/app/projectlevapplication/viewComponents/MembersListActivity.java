@@ -77,4 +77,16 @@ public class MembersListActivity extends MyMenuBar {
         RequestQueue requestQueue = Volley.newRequestQueue(MembersListActivity.this);
         requestQueue.add(stringRequest);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //loadList();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadList();
+    }
 }
