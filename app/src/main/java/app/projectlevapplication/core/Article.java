@@ -13,10 +13,20 @@ public class Article {
 	private String content;
 	
 	private int authorID;
-	
-	private int views;
-	
-	/**
+
+	private String authorName;
+
+    private int views;
+
+    private int Comments;
+
+    /**
+     * Empty Constructor
+     */
+    public Article() {
+    }
+
+    /**
 	 * Partial Constructor 
 	 * @param articleID
 	 */
@@ -89,6 +99,22 @@ public class Article {
 	public void setViews(int views) {
 		this.views = views;
 	}
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public int getComments() {
+        return Comments;
+    }
+
+    public void setComments(int comments) {
+        Comments = comments;
+    }
 
 	@Override
 	public int hashCode() {

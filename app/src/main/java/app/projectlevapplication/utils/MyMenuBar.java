@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import app.projectlevapplication.LogInDialog;
 import app.projectlevapplication.R;
+import app.projectlevapplication.viewComponents.ArticlesListActivity;
 import app.projectlevapplication.viewComponents.MembersListActivity;
 
 /**
@@ -32,6 +33,10 @@ public class MyMenuBar extends AppCompatActivity {
             case R.id.communityMembers:
                 Intent membersListIntent = new Intent(this, MembersListActivity.class);
                 startActivity(membersListIntent);
+                return true;
+            case R.id.articles:
+                Intent articlesListIntent = new Intent(this, ArticlesListActivity.class);
+                startActivity(articlesListIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

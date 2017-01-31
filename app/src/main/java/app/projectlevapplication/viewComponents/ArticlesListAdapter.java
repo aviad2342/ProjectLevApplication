@@ -58,11 +58,11 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         Article article = articles.get(position);
 
         articleName.setText(article.getHeadline());
-        //authorName.setText(article.get);
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        authorName.setText(article.getAuthorName());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         publishDate.setText(format.format(article.getPublishDate()));
-        viewsNumber.setText(article.getViews());
-        //commentsNumber.setText(article.get);
+        viewsNumber.setText(String.valueOf(article.getViews()));
+        commentsNumber.setText(String.valueOf(article.getComments()));
 
         return row;
 

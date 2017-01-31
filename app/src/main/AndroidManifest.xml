@@ -30,7 +30,10 @@
             android:name=".viewComponents.MembersListActivity"
             android:launchMode="singleTask" />
         <activity android:name=".viewComponents.MemberProfileActivity" />
-        <activity android:name=".viewComponents.ArticlesListActivity"></activity>
+        <activity android:name=".viewComponents.ArticlesListActivity"
+            android:launchMode="singleTask" >
+
+        </activity>
     </application>
 
 </manifest>

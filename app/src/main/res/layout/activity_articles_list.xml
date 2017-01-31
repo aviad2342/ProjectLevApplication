@@ -17,5 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/articlesList"
-        android:textDirection="rtl" />
+        android:textDirection="rtl"
+        android:divider="@android:color/black"
+        android:dividerHeight="2dp" />
 </RelativeLayout>

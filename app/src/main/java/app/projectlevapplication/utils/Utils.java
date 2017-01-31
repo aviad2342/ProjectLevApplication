@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import app.projectlevapplication.core.Article;
 import app.projectlevapplication.core.Member;
 
 /**
@@ -30,6 +31,8 @@ public class Utils {
 
 
     public static final String ALL_COMMUNITY_MEMBERS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
+
+    public static final String ALL_COMMUNITY_ARTICLES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=6";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
@@ -189,6 +192,48 @@ public class Utils {
         return members;
     }
 
+    public ArrayList<Article> responseToArticleList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Article> articles = new ArrayList<>();
+        Article article;
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i = 0; i < jsonArray.length(); i++){
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                article = new Article();
+
+                article.setArticleID(Integer.parseInt(jsonObject.getString("articleID")));
+                article.setHeadline(jsonObject.getString("headline"));
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                article.setPublishDate(format.parse(jsonObject.getString("dateTime")));
+
+                article.setContent(jsonObject.getString("content"));
+                article.setAuthorID(Integer.parseInt(jsonObject.getString("author")));
+                article.setAuthorName(jsonObject.getString("fullName"));
+                article.setViews(Integer.parseInt(jsonObject.getString("views")));
+                article.setComments(Integer.parseInt(jsonObject.getString("comments")));
+
+
+                articles.add(article);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return articles;
+    }
     /**
      * write \ update a Member record to SharedPreferences
      * @param mPrefs

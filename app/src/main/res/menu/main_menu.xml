@@ -16,8 +16,8 @@
             android:id="@+id/communityMembers" />
         <item android:title="אירועים"
             android:showAsAction="always" />
-        <item android:title="חנות"
-        android:id="@+id/blaa"
+        <item android:title="מאמרים"
+        android:id="@+id/articles"
             android:showAsAction="always" />
     </menu>
 </item>
