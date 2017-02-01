@@ -1,6 +1,10 @@
 package app.projectlevapplication.core;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -351,6 +355,38 @@ public class Member implements Serializable {
 		if (memberID != other.memberID)
 			return false;
 		return true;
+	}
+
+	public JSONObject toJsonObject(){
+
+		JSONObject jsonObject= new JSONObject();
+		try {
+			jsonObject.put("memberID", getMemberID());
+			jsonObject.put("username", getUsername());
+			jsonObject.put("password", getPassword());
+			jsonObject.put("fullName", getFullName());
+			jsonObject.put("birthdate", getBirthDate());
+			jsonObject.put("email", getEmail());
+			jsonObject.put("gender", getGender());
+			jsonObject.put("status", getStatus());
+			jsonObject.put("children", getChildren());
+            jsonObject.put("state", getState());
+            jsonObject.put("street", getStreet());
+            jsonObject.put("houseNum", getHouseNum());
+            jsonObject.put("zipCode", getZipCode());
+            jsonObject.put("education", getEducation());
+			jsonObject.put("profilePic", getProfilePic());
+			jsonObject.put("isApproved", isApproved());
+			jsonObject.put("registrationDate", getRegistrationDate());
+			jsonObject.put("subExpire", getSubExpire());
+			jsonObject.put("sendMails", isSendMails());
+
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
 	}
 
 }

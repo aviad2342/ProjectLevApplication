@@ -4,10 +4,20 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.FilterQueryProvider;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,6 +35,8 @@ import app.projectlevapplication.utils.Utils;
 public class ArticlesListActivity extends AppCompatActivity {
 
     ListView list;
+    ArrayAdapter<String> headlineAdapter;
+    TextView searchArticle;
     ArticlesListAdapter adapter;
     public ProgressDialog loading;
 
@@ -32,8 +44,9 @@ public class ArticlesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles_list);
-
         list = (ListView) findViewById(R.id.articlesList);
+        searchArticle = (TextView) findViewById(R.id.searchInArticels);
+        searchArticle.addTextChangedListener(filterTextWatcher);
         loadArticleList();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,6 +60,31 @@ public class ArticlesListActivity extends AppCompatActivity {
             }
         });
     }
+    private TextWatcher filterTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            if (adapter != null) {
+                adapter.getFilter().filter(s);
+            } else {
+                Log.d("filter", "no filter availible");
+            }
+        }
+    };
 
     public void loadArticleList(){
         loading = ProgressDialog.show(ArticlesListActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
@@ -61,6 +99,9 @@ public class ArticlesListActivity extends AppCompatActivity {
                 // Utils.getInstance().responseToMembersList(response);
                 adapter = new ArticlesListAdapter(ArticlesListActivity.this, Utils.getInstance().responseToArticleList(response));
                 list.setAdapter(adapter);
+               // headlineAdapter = new ArrayAdapter<String>(ArticlesListActivity.this,R.layout.auto_complete_text_item,Utils.getInstance().responseToArticleHeadlineList(response));
+               // searchArticel.setAdapter(headlineAdapter);
+
             }
         },
                 new Response.ErrorListener() {

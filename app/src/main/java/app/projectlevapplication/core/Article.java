@@ -137,6 +137,11 @@ public class Article {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Article{" +
+				"headline='" + headline + '\'' +
+				'}';
+	}
 }

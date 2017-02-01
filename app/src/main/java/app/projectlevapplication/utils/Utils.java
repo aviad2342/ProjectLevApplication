@@ -234,6 +234,26 @@ public class Utils {
         }
         return articles;
     }
+
+    public ArrayList<String> responseToArticleHeadlineList(String response)  {
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<String> headlines = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                headlines.add(jsonObject.getString("headline"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return headlines;
+    }
     /**
      * write \ update a Member record to SharedPreferences
      * @param mPrefs

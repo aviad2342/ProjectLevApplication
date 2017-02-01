@@ -31,7 +31,8 @@
             android:launchMode="singleTask" />
         <activity android:name=".viewComponents.MemberProfileActivity" />
         <activity android:name=".viewComponents.ArticlesListActivity"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden">
 
         </activity>
     </application>
