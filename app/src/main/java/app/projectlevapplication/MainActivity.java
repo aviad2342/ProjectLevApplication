@@ -50,8 +50,7 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
     private static final String JSON_URL = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
     public ProgressDialog loading;
     ImageView image;
-    MenuItem communityMembers;
-    MenuItem select;
+
 
 
     @Override
@@ -60,8 +59,11 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
         setContentView(R.layout.activity_main);
         textViewJSON = (TextView) findViewById(R.id.json);
         image = (ImageView) findViewById(R.id.imagev);
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         permissionsRequest();
+
+        //communityMembers.setEnabled(false);
+
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
        // getJSON(JSON_URL);
         //getData();
         //Picasso.with(this).load("https://s-media-cache-ak0.pinimg.com/originals/53/b1/2c/53b12cfc320db4029d7ce5f25702deb9.png").into(image);

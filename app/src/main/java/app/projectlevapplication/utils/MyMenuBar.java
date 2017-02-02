@@ -17,10 +17,20 @@ import app.projectlevapplication.viewComponents.MembersListActivity;
 
 public class MyMenuBar extends AppCompatActivity {
 
+    public static MenuItem communityMembers;
+    public static MenuItem communityArticles;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        communityMembers = menu.findItem(R.id.communityMembers);
+        communityArticles = menu.findItem(R.id.articles);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

@@ -13,10 +13,20 @@ private int commentID;
 	private String content;
 	
 	private int authorID;
+
+	private String authorName;
+
+    private String authorProfilePic;
 	
 	private int articleID;
-	
-	/**
+
+    /**
+     * Empty Constructor
+     */
+    public Comment() {
+    }
+
+    /**
 	 * Partial Constructor 
 	 * @param commentID
 	 */
@@ -90,7 +100,23 @@ private int commentID;
 		this.articleID = articleID;
 	}
 
-	@Override
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public String getAuthorProfilePic() {
+        return authorProfilePic;
+    }
+
+    public void setAuthorProfilePic(String authorProfilePic) {
+        this.authorProfilePic = authorProfilePic;
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

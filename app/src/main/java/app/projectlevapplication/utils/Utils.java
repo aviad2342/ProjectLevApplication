@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import app.projectlevapplication.core.Article;
+import app.projectlevapplication.core.Comment;
 import app.projectlevapplication.core.Member;
 
 /**
@@ -233,6 +234,54 @@ public class Utils {
             return null;
         }
         return articles;
+    }
+
+    public ArrayList<Comment> responseToCommentsList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Comment> comments = new ArrayList<>();
+        Comment comment;
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i = 0; i < jsonArray.length(); i++){
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                comment = new Comment();
+
+                comment.setCommentID(Integer.parseInt(jsonObject.getString("articleID")));
+                comment.setHeadline(jsonObject.getString("headline"));
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                comment.setPublishDate(format.parse(jsonObject.getString("dateTime")));
+
+                comment.setContent(jsonObject.getString("content"));
+                comment.setAuthorID(Integer.parseInt(jsonObject.getString("author")));
+                comment.setAuthorName(jsonObject.getString("fullName"));
+                String proImage = jsonObject.getString("profilePic");
+
+                if(proImage == "null"){
+                    comment.setAuthorProfilePic(DEFAULT_IMAGE);
+                }else {
+                    comment.setAuthorProfilePic(MEMBER_IMAGE+proImage);
+                }
+                comment.setArticleID(Integer.parseInt(jsonObject.getString("articleID")));
+
+                comments.add(comment);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return comments;
     }
 
     public ArrayList<String> responseToArticleHeadlineList(String response)  {
