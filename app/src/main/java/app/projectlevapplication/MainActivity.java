@@ -63,6 +63,7 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
 
         //communityMembers.setEnabled(false);
 
+
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
        // getJSON(JSON_URL);
         //getData();
