@@ -20,6 +20,7 @@ import java.util.List;
 
 import app.projectlevapplication.core.Article;
 import app.projectlevapplication.core.Comment;
+import app.projectlevapplication.core.Event;
 import app.projectlevapplication.core.Member;
 
 /**
@@ -34,6 +35,8 @@ public class Utils {
     public static final String ALL_COMMUNITY_MEMBERS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
 
     public static final String ALL_COMMUNITY_ARTICLES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=6";
+
+    public static final String ALL_COMMUNITY_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=8";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
@@ -222,7 +225,6 @@ public class Utils {
                 article.setViews(Integer.parseInt(jsonObject.getString("views")));
                 article.setComments(Integer.parseInt(jsonObject.getString("comments")));
 
-
                 articles.add(article);
             }
 
@@ -234,6 +236,47 @@ public class Utils {
             return null;
         }
         return articles;
+    }
+
+    public ArrayList<Event> responseToEventList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Event> events = new ArrayList<>();
+        Event event;
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for (int i = 0; i < jsonArray.length(); i++){
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                event = new Event();
+
+                event.setEventID(Integer.parseInt(jsonObject.getString("eventID")));
+                event.setTitle(jsonObject.getString("title"));
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                event.setPublishDate(format.parse(jsonObject.getString("dateTime")));
+
+                event.setCapacity(Integer.parseInt(jsonObject.getString("capacity")));
+                event.setLocation(jsonObject.getString("location"));
+                event.setDescription(jsonObject.getString("description"));
+                event.setPublisherID(Integer.parseInt(jsonObject.getString("publisher")));
+
+                events.add(event);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return events;
     }
 
     public ArrayList<Comment> responseToCommentsList(String response)  {
@@ -253,23 +296,24 @@ public class Utils {
 
                 comment = new Comment();
 
-                comment.setCommentID(Integer.parseInt(jsonObject.getString("articleID")));
+                comment.setCommentID(Integer.parseInt(jsonObject.getString("commentID")));
                 comment.setHeadline(jsonObject.getString("headline"));
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 comment.setPublishDate(format.parse(jsonObject.getString("dateTime")));
 
                 comment.setContent(jsonObject.getString("content"));
-                comment.setAuthorID(Integer.parseInt(jsonObject.getString("author")));
+                comment.setAuthorID(Integer.parseInt(jsonObject.getString("writer")));
+                comment.setArticleID(Integer.parseInt(jsonObject.getString("article")));
                 comment.setAuthorName(jsonObject.getString("fullName"));
-                String proImage = jsonObject.getString("profilePic");
 
+                String proImage = jsonObject.getString("profilePic");
                 if(proImage == "null"){
                     comment.setAuthorProfilePic(DEFAULT_IMAGE);
                 }else {
                     comment.setAuthorProfilePic(MEMBER_IMAGE+proImage);
                 }
-                comment.setArticleID(Integer.parseInt(jsonObject.getString("articleID")));
+
 
                 comments.add(comment);
             }
@@ -302,6 +346,17 @@ public class Utils {
             return null;
         }
         return headlines;
+    }
+
+    public static String eventToDateString(Date dateToStr)  {
+        String date;
+        String time;
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+        date = formatDate.format(dateToStr);
+        SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm");
+        time = formatTime.format(dateToStr);
+
+        return  date+"  בשעה: "+time;
     }
     /**
      * write \ update a Member record to SharedPreferences

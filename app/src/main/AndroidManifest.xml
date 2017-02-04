@@ -30,11 +30,13 @@
             android:name=".viewComponents.MembersListActivity"
             android:launchMode="singleTask" />
         <activity android:name=".viewComponents.MemberProfileActivity" />
-        <activity android:name=".viewComponents.ArticlesListActivity"
+        <activity
+            android:name=".viewComponents.ArticlesListActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".viewComponents.EventListActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

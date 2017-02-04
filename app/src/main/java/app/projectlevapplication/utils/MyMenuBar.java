@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import app.projectlevapplication.LogInDialog;
 import app.projectlevapplication.R;
 import app.projectlevapplication.viewComponents.ArticlesListActivity;
+import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.MembersListActivity;
 
 /**
@@ -18,6 +19,7 @@ import app.projectlevapplication.viewComponents.MembersListActivity;
 public class MyMenuBar extends AppCompatActivity {
 
     public static MenuItem communityMembers;
+    public static MenuItem communityEvents;
     public static MenuItem communityArticles;
 
     @Override
@@ -29,6 +31,7 @@ public class MyMenuBar extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         communityMembers = menu.findItem(R.id.communityMembers);
+        communityEvents = menu.findItem(R.id.events);
         communityArticles = menu.findItem(R.id.articles);
         return super.onPrepareOptionsMenu(menu);
     }
@@ -43,6 +46,10 @@ public class MyMenuBar extends AppCompatActivity {
             case R.id.communityMembers:
                 Intent membersListIntent = new Intent(this, MembersListActivity.class);
                 startActivity(membersListIntent);
+                return true;
+            case R.id.events:
+                Intent eventsListIntent = new Intent(this, EventListActivity.class);
+                startActivity(eventsListIntent);
                 return true;
             case R.id.articles:
                 Intent articlesListIntent = new Intent(this, ArticlesListActivity.class);

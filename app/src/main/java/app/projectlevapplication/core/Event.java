@@ -20,8 +20,14 @@ public class Event {
 	private int publisherID;
 	
 	private ArrayList<Media> media;
-	
-	/**
+
+    /**
+     * Empty Constructor
+     */
+    public Event() {
+    }
+
+    /**
 	 * Partial Constructor 
 	 * @param eventID
 	 */

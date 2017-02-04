@@ -15,7 +15,8 @@
             android:showAsAction="always|withText"
             android:id="@+id/communityMembers" />
         <item android:title="אירועים"
-            android:showAsAction="always" />
+            android:showAsAction="always"
+            android:id="@+id/events" />
         <item android:title="מאמרים"
         android:id="@+id/articles"
             android:showAsAction="always" />

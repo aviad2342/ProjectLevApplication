@@ -38,21 +38,32 @@ private int commentID;
 	 * Full Constructor 
 	 * @param commentID
 	 * @param headline
-	 * @param publushDate
+	 * @param publishDate
 	 * @param content
 	 * @param authorID
 	 * @param articleID
 	 */
-	public Comment(int commentID, String headline, Date publushDate, String content, int authorID, int articleID) {
+	public Comment(int commentID, String headline, Date publishDate, String content, int authorID, int articleID) {
 		setCommentID(commentID);
 		setHeadline(headline);
-		setPublishDate(publushDate);
+		setPublishDate(publishDate);
 		setContent(content);
 		setAuthorID(authorID);
 		setArticleID(articleID);
 	}
 
-	public int getCommentID() {
+    public Comment(String headline, Date publishDate, String content, int authorID, String authorName, String authorProfilePic, int articleID) {
+        setCommentID(commentID);
+        setHeadline(headline);
+        setPublishDate(publishDate);
+        setContent(content);
+        setAuthorID(authorID);
+        setAuthorName(authorName);
+        setAuthorProfilePic(authorProfilePic);
+        setArticleID(articleID);
+    }
+
+    public int getCommentID() {
 		return commentID;
 	}
 
