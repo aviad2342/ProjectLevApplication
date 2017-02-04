@@ -30,9 +30,10 @@ import java.io.Serializable;
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Article;
 import app.projectlevapplication.core.Member;
+import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
 
-public class ArticlesListActivity extends AppCompatActivity {
+public class ArticlesListActivity extends MyMenuBar {
 
     ListView list;
     ArrayAdapter<String> headlineAdapter;
