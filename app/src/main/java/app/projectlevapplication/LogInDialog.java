@@ -42,6 +42,7 @@ public class LogInDialog extends DialogFragment {
     EditText userName;
     EditText password;
     public ProgressDialog loading;
+    SharedPreferences mPrefs;
 
     public interface DialogFragmentListener {
         public void onDialogPositiveClick(LogInDialog dialog);
@@ -75,9 +76,9 @@ public class LogInDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_dialog_fragment, null);
-
         userName = (EditText) view.findViewById(R.id.loginUserName);
         password = (EditText) view.findViewById(R.id.loginPassword);
+        mPrefs = activity.getPreferences(MODE_PRIVATE);
         userName.setText("Admin");
         password.setText("Admin");
 
@@ -116,8 +117,9 @@ public class LogInDialog extends DialogFragment {
                         public void onResponse(String response) {
                             loading.dismiss();
                             Member member;
-                            if((member = Utils.getInstance().responseToMember(response)) != null){
-                                Utils.getInstance().writeMemberToPrefs(activity.getPreferences(MODE_PRIVATE),member);
+                            if(response.length() > 0){
+                                member = Utils.getInstance().responseToMember(response);
+                                Utils.getInstance().writeMemberToPrefs(mPrefs,member);
                                 mListener.onDialogPositiveClick(LogInDialog.this);
                                 dismiss();
                             }else{

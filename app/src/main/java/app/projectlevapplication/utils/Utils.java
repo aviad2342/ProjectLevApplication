@@ -3,6 +3,7 @@ package app.projectlevapplication.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -132,6 +133,25 @@ public class Utils {
             return null;
         }
         return member;
+    }
+
+    public boolean isAdmin(String response)  {
+
+        if(response.length() < 1){
+            return false;
+        }
+        boolean isAdmin;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            //JSONObject jsonObject = new JSONObject(response);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            isAdmin = (Integer.parseInt(jsonObject.getString("TRUE")) != 0);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return isAdmin;
     }
 
     public ArrayList<Member> responseToMembersList(String response)  {
@@ -365,7 +385,7 @@ public class Utils {
      */
     public void writeMemberToPrefs(SharedPreferences mPrefs, Member member)  {
         try {
-            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            Editor prefsEditor = mPrefs.edit();
             Gson gson = new Gson();
             String json = gson.toJson(member);
             prefsEditor.putString("loginMember", json);

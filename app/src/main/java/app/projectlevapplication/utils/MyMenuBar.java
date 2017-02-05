@@ -18,6 +18,8 @@ import app.projectlevapplication.viewComponents.MembersListActivity;
 
 public class MyMenuBar extends AppCompatActivity {
 
+    public static MenuItem MemberLogin;
+    public static MenuItem MemberLogout;
     public static MenuItem communityMembers;
     public static MenuItem communityEvents;
     public static MenuItem communityArticles;
@@ -30,6 +32,8 @@ public class MyMenuBar extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        MemberLogin = menu.findItem(R.id.logIn);
+        MemberLogout = menu.findItem(R.id.logout);
         communityMembers = menu.findItem(R.id.communityMembers);
         communityEvents = menu.findItem(R.id.events);
         communityArticles = menu.findItem(R.id.articles);
@@ -42,6 +46,13 @@ public class MyMenuBar extends AppCompatActivity {
             case R.id.logIn:
                 LogInDialog dialog = new LogInDialog();
                 dialog.show(getFragmentManager(),"dialog");
+                return true;
+            case R.id.logout:
+                getPreferences(MODE_PRIVATE).edit().clear().apply();
+                MemberLogout.setVisible(false);
+                MemberLogout.setEnabled(false);
+                MemberLogin.setVisible(true);
+                MemberLogin.setEnabled(true);
                 return true;
             case R.id.communityMembers:
                 Intent membersListIntent = new Intent(this, MembersListActivity.class);

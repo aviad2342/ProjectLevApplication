@@ -357,7 +357,34 @@ public class Member implements Serializable {
 		return true;
 	}
 
-	public JSONObject toJsonObject(){
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberID=" + memberID +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", birthDate=" + birthDate +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", status=" + status +
+                ", children=" + children +
+                ", state='" + state + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNum=" + houseNum +
+                ", zipCode=" + zipCode +
+                ", education=" + education +
+                ", profilePic='" + profilePic + '\'' +
+                ", isApproved=" + isApproved +
+                ", registrationDate=" + registrationDate +
+                ", subExpire=" + subExpire +
+                ", sendMails=" + sendMails +
+                ", isAdmin=" + isAdmin +
+                ", phones=" + phones +
+                '}';
+    }
+
+    public JSONObject toJsonObject(){
 
 		JSONObject jsonObject= new JSONObject();
 		try {

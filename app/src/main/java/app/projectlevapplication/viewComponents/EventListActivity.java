@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import java.io.Serializable;
 
 import app.projectlevapplication.R;
+import app.projectlevapplication.core.Event;
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
@@ -40,7 +41,10 @@ public class EventListActivity extends MyMenuBar {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Event selectedItem = adapter.getItem(position);
+                Intent intent = new Intent(EventListActivity.this, EventActivity.class);
+                intent.putExtra("mEvent", (Serializable)selectedItem);
+                startActivity(intent);
             }
         });
     }

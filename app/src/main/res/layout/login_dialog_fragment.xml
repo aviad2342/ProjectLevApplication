@@ -53,5 +53,6 @@
         android:layout_height="match_parent"
         android:id="@+id/registerLink"
         android:layout_weight="1"
-        android:textDirection="rtl" />
+        android:textDirection="rtl"
+        android:gravity="center_vertical" />
 </LinearLayout>

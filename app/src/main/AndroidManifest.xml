@@ -37,6 +37,7 @@
         <activity
             android:name=".viewComponents.EventListActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".viewComponents.EventActivity"></activity>
     </application>
 
 </manifest>

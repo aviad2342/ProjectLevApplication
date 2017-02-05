@@ -8,7 +8,7 @@
         android:id="@+id/menu"
         android:icon="@drawable/ic_input_whit_24dp"
         android:showAsAction="always"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         app:showAsAction="always">
     <menu >
         <item android:title="חברי הקהילה"
@@ -22,6 +22,14 @@
             android:showAsAction="always" />
     </menu>
 </item>
+    <item android:title="logout"
+        android:id="@+id/logout"
+        android:showAsAction="always"
+        android:orderInCategory="2"
+        android:icon="@drawable/logout_24dp"
+        android:checkable="true"
+        android:enabled="false"
+        android:visible="false" />
     <item android:title="logIn"
         android:showAsAction="always"
         android:icon="@drawable/ic_input_white_24dp"

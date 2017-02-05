@@ -45,7 +45,6 @@ public class MembersListActivity extends MyMenuBar {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Member selectedItem = adapter.getItem(position);
                 Intent intent = new Intent(MembersListActivity.this, MemberProfileActivity.class);
-
                 intent.putExtra("mMember", (Serializable)selectedItem);
                 startActivity(intent);
             }

@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,8 +39,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import app.projectlevapplication.core.Member;
 import app.projectlevapplication.model.LinkToDataBase;
 import app.projectlevapplication.utils.MyMenuBar;
+import app.projectlevapplication.utils.Utils;
+import app.projectlevapplication.viewComponents.EventListActivity;
+import app.projectlevapplication.viewComponents.EventsListAdapter;
 import app.projectlevapplication.viewComponents.MembersListActivity;
 
 
@@ -49,7 +54,9 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
     private TextView textViewJSON;
     private static final String JSON_URL = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
     public ProgressDialog loading;
-    ImageView image;
+    TextView txt;
+    public Member loginMember;
+    SharedPreferences mPrefs;
 
 
 
@@ -58,9 +65,20 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textViewJSON = (TextView) findViewById(R.id.json);
-        image = (ImageView) findViewById(R.id.imagev);
+        txt = (TextView) findViewById(R.id.textViewtest);
+        mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
-
+        if(Utils.getInstance().loadMemberFromPrefs(mPrefs) != null){
+            loginMember = Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE));
+            Toast.makeText(MainActivity.this,loginMember.getFullName(),Toast.LENGTH_LONG).show();
+            MemberLogout.setVisible(true);
+            MemberLogout.setEnabled(true);
+            MemberLogin.setVisible(false);
+            MemberLogin.setEnabled(false);
+        }else {
+            Toast.makeText(MainActivity.this,"naab",Toast.LENGTH_LONG).show();
+        }
+        //getPreferences(MODE_PRIVATE).edit().clear().apply();
         //communityMembers.setEnabled(false);
 
 
@@ -161,7 +179,29 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
 
     @Override
     public void onDialogPositiveClick(LogInDialog dialog) {
-        Toast.makeText(MainActivity.this,"OK",Toast.LENGTH_LONG).show();
+//        loginMember = Utils.getInstance().loadMemberFromPrefs(mPrefs);
+//        loading = ProgressDialog.show(MainActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
+//
+//        String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=2&user="+loginMember.getUsername()+"&pass="+loginMember.getPassword();
+//
+//        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                loading.dismiss();
+//                loginMember.setAdmin(Utils.getInstance().isAdmin(response));
+//                Utils.getInstance().writeMemberToPrefs(mPrefs,loginMember);
+//
+//            }
+//        },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(getApplicationContext(),"error", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+//        requestQueue.add(stringRequest);
     }
 
     @Override
