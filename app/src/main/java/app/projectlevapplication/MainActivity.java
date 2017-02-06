@@ -48,17 +48,15 @@ import app.projectlevapplication.viewComponents.EventsListAdapter;
 import app.projectlevapplication.viewComponents.MembersListActivity;
 
 
-public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmentListener{
+public class MainActivity extends MyMenuBar{
 
     private final int PERMISSIONS_REQ= 1212;
     private TextView textViewJSON;
-    private static final String JSON_URL = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
+    private static final String JSON_URL = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=0&user=Admin&pass=Admin";
     public ProgressDialog loading;
     TextView txt;
     public Member loginMember;
     SharedPreferences mPrefs;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +66,12 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
         txt = (TextView) findViewById(R.id.textViewtest);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
-        if(Utils.getInstance().loadMemberFromPrefs(mPrefs) != null){
-            loginMember = Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE));
-            Toast.makeText(MainActivity.this,loginMember.getFullName(),Toast.LENGTH_LONG).show();
-            MemberLogout.setVisible(true);
-            MemberLogout.setEnabled(true);
-            MemberLogin.setVisible(false);
-            MemberLogin.setEnabled(false);
-        }else {
-            Toast.makeText(MainActivity.this,"naab",Toast.LENGTH_LONG).show();
-        }
+//        if(Utils.getInstance().loadMemberFromPrefs(mPrefs) != null){
+//            loginMember = Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE));
+//            Toast.makeText(MainActivity.this,loginMember.getFullName(),Toast.LENGTH_LONG).show();
+//        }else {
+//            Toast.makeText(MainActivity.this,"naab",Toast.LENGTH_LONG).show();
+//        }
         //getPreferences(MODE_PRIVATE).edit().clear().apply();
         //communityMembers.setEnabled(false);
 
@@ -86,6 +80,11 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
        // getJSON(JSON_URL);
         //getData();
         //Picasso.with(this).load("https://s-media-cache-ak0.pinimg.com/originals/53/b1/2c/53b12cfc320db4029d7ce5f25702deb9.png").into(image);
+    }
+
+    @Override
+    public void invalidateOptionsMenu() {
+        super.invalidateOptionsMenu();
     }
 
     private void permissionsRequest() {
@@ -177,8 +176,8 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
 //        }
 //    }
 
-    @Override
-    public void onDialogPositiveClick(LogInDialog dialog) {
+//    @Override
+//    public void onDialogPositiveClick(LogInDialog dialog) {
 //        loginMember = Utils.getInstance().loadMemberFromPrefs(mPrefs);
 //        loading = ProgressDialog.show(MainActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
 //
@@ -202,48 +201,49 @@ public class MainActivity extends MyMenuBar implements LogInDialog.DialogFragmen
 //
 //        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 //        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void onDialogNegativeClick(LogInDialog dialog) {
-
-    }
-
-    @Override
-    public void onDialogRegisterClick(LogInDialog dialog) {
-        Toast.makeText(MainActivity.this,"NO",Toast.LENGTH_LONG).show();
-    }
-
-//    private void getData() {
-//
-//        loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
-//
-//        String url = JSON_URL;
-//
-//        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                loading.dismiss();
-//                showJSON(response);
-//            }
-//        },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(MainActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(stringRequest);
 //    }
+
+//    @Override
+//    public void onDialogNegativeClick(LogInDialog dialog) {
+//
+//    }
+//
+//    @Override
+//    public void onDialogRegisterClick(LogInDialog dialog) {
+//        Toast.makeText(MainActivity.this,"NO",Toast.LENGTH_LONG).show();
+//    }
+
+    private void getData() {
+
+        loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
+
+        String url = JSON_URL;
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                loading.dismiss();
+                //txt.setText(response);
+                showJSON(response);
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
     private void showJSON(String response){
         try {
-           // JSONObject jsonObject = new JSONObject(response);
+           JSONObject jsonObject = new JSONObject(response);
             //JSONArray result = jsonObject.getJSONArray(response);
-            JSONArray result = new JSONArray(response);
-            textViewJSON.setText(result.toString());
+            //JSONArray result = new JSONArray(response);
+            txt.setText(Utils.getInstance().responseToMember(response).toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

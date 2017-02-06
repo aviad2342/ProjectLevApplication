@@ -96,7 +96,7 @@ public class Utils {
             member.setPassword(jsonObject.getString("password"));
             member.setFullName(jsonObject.getString("fullName"));
 
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             member.setBirthDate(format.parse(jsonObject.getString("birthdate")));
 
             member.setEmail(jsonObject.getString("email"));
