@@ -1,8 +1,9 @@
 package app.projectlevapplication.core;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Article {
+public class Article implements Serializable {
 	
 	private int articleID;
 	

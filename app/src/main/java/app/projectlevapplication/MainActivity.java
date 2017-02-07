@@ -66,20 +66,6 @@ public class MainActivity extends MyMenuBar{
         txt = (TextView) findViewById(R.id.textViewtest);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
-//        if(Utils.getInstance().loadMemberFromPrefs(mPrefs) != null){
-//            loginMember = Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE));
-//            Toast.makeText(MainActivity.this,loginMember.getFullName(),Toast.LENGTH_LONG).show();
-//        }else {
-//            Toast.makeText(MainActivity.this,"naab",Toast.LENGTH_LONG).show();
-//        }
-        //getPreferences(MODE_PRIVATE).edit().clear().apply();
-        //communityMembers.setEnabled(false);
-
-
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // getJSON(JSON_URL);
-        //getData();
-        //Picasso.with(this).load("https://s-media-cache-ak0.pinimg.com/originals/53/b1/2c/53b12cfc320db4029d7ce5f25702deb9.png").into(image);
     }
 
     @Override
@@ -147,72 +133,6 @@ public class MainActivity extends MyMenuBar{
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        communityMembers = menu.findItem(R.id.communityMembers);
-//        select = menu.findItem(R.id.blaa);
-//        return super.onPrepareOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.logIn:
-//                LogInDialog dialog = new LogInDialog();
-//                dialog.show(getFragmentManager(),"dialog");
-//                return true;
-//            case R.id.communityMembers:
-//                Intent membersListIntent = new Intent(this, MembersListActivity.class);
-//                startActivity(membersListIntent);
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-//    @Override
-//    public void onDialogPositiveClick(LogInDialog dialog) {
-//        loginMember = Utils.getInstance().loadMemberFromPrefs(mPrefs);
-//        loading = ProgressDialog.show(MainActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
-//
-//        String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=2&user="+loginMember.getUsername()+"&pass="+loginMember.getPassword();
-//
-//        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                loading.dismiss();
-//                loginMember.setAdmin(Utils.getInstance().isAdmin(response));
-//                Utils.getInstance().writeMemberToPrefs(mPrefs,loginMember);
-//
-//            }
-//        },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getApplicationContext(),"error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-//        requestQueue.add(stringRequest);
-//    }
-
-//    @Override
-//    public void onDialogNegativeClick(LogInDialog dialog) {
-//
-//    }
-//
-//    @Override
-//    public void onDialogRegisterClick(LogInDialog dialog) {
-//        Toast.makeText(MainActivity.this,"NO",Toast.LENGTH_LONG).show();
-//    }
-
     private void getData() {
 
         loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
@@ -250,55 +170,4 @@ public class MainActivity extends MyMenuBar{
 
     }
 
-//    private void getJSON(String url) {
-//        class GetJSON extends AsyncTask<String, Void, String>{
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(MainActivity.this, "Please Wait...",null,true,true);
-//            }
-//
-//            @Override
-//            protected String doInBackground(String... params) {
-//
-//                System.out.print(params[0]);
-//
-//                //Toast.makeText(MainActivity.this, params[0], Toast.LENGTH_SHORT).show();
-//                String uri = params[0];
-//
-//                BufferedReader bufferedReader = null;
-//                try {
-//                    URL url = new URL(uri);
-//                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//                    StringBuilder sb = new StringBuilder();
-//
-//                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//
-//                    String json;
-//                    while((json = bufferedReader.readLine())!= null){
-//                        Toast.makeText(MainActivity.this, json, Toast.LENGTH_SHORT).show();
-//                        sb.append(json+"\n");
-//                    }
-//                    JSONArray jsonPlaces = new JSONArray(sb.toString().trim());
-//                    return jsonPlaces.toString();
-//
-//                }catch(Exception e){
-//                    return null;
-//                }
-//
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String s) {
-//                super.onPostExecute(s);
-//                loading.dismiss();
-//
-//                textViewJSON.setText(s);
-//            }
-//        }
-//        GetJSON gj = new GetJSON();
-//        gj.execute(url);
-//    }
 }

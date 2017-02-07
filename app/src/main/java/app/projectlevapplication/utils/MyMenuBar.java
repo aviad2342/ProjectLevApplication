@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import app.projectlevapplication.LogInDialog;
 import app.projectlevapplication.MainActivity;
 import app.projectlevapplication.R;
+import app.projectlevapplication.core.Member;
 import app.projectlevapplication.viewComponents.ArticlesListActivity;
 import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.MembersListActivity;
@@ -25,6 +26,7 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
     public MenuItem communityEvents;
     public MenuItem communityArticles;
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -38,7 +40,7 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
         communityMembers = menu.findItem(R.id.communityMembers);
         communityEvents = menu.findItem(R.id.events);
         communityArticles = menu.findItem(R.id.articles);
-        if(Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE)) != null){
+        if( Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE)) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -98,4 +100,5 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
     public void onDialogRegisterClick(LogInDialog dialog) {
 
     }
+
 }

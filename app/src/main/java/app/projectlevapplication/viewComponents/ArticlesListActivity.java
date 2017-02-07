@@ -45,6 +45,7 @@ public class ArticlesListActivity extends MyMenuBar {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles_list);
+        getSupportActionBar().setTitle("מאמרים");
         list = (ListView) findViewById(R.id.articlesList);
         searchArticle = (TextView) findViewById(R.id.searchInArticels);
         searchArticle.addTextChangedListener(filterTextWatcher);
@@ -54,10 +55,10 @@ public class ArticlesListActivity extends MyMenuBar {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Article selectedItem = adapter.getItem(position);
-//                Intent intent = new Intent(ArticlesListActivity.this, MemberProfileActivity.class);
-//                intent.putExtra("mArticle", (Serializable)selectedItem);
-//                startActivity(intent);
+                Article selectedItem = adapter.getItem(position);
+                Intent intent = new Intent(ArticlesListActivity.this, ArticleActivity.class);
+                intent.putExtra("mArticle", (Serializable)selectedItem);
+                startActivity(intent);
             }
         });
     }
