@@ -116,14 +116,13 @@ public class Utils {
                 member.setProfilePic(MEMBER_IMAGE+proImage);
             }
 
-            member.setApproved(Boolean.parseBoolean(jsonObject.getString("isApproved")));
+            member.setApproved(getBool(jsonObject.getString("isApproved")));
 
             SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             member.setRegistrationDate(format2.parse(jsonObject.getString("registrationDate")));
             member.setSubExpire(format2.parse(jsonObject.getString("subExpire")));
-
-            member.setSendMails(Boolean.parseBoolean(jsonObject.getString("sendMails")));
-
+            member.setSendMails(getBool(jsonObject.getString("sendMails")));
+            member.setAdmin(getBool(jsonObject.getString("isAdmin")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -195,14 +194,14 @@ public class Utils {
                 }else {
                     member.setProfilePic(MEMBER_IMAGE+proImage);
                 }
-                member.setApproved(Boolean.parseBoolean(jsonObject.getString("isApproved")));
+                member.setApproved(getBool(jsonObject.getString("isApproved")));
 
                 SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 member.setRegistrationDate(format2.parse(jsonObject.getString("registrationDate")));
                 member.setSubExpire(format2.parse(jsonObject.getString("subExpire")));
+                member.setSendMails(getBool(jsonObject.getString("sendMails")));
+                member.setAdmin(getBool(jsonObject.getString("isAdmin")));
 
-                member.setSendMails(Boolean.parseBoolean(jsonObject.getString("sendMails")));
-                System.out.print(member);
                 members.add(member);
             }
 
@@ -366,6 +365,10 @@ public class Utils {
             return null;
         }
         return headlines;
+    }
+
+    public boolean getBool(String b){
+        return (b == "1");
     }
 
     public static String eventToDateString(Date dateToStr)  {

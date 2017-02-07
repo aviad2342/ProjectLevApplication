@@ -24,12 +24,10 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
     public MenuItem communityMembers;
     public MenuItem communityEvents;
     public MenuItem communityArticles;
-    public MenuItem fuck;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        fuck = menu.findItem(R.id.logout);
         return super.onCreateOptionsMenu(menu);
     }
 

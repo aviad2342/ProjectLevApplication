@@ -88,4 +88,9 @@ public class MembersListActivity extends MyMenuBar {
         super.onRestart();
         loadList();
     }
+
+    @Override
+    public void invalidateOptionsMenu() {
+        super.invalidateOptionsMenu();
+    }
 }
