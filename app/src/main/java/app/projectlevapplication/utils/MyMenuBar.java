@@ -40,7 +40,7 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
         communityMembers = menu.findItem(R.id.communityMembers);
         communityEvents = menu.findItem(R.id.events);
         communityArticles = menu.findItem(R.id.articles);
-        if( Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE)) != null){
+        if( (Utils.currentMemberLogin = Utils.getInstance().loadMemberFromPrefs(this)) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
         }
         return super.onPrepareOptionsMenu(menu);
@@ -50,7 +50,7 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logIn:
-                if(Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE)) == null) {
+                if(Utils.getInstance().loadMemberFromPrefs(this) == null) {
                     LogInDialog dialog = new LogInDialog();
                     dialog.show(getFragmentManager(), "dialog");
                     return true;
@@ -86,7 +86,7 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
 
     @Override
     public void onDialogPositiveClick(LogInDialog dialog) {
-        if(Utils.getInstance().loadMemberFromPrefs(getPreferences(MODE_PRIVATE)) != null){
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
         }
     }

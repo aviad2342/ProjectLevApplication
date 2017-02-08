@@ -38,7 +38,8 @@
             android:name=".viewComponents.EventListActivity"
             android:launchMode="singleTask" />
         <activity android:name=".viewComponents.EventActivity" />
-        <activity android:name=".viewComponents.ArticleActivity"></activity>
+        <activity android:name=".viewComponents.ArticleActivity"
+                  android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

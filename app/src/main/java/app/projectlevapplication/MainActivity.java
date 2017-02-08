@@ -66,6 +66,7 @@ public class MainActivity extends MyMenuBar{
         txt = (TextView) findViewById(R.id.textViewtest);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
+        //txt.setText(Utils.getInstance().loadMemberFromPrefs(this).toString());
     }
 
     @Override

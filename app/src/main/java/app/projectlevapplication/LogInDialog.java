@@ -119,7 +119,7 @@ public class LogInDialog extends DialogFragment {
                             Member member;
                             if(response.length() > 0){
                                 member = Utils.getInstance().responseToMember(response);
-                                Utils.getInstance().writeMemberToPrefs(mPrefs,member);
+                                Utils.getInstance().writeMemberToPrefs(member,activity);
                                 mListener.onDialogPositiveClick(LogInDialog.this);
                                 dismiss();
                             }else{

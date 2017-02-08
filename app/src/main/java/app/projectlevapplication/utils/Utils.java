@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -39,6 +40,8 @@ public class Utils {
 
     public static final String ALL_COMMUNITY_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=8";
 
+    public static final String ALL_COMMENTS_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=7&art=";
+
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
     public static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
@@ -54,6 +57,8 @@ public class Utils {
     public static final String DEFAULT_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/profile.jpg";
 
     private static Utils _instance;
+
+    public static Member currentMemberLogin;
 
     /**
      * singleton
@@ -333,7 +338,6 @@ public class Utils {
                     comment.setAuthorProfilePic(MEMBER_IMAGE+proImage);
                 }
 
-
                 comments.add(comment);
             }
 
@@ -368,7 +372,10 @@ public class Utils {
     }
 
     public boolean getBool(String b){
-        return (b == "1");
+        if(b == "null"){
+            return false;
+        }
+        return (Integer.parseInt(b) == 1);
     }
 
     public static String eventToDateString(Date dateToStr)  {
@@ -383,11 +390,12 @@ public class Utils {
     }
     /**
      * write \ update a Member record to SharedPreferences
-     * @param mPrefs
+     * @param context
      * @param member
      */
-    public void writeMemberToPrefs(SharedPreferences mPrefs, Member member)  {
+    public static void writeMemberToPrefs(Member member, Context context)  {
         try {
+            SharedPreferences mPrefs =  PreferenceManager.getDefaultSharedPreferences(context);
             Editor prefsEditor = mPrefs.edit();
             Gson gson = new Gson();
             String json = gson.toJson(member);
@@ -400,10 +408,11 @@ public class Utils {
 
     /**
      * load Member from SharedPreferences
-     * @param mPrefs
+     * @param context
      * @return UserProfile
      */
-    public Member loadMemberFromPrefs(SharedPreferences mPrefs)  {
+    public Member loadMemberFromPrefs(Context context)  {
+        SharedPreferences mPrefs =  PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
         String json = mPrefs.getString("loginMember", "");
         Member obj = gson.fromJson(json, Member.class);

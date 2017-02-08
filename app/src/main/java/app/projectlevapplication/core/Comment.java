@@ -1,5 +1,8 @@
 package app.projectlevapplication.core;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 
 public class Comment {
@@ -148,7 +151,23 @@ private int commentID;
 			return false;
 		return true;
 	}
-	
-	
+
+	public JSONObject toJsonObject(){
+
+		JSONObject jsonObject= new JSONObject();
+		try {
+
+			jsonObject.put("headline", getHeadline());
+			jsonObject.put("dateTime", getPublishDate());
+			jsonObject.put("content", getContent());
+			jsonObject.put("writer", getAuthorID());
+			jsonObject.put("article", getArticleID());
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
 	
 }
