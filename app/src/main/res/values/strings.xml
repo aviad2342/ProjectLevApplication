@@ -11,12 +11,12 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_menu_bar">menuBarActivity</string>
     <string name="member_profile_full_name">שם מלא:</string>
     <string name="member_profile_birth_date">תאריך לידה:</string>
     <string name="member_profile_email_address">דואר אלקטרוני:</string>
     <string name="member_profile_gender">מגדר:</string>
+    <!-- Strings related to register -->
+    <string name="ui_profile_photo_picker_title">"בחר תמונת פרופיל"</string>
 </resources>

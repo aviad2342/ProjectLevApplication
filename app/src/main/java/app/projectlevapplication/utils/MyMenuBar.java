@@ -13,12 +13,13 @@ import app.projectlevapplication.core.Member;
 import app.projectlevapplication.viewComponents.ArticlesListActivity;
 import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.MembersListActivity;
+import app.projectlevapplication.viewComponents.RegisterDialog;
 
 /**
  * Created by user-pc on 28/01/2017.
  */
 
-public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFragmentListener {
+public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFragmentListener , RegisterDialog.DialogFragmentListener{
 
     public MenuItem MemberLogin;
     public MenuItem MemberLogout;
@@ -53,11 +54,12 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
                 if(Utils.getInstance().loadMemberFromPrefs(this) == null) {
                     LogInDialog dialog = new LogInDialog();
                     dialog.show(getFragmentManager(), "dialog");
-                    return true;
                 }else{
-                    getPreferences(MODE_PRIVATE).edit().clear().apply();
+                    //getPreferences(MODE_PRIVATE).edit().clear().apply();
+                    Utils.getInstance().writeMemberToPrefs(null,this);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
                 }
+                return true;
             case R.id.logout:
                 getPreferences(MODE_PRIVATE).edit().clear().apply();
                 MemberLogout.setVisible(false);
@@ -98,7 +100,17 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
 
     @Override
     public void onDialogRegisterClick(LogInDialog dialog) {
+        RegisterDialog registerDialog = new RegisterDialog();
+        registerDialog.show(getFragmentManager(), "registerDialog");
+    }
+
+    @Override
+    public void onDialogPositive(RegisterDialog dialog) {
 
     }
 
+    @Override
+    public void onDialogNegative(RegisterDialog dialog) {
+
+    }
 }

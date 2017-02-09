@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -41,6 +42,7 @@ public class LogInDialog extends DialogFragment {
     Activity activity;
     EditText userName;
     EditText password;
+    TextView registerLink;
     public ProgressDialog loading;
     SharedPreferences mPrefs;
 
@@ -138,6 +140,24 @@ public class LogInDialog extends DialogFragment {
                     RequestQueue requestQueue = Volley.newRequestQueue(activity);
                     requestQueue.add(stringRequest);
                 }
+        });
+
+        Button btnCancel = (Button)view.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onDialogNegativeClick(LogInDialog.this);
+                dismiss();
+            }
+        });
+
+        registerLink = (TextView)view.findViewById(R.id.registerLink);
+        registerLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onDialogRegisterClick(LogInDialog.this);
+                dismiss();
+            }
         });
 
         return view;
