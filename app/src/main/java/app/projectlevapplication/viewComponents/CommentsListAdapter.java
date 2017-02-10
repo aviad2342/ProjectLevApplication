@@ -59,7 +59,6 @@ public class CommentsListAdapter extends ArrayAdapter<Comment> {
 
         Comment comment = comments.get(position);
 
-
         Picasso.with(context).load(comment.getAuthorProfilePic()).into(image);
         txtName.setText(comment.getAuthorName());
         commentHeadline.setText(comment.getHeadline());

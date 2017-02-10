@@ -33,7 +33,6 @@ public class Utils {
 
     // --------------------------------------------------------Data URLs----------------------------------------------------------------------------
 
-
     public static final String ALL_COMMUNITY_MEMBERS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
 
     public static final String ALL_COMMUNITY_ARTICLES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=6";
@@ -41,6 +40,9 @@ public class Utils {
     public static final String ALL_COMMUNITY_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=8";
 
     public static final String ALL_COMMENTS_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=7&art=";
+
+    // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
+    public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 

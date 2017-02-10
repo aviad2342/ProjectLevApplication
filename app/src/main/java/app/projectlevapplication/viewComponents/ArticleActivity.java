@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +75,7 @@ public class ArticleActivity extends MyMenuBar {
 
         content.setText(Html.fromHtml(article.getContent()));
 
+
         Picasso.with(this).load(currentMember.getProfilePic()).into(commentMemberImage);
         commentMemberName.setText(currentMember.getFullName());
         loadCommentList();
@@ -92,7 +94,7 @@ public class ArticleActivity extends MyMenuBar {
 
                     loading = ProgressDialog.show(ArticleActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
 
-                    String url = Utils.ALL_COMMENTS_FOR_ARTICLE+article.getArticleID();
+                    String url = Utils.POST_COMMENT_FOR_ARTICLE;
 
                     JsonObjectRequest request_json = new JsonObjectRequest(url, commentToAdd.toJsonObject(),
                             new Response.Listener<JSONObject>() {
@@ -127,6 +129,8 @@ public class ArticleActivity extends MyMenuBar {
                 // Utils.getInstance().responseToMembersList(response);
                 adapter = new CommentsListAdapter(ArticleActivity.this, Utils.getInstance().responseToCommentsList(response));
                 list.setAdapter(adapter);
+                //System.out.print(adapter.getItem(1).toJsonObject().toString());
+               // Log.d("YourTag", adapter.getItem(1).toJsonObject().toString());
                 // headlineAdapter = new ArrayAdapter<String>(ArticlesListActivity.this,R.layout.auto_complete_text_item,Utils.getInstance().responseToArticleHeadlineList(response));
                 // searchArticel.setAdapter(headlineAdapter);
 

@@ -3,6 +3,8 @@ package app.projectlevapplication.viewComponents;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -10,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,22 +24,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Calendar;
 
 import app.projectlevapplication.R;
+import app.projectlevapplication.utils.DateSettings;
 import app.projectlevapplication.utils.InputValidation;
 
 /**
  * Created by Aviad on 09/02/2017.
  */
 
-public class RegisterDialog extends DialogFragment {
+public class RegisterDialog extends DialogFragment{
 
     private static final int READ_EXTERNAL_STORAGE_REQUEST = 1;
     private static final int CAMERA_REQUEST = 2;
@@ -54,7 +61,7 @@ public class RegisterDialog extends DialogFragment {
     private Uri mImageCaptureUri;
     private boolean isTakenFromCamera;
 
-
+    DatePicker datePicker;
     Context context;
     Activity activity;
     public ProgressDialog loading;
@@ -72,6 +79,13 @@ public class RegisterDialog extends DialogFragment {
     RadioGroup phone1Group;
     RadioButton radioButton;
     View mView;
+
+    private int year;
+    private int month;
+    private int day;
+
+
+
 
 
     public interface DialogFragmentListener {
@@ -119,7 +133,7 @@ public class RegisterDialog extends DialogFragment {
         cbAddsConfirm = (CheckBox) view.findViewById(R.id.cbAddsConfirm);
         cbPhone1Privacy = (CheckBox) view.findViewById(R.id.cbPhone1Privacy);
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
-
+        datePicker = (DatePicker) view.findViewById(R.id.datePicker);
 
         Button btnChooseImage = (Button)view.findViewById(R.id.btnChooseImage);
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +178,22 @@ public class RegisterDialog extends DialogFragment {
                 }
             }
         });
+
+        ImageButton imageButton = (ImageButton)view.findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PickerDialog pickerDialog = new PickerDialog();
+                pickerDialog.show(getFragmentManager(),"noob");
+
+//                int day = datePicker.getDayOfMonth();
+//                int month = datePicker.getMonth() + 1;
+//                int year = datePicker.getYear();
+                txtDateOfBirth.setText(DateSettings.date.toString());
+            }
+        });
+
         return view;
     }
 
@@ -296,4 +326,5 @@ public class RegisterDialog extends DialogFragment {
         // identify the activity in onActivityResult() when it returns
         startActivityForResult(intent, CODE_CROP_PHOTO_REQUEST);
     }
+
 }
