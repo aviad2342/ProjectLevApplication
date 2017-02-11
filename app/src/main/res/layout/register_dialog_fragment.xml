@@ -122,26 +122,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:textDirection="rtl">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:id="@+id/txtDateOfBirth"
+            android:gravity="right|center_vertical|center"
+            android:hint="@string/ui_register_birth_date"
+            android:textSize="18sp"
+            android:layout_weight="0.08" />
 
         <EditText
-            android:layout_width="137dp"
-            android:layout_height="wrap_content"
-            android:inputType="date"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/txtDateOfBirth"
-            android:hint="@string/ui_register_birth_date"
-            android:gravity="right|center_vertical"
-            android:maxLines="1"
+            android:id="@+id/ageError"
             android:textDirection="rtl"
-            android:editable="false" />
+            android:gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/calendar"
             android:id="@+id/imageButton"
-            android:layout_gravity="right|center_vertical" />
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <EditText
@@ -223,7 +234,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:text="@string/ui_register_btn_submit_forme"
+            android:text="@string/ui_register_btn_submit_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/btnSubmit"

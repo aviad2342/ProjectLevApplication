@@ -36,12 +36,14 @@
     <string name="ui_register_phone_type_mobile">נייד</string>
     <string name="ui_register_phone_type_office">משרד</string>
     <string name="ui_register_phone_type_home">בית</string>
+    <string name="ui_register_btn_submit_form">שלח טופס</string>
 
     <!-- Strings related to Input Validation -->
     <string name="error_validation_hebrew">שדה זה מקבל אותיות בעיברית בלבד!</string>
     <string name="error_validation_maile">כתובת מייל לא תקינה</string>
     <string name="error_validation_numbers">שדה זה מקבל מספרים בלבד</string>
-    <string name="ui_register_btn_submit_forme">שלח טופס</string>
+    <string name="error_validation_age_over_18">אתה חייב להיות מעל גיל 18 כדי להרשם!</string>
+
 
 
 </resources>

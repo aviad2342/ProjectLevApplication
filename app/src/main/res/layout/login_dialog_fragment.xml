@@ -20,18 +20,18 @@
         android:ems="10"
         android:id="@+id/loginUserName"
         android:layout_weight="1"
-        android:hint="שם משתמש" />
+        android:hint="  שם משתמש" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:inputType="textWebPassword"
+        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/loginPassword"
         android:layout_weight="1"
-        android:hint="סיסמא"
+        android:hint="סיסמא "
         android:textDirection="rtl"
-        android:textAlignment="textEnd" />
+        android:textAlignment="viewEnd" />
 
     <Button
         android:text="התחבר"

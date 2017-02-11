@@ -2,6 +2,7 @@ package app.projectlevapplication.utils;
 
 import android.widget.EditText;
 
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,7 +37,7 @@ public class InputValidation {
     public static boolean isHebrewValid(EditText editText)
     {
         String text = editText.getText().toString();
-        String regExpn ="#^[\\p{Hebrew} a-zA-Z]{2,15}$#u";
+        String regExpn ="^[א-ת]+$";
 
         CharSequence inputStr = text;
 
@@ -47,5 +48,19 @@ public class InputValidation {
             return true;
         else
             return false;
+    }
+
+    public static boolean isOver18(int year, int month, int day){
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dob.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
+        }
+        return (age >= 18);
     }
 }

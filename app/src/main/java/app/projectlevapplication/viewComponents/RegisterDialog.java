@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,6 +42,7 @@ import java.util.Locale;
 import app.projectlevapplication.R;
 import app.projectlevapplication.utils.DateSettings;
 import app.projectlevapplication.utils.InputValidation;
+import app.projectlevapplication.utils.Utils;
 
 /**
  * Created by Aviad on 09/02/2017.
@@ -72,7 +75,7 @@ public class RegisterDialog extends DialogFragment{
     EditText txtEmail;
     EditText txtFirstName;
     EditText txtLastName;
-    EditText txtDateOfBirth;
+    TextView txtDateOfBirth;
     EditText txtPhone1;
     ImageView registerImage;
     CheckBox cbAddsConfirm;
@@ -81,6 +84,7 @@ public class RegisterDialog extends DialogFragment{
     RadioButton radioButton;
     View mView;
     Calendar myCalendar = Calendar.getInstance();
+    EditText ageError;
     private int year;
     private int month;
     private int day;
@@ -128,12 +132,26 @@ public class RegisterDialog extends DialogFragment{
         txtEmail = (EditText) view.findViewById(R.id.txtEmail);
         txtFirstName = (EditText) view.findViewById(R.id.txtFirstName);
         txtLastName = (EditText) view.findViewById(R.id.txtLastName);
-        txtDateOfBirth = (EditText) view.findViewById(R.id.txtDateOfBirth);
+        txtDateOfBirth = (TextView) view.findViewById(R.id.txtDateOfBirth);
         txtPhone1 = (EditText) view.findViewById(R.id.txtPhone1);
         registerImage = (ImageView) view.findViewById(R.id.registerImage);
         cbAddsConfirm = (CheckBox) view.findViewById(R.id.cbAddsConfirm);
         cbPhone1Privacy = (CheckBox) view.findViewById(R.id.cbPhone1Privacy);
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
+        ageError = (EditText) view.findViewById(R.id.ageError);
+
+        Drawable x = getResources().getDrawable(R.drawable.asterisk, null);
+        Drawable cal = getResources().getDrawable(R.drawable.calendar, null);
+        x.setBounds(0, 0, x.getIntrinsicWidth(), x.getIntrinsicHeight());
+        cal.setBounds(0, 0, cal.getIntrinsicWidth(), cal.getIntrinsicHeight());
+        txtUserName.setCompoundDrawables(x, null, null, null);
+        txtPassword.setCompoundDrawables(x, null, null, null);
+        txtPasswordConfirmation.setCompoundDrawables(x, null, null, null);
+        txtEmail.setCompoundDrawables(x, null, null, null);
+        txtFirstName.setCompoundDrawables(x, null, null, null);
+        txtLastName.setCompoundDrawables(x, null, null, null);
+        txtDateOfBirth.setCompoundDrawables(x, null, cal, null);
+        txtPhone1.setCompoundDrawables(x, null, null, null);
 
         Button btnChooseImage = (Button)view.findViewById(R.id.btnChooseImage);
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -172,7 +190,7 @@ public class RegisterDialog extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if(!InputValidation.isEmailValid(txtEmail)){
+                    if(!InputValidation.isEmailValid(txtEmail) && txtEmail.length() > 0){
                         txtEmail.setError(getString(R.string.error_validation_maile));
                     }
                 }
@@ -182,8 +200,8 @@ public class RegisterDialog extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if(!InputValidation.isHebrewValid(txtEmail)){
-                        txtEmail.setError(getString(R.string.error_validation_hebrew));
+                    if(!InputValidation.isHebrewValid(txtFirstName) && txtFirstName.length() > 0){
+                        txtFirstName.setError(getString(R.string.error_validation_hebrew));
                     }
                 }
             }
@@ -192,8 +210,8 @@ public class RegisterDialog extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if(!InputValidation.isHebrewValid(txtEmail)){
-                        txtEmail.setError(getString(R.string.error_validation_hebrew));
+                    if(!InputValidation.isHebrewValid(txtLastName) && txtLastName.length() > 0){
+                        txtLastName.setError(getString(R.string.error_validation_hebrew));
                     }
                 }
             }
@@ -210,7 +228,11 @@ public class RegisterDialog extends DialogFragment{
         txtDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                ageError.setVisibility(View.GONE);
+                DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                pickerDialog.getDatePicker().setCalendarViewShown(false);
+                pickerDialog.getDatePicker().setSpinnersShown(true);
+                pickerDialog.show();
             }
         });
 
@@ -226,12 +248,18 @@ public class RegisterDialog extends DialogFragment{
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
+            if(!InputValidation.isOver18(year,monthOfYear,dayOfMonth)){
+                ageError.setVisibility(View.VISIBLE);
+                ageError.setError(getString(R.string.error_validation_age_over_18));
+            }else{
+                ageError.setVisibility(View.GONE);
+                ageError.setError(null);
+            }
         }
     };
 
     private void updateLabel() {
-
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
         txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
     }

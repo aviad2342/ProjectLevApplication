@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.content.Context;
@@ -81,8 +82,14 @@ public class LogInDialog extends DialogFragment {
         userName = (EditText) view.findViewById(R.id.loginUserName);
         password = (EditText) view.findViewById(R.id.loginPassword);
         mPrefs = activity.getPreferences(MODE_PRIVATE);
-        userName.setText("Admin");
-        password.setText("Admin");
+        Drawable user = getResources().getDrawable(R.drawable.user_name, null);
+        Drawable eye = getResources().getDrawable(R.drawable.eye, null);
+        user.setBounds(0, 0, user.getIntrinsicWidth(), user.getIntrinsicHeight());
+        eye.setBounds(0, 0, eye.getIntrinsicWidth(), eye.getIntrinsicHeight());
+        userName.setCompoundDrawables(null, null, user, null);
+        password.setCompoundDrawables(null, null, eye, null);
+        //userName.setText("Admin");
+       // password.setText("Admin");
 
 
 
