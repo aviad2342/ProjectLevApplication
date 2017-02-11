@@ -230,6 +230,13 @@ public class RegisterDialog extends DialogFragment{
             public void onClick(View view) {
                 ageError.setVisibility(View.GONE);
                 DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                pickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "ביטול", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == DialogInterface.BUTTON_NEGATIVE) {
+                            // Do Stuff
+                        }
+                    }
+                });
                 pickerDialog.getDatePicker().setCalendarViewShown(false);
                 pickerDialog.getDatePicker().setSpinnersShown(true);
                 pickerDialog.show();

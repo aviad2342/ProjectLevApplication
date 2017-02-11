@@ -137,13 +137,14 @@
         <EditText
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:inputType="textPersonName"
+            android:inputType="none"
             android:ems="10"
             android:id="@+id/ageError"
             android:textDirection="rtl"
             android:gravity="right|center_vertical"
             android:background="@android:color/transparent"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:editable="false" />
 
         <ImageButton
             android:layout_width="wrap_content"

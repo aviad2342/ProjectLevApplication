@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="match_parent"
@@ -14,16 +13,17 @@
         android:layout_weight="1" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/loginUserName"
-        android:layout_weight="1"
-        android:hint="  שם משתמש" />
+        android:hint="  שם משתמש"
+        android:gravity="right|center_vertical"
+        android:layout_gravity="right" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:inputType="textPassword"
         android:ems="10"
@@ -31,26 +31,29 @@
         android:layout_weight="1"
         android:hint="סיסמא "
         android:textDirection="rtl"
-        android:textAlignment="viewEnd" />
+        android:textAlignment="viewEnd"
+        android:layout_gravity="right" />
 
     <Button
         android:text="התחבר"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/btnLogin"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_gravity="right" />
 
     <Button
         android:text="ביטול"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/btnCancel"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_gravity="right" />
 
     <TextView
         android:text="הירשם"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
         android:id="@+id/registerLink"
         android:textDirection="rtl"
         android:gravity="center_vertical"
