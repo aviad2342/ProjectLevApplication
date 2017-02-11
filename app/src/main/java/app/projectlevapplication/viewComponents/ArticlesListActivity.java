@@ -109,6 +109,7 @@ public class ArticlesListActivity extends MyMenuBar {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
                         Toast.makeText(getApplicationContext(),"error", Toast.LENGTH_SHORT).show();
                     }
                 });

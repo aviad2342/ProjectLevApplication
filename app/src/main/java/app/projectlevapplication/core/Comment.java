@@ -158,10 +158,10 @@ private int commentID;
 		try {
 
 			jsonObject.put("headline", getHeadline());
-			jsonObject.put("dateTime", getPublishDate());
+			//jsonObject.put("dateTime", getPublishDate());
 			jsonObject.put("content", getContent());
-			jsonObject.put("writer", getAuthorID());
-			jsonObject.put("article", getArticleID());
+			jsonObject.put("writer",  String.valueOf(getAuthorID()));
+			jsonObject.put("article", String.valueOf(getArticleID()));
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

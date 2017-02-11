@@ -100,12 +100,18 @@ public class ArticleActivity extends MyMenuBar {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
+                                    loading.dismiss();
                                     Toast.makeText(getApplicationContext(),"success", Toast.LENGTH_SHORT).show();
+                                    memberHeadline.setText("");
+                                    commentContent.setText("");
+                                    loadCommentList();
                                 }
                             }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(),"error", Toast.LENGTH_SHORT).show();
+                            loading.dismiss();
+                            Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                            loadCommentList();
                         }
                     });
 

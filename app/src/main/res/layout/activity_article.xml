@@ -69,18 +69,19 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/memberHeadline"
+                    android:hint="כותרת" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/commentContent"
                     android:hint="תגובה" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/memberHeadline"
-                    android:hint="כותרת" />
             </LinearLayout>
 
             <Button

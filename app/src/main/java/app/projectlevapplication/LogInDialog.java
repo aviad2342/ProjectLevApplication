@@ -88,10 +88,24 @@ public class LogInDialog extends DialogFragment {
         eye.setBounds(0, 0, eye.getIntrinsicWidth(), eye.getIntrinsicHeight());
         userName.setCompoundDrawables(null, null, user, null);
         password.setCompoundDrawables(null, null, eye, null);
-        //userName.setText("Admin");
-       // password.setText("Admin");
+        userName.setText("Admin");
+        password.setText("Admin");
 
-
+//        userName.addTextChangedListener(new TextWatcher() {
+//            public void afterTextChanged(Editable s) {
+//                if(userName.getText().length() == 0){
+//                    userName.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+//                }
+//            }
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                userName.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+//            }
+//        });
 
 
         password.addTextChangedListener(new TextWatcher() {
@@ -141,6 +155,7 @@ public class LogInDialog extends DialogFragment {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
+                                    loading.dismiss();
                                 }
                             });
 
