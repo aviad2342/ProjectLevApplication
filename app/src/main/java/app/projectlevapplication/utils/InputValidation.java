@@ -32,4 +32,20 @@ public class InputValidation {
         else
             return false;
     }
+
+    public static boolean isHebrewValid(EditText editText)
+    {
+        String text = editText.getText().toString();
+        String regExpn ="#^[\\p{Hebrew} a-zA-Z]{2,15}$#u";
+
+        CharSequence inputStr = text;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
 }

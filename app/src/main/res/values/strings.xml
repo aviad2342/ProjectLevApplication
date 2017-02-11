@@ -17,6 +17,31 @@
     <string name="member_profile_birth_date">תאריך לידה:</string>
     <string name="member_profile_email_address">דואר אלקטרוני:</string>
     <string name="member_profile_gender">מגדר:</string>
+
     <!-- Strings related to register -->
+    <string name="ui_register_user">"בחר תמונת פרופיל"</string>
     <string name="ui_profile_photo_picker_title">"בחר תמונת פרופיל"</string>
+    <string name="ui_register_user_name">הכנס שם משתמש</string>
+    <string name="ui_register_password">הכנס סיסמא</string>
+    <string name="ui_register_password_confirmation">אימות סיסמא</string>
+    <string name="ui_register_email_address">הכנס כתובת אימייל</string>
+    <string name="ui_register_first_name">שם פרטי</string>
+    <string name="ui_register_last_name">שם משפחה</string>
+    <string name="ui_register_birth_date">בחר תאריך לידה</string>
+    <string name="ui_register_phone_number">הכנס מספר טלפון</string>
+    <string name="ui_register_add_confirm">אפשר קבלת מידע פרסומי ועידכונים</string>
+    <string name="ui_register_phone_privacy">פרטי</string>
+    <string name="ui_register_btn_cancel">ביטול</string>
+    <string name="ui_register_choose_image">בחר תמונת פרופיל</string>
+    <string name="ui_register_phone_type_mobile">נייד</string>
+    <string name="ui_register_phone_type_office">משרד</string>
+    <string name="ui_register_phone_type_home">בית</string>
+
+    <!-- Strings related to Input Validation -->
+    <string name="error_validation_hebrew">שדה זה מקבל אותיות בעיברית בלבד!</string>
+    <string name="error_validation_maile">כתובת מייל לא תקינה</string>
+    <string name="error_validation_numbers">שדה זה מקבל מספרים בלבד</string>
+    <string name="ui_register_btn_submit_forme">שלח טופס</string>
+
+
 </resources>

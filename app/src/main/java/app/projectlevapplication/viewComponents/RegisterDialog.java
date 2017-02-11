@@ -33,7 +33,9 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import app.projectlevapplication.R;
 import app.projectlevapplication.utils.DateSettings;
@@ -61,7 +63,6 @@ public class RegisterDialog extends DialogFragment{
     private Uri mImageCaptureUri;
     private boolean isTakenFromCamera;
 
-    DatePicker datePicker;
     Context context;
     Activity activity;
     public ProgressDialog loading;
@@ -79,7 +80,7 @@ public class RegisterDialog extends DialogFragment{
     RadioGroup phone1Group;
     RadioButton radioButton;
     View mView;
-
+    Calendar myCalendar = Calendar.getInstance();
     private int year;
     private int month;
     private int day;
@@ -133,7 +134,6 @@ public class RegisterDialog extends DialogFragment{
         cbAddsConfirm = (CheckBox) view.findViewById(R.id.cbAddsConfirm);
         cbPhone1Privacy = (CheckBox) view.findViewById(R.id.cbPhone1Privacy);
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
-        datePicker = (DatePicker) view.findViewById(R.id.datePicker);
 
         Button btnChooseImage = (Button)view.findViewById(R.id.btnChooseImage);
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -167,13 +167,33 @@ public class RegisterDialog extends DialogFragment{
                 radioButton = (RadioButton)mView.findViewById(checkedId);
             }
         });
-
+        // --------------------------------------------------------Input Validation----------------------------------------------------------------------------
         txtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     if(!InputValidation.isEmailValid(txtEmail)){
-                        txtEmail.setError("no noob");
+                        txtEmail.setError(getString(R.string.error_validation_maile));
+                    }
+                }
+            }
+        });
+        txtFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!InputValidation.isHebrewValid(txtEmail)){
+                        txtEmail.setError(getString(R.string.error_validation_hebrew));
+                    }
+                }
+            }
+        });
+        txtLastName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!InputValidation.isHebrewValid(txtEmail)){
+                        txtEmail.setError(getString(R.string.error_validation_hebrew));
                     }
                 }
             }
@@ -183,18 +203,37 @@ public class RegisterDialog extends DialogFragment{
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
-                PickerDialog pickerDialog = new PickerDialog();
-                pickerDialog.show(getFragmentManager(),"noob");
-
-//                int day = datePicker.getDayOfMonth();
-//                int month = datePicker.getMonth() + 1;
-//                int year = datePicker.getYear();
-                txtDateOfBirth.setText(DateSettings.date.toString());
+        txtDateOfBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
         return view;
+    }
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+    };
+
+    private void updateLabel() {
+
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
     }
 
     public void rbClick(View view){

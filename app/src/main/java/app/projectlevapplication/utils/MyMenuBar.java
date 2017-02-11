@@ -60,15 +60,6 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
                 }
                 return true;
-            case R.id.logout:
-                getPreferences(MODE_PRIVATE).edit().clear().apply();
-                MemberLogout.setVisible(false);
-                MemberLogout.setEnabled(false);
-                MemberLogin.setVisible(true);
-                MemberLogin.setEnabled(true);
-                Intent returnToMainIntent = new Intent(this, MainActivity.class);
-                startActivity(returnToMainIntent);
-                return true;
             case R.id.communityMembers:
                 Intent membersListIntent = new Intent(this, MembersListActivity.class);
                 startActivity(membersListIntent);
