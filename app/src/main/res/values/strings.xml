@@ -24,6 +24,7 @@
     <string name="member_profile_join_date">תאריך הצטרפות:</string>
     <string name="member_profile_status">סטטוס:</string>
     <string name="member_profile_end_subscription_date">תאריך סיום מנוי:</string>
+    <string name="member_profile_btn_edit">עריכה</string>
 
 
     <!-- Strings related to register -->
@@ -51,7 +52,8 @@
     <string name="error_validation_maile">כתובת מייל לא תקינה</string>
     <string name="error_validation_numbers">שדה זה מקבל מספרים בלבד</string>
     <string name="error_validation_age_over_18">אתה חייב להיות מעל גיל 18 כדי להרשם!</string>
-    <string name="member_profile_btn_edit">עריכה</string>
+    <string name="error_validation_must_fill_all_fields">יש למלא את כל שדות החובה!</string>
+
 
 
 </resources>

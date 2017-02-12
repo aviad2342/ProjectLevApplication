@@ -335,10 +335,24 @@ public class Member implements Serializable {
 	}
 
     public String getMemberStatus() {
-        if(status == 0){
-            return "רווק";
+        if(gender == 0) {
+            if (status == 0) {
+                return "רווק";
+            }
+            return "נשוי";
         }
-        return "נשוי";
+        else if(gender == 1) {
+            if (status == 0) {
+                return "רווקה";
+            }
+            return "נשואה";
+        }
+        else{
+            if (status == 0) {
+                return "רווקה/רווק";
+            }
+            return "נשואה/נשוי";
+        }
     }
 
 	public String getMemberAddress() {

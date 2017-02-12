@@ -41,8 +41,17 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
         communityMembers = menu.findItem(R.id.communityMembers);
         communityEvents = menu.findItem(R.id.events);
         communityArticles = menu.findItem(R.id.articles);
-        if( (Utils.currentMemberLogin = Utils.getInstance().loadMemberFromPrefs(this)) != null){
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
+            communityMembers.setEnabled(true);
+            communityEvents.setEnabled(true);
+            communityArticles.setEnabled(true);
+
+        }else {
+            MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+            communityMembers.setEnabled(false);
+            communityEvents.setEnabled(false);
+            communityArticles.setEnabled(false);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -57,7 +66,12 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
                 }else{
                     //getPreferences(MODE_PRIVATE).edit().clear().apply();
                     Utils.getInstance().writeMemberToPrefs(null,this);
+                    Intent homeIntent = new Intent(this, MainActivity.class);
+                    startActivity(homeIntent);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+                    communityMembers.setEnabled(false);
+                    communityEvents.setEnabled(false);
+                    communityArticles.setEnabled(false);
                 }
                 return true;
             case R.id.communityMembers:
@@ -81,6 +95,9 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
     public void onDialogPositiveClick(LogInDialog dialog) {
         if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
+            communityMembers.setEnabled(true);
+            communityEvents.setEnabled(true);
+            communityArticles.setEnabled(true);
         }
     }
 

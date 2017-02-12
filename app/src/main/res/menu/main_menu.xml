@@ -12,7 +12,7 @@
         app:showAsAction="always">
     <menu >
         <item android:title="חברי הקהילה"
-            android:showAsAction="always|withText"
+            android:showAsAction="always"
             android:id="@+id/communityMembers" />
         <item android:title="אירועים"
             android:showAsAction="always"

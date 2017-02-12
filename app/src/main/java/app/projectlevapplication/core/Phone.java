@@ -70,6 +70,19 @@ public class Phone {
 		this.publish = publish;
 	}
 
+    public String getNumberType() {
+        switch (type){
+            case 0:
+                return "בית";
+            case 1:
+                return "נייד";
+            case 2:
+                return "משרד";
+            default:
+                return "";
+        }
+    }
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

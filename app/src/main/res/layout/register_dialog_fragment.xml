@@ -199,7 +199,8 @@
                 android:layout_weight="1"
                 android:textDirection="rtl"
                 android:layoutDirection="rtl"
-                android:tag="mobile" />
+                android:tag="mobile"
+                android:checked="true" />
 
             <RadioButton
                 android:text="@string/ui_register_phone_type_office"

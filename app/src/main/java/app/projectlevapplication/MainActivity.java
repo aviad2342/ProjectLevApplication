@@ -70,6 +70,20 @@ public class MainActivity extends MyMenuBar{
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MemberLogin = menu.findItem(R.id.logIn);
+        MemberLogout = menu.findItem(R.id.logout);
+        communityMembers = menu.findItem(R.id.communityMembers);
+        communityEvents = menu.findItem(R.id.events);
+        communityArticles = menu.findItem(R.id.articles);
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null){
+            MemberLogin.setIcon(R.drawable.logout_24dp);
+        }else {
+            MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+    @Override
     public void invalidateOptionsMenu() {
         super.invalidateOptionsMenu();
     }
@@ -171,4 +185,16 @@ public class MainActivity extends MyMenuBar{
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null){
+            MemberLogin.setIcon(R.drawable.logout_24dp);
+        }else {
+            MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+            communityMembers.setEnabled(false);
+            communityEvents.setEnabled(false);
+            communityArticles.setEnabled(false);
+        }
+    }
 }

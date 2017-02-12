@@ -75,17 +75,20 @@ public class MemberProfileActivity extends MyMenuBar {
         birthDate.setText(Utils.getBirthDate(memberToDisplay.getBirthDate()));
         mail.setText(memberToDisplay.getEmail());
         gender.setText(memberToDisplay.getMemberGender());
-
+        if(Utils.getInstance().loadMemberFromPrefs(this).isAdmin()){
+            adminViewStatus.setVisibility(View.VISIBLE);
+            adminViewSubscription.setVisibility(View.VISIBLE);
+            adminViewBtn.setVisibility(View.VISIBLE);
+            loadMemberPhoneForAdmin();
+        }else {
+            loadMemberPhone();
+        }
         txtMemberAddress.setText(memberToDisplay.getMemberAddress());
         txtMemberJoinDate.setText(Utils.eventToDateString(memberToDisplay.getRegistrationDate()));
         txtMemberStatus.setText(memberToDisplay.getMemberStatus());
         txtMemberEndSubscriptionDate.setText(Utils.eventToDateString(memberToDisplay.getSubExpire()));
 
-        if(memberToDisplay.isAdmin()){
-            adminViewStatus.setVisibility(View.VISIBLE);
-            adminViewSubscription.setVisibility(View.VISIBLE);
-            adminViewBtn.setVisibility(View.VISIBLE);
-        }
+
 
         Button btnEditMember = (Button) findViewById(R.id.btnEditMember);
         btnEditMember.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +97,56 @@ public class MemberProfileActivity extends MyMenuBar {
 
                         }
                     });
+    }
+
+    public void loadMemberPhoneForAdmin(){
+        loading = ProgressDialog.show(MemberProfileActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
+
+        String url = Utils.COMMUNITY_MEMBER_PHONES+memberToDisplay.getMemberID();
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                loading.dismiss();
+                String phoneNum = "";
+                memberToDisplay.setPhones(Utils.getInstance().responseToPhoneList(response));
+                if(memberToDisplay.getPhones() != null){
+                    for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                        if(memberToDisplay.getPhones().get(i).getType() == 1){
+                            phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                        }
+                    }
+                    if(phoneNum == ""){
+                        for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                            if(memberToDisplay.getPhones().get(i).getType() == 0){
+                                phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                            }
+                        }
+                    }
+                    if(phoneNum == ""){
+                        for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                            if(memberToDisplay.getPhones().get(i).getType() == 2){
+                                phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                            }
+                        }
+                    }
+                    if(phoneNum == ""){
+                        phoneNum = "לא צויין";
+                    }
+                }
+                txtMebmberPhoneNumber.setText(phoneNum);
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.dismiss();
+                        Toast.makeText(getApplicationContext(),"error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MemberProfileActivity.this);
+        requestQueue.add(stringRequest);
     }
 
     public void loadMemberPhone(){
@@ -105,9 +158,33 @@ public class MemberProfileActivity extends MyMenuBar {
             @Override
             public void onResponse(String response) {
                 loading.dismiss();
+                String phoneNum = "";
                 memberToDisplay.setPhones(Utils.getInstance().responseToPhoneList(response));
-                //if not null disply phone
-                //txtMebmberPhoneNumber.setText(memberToDisplay.getMemberGender());
+                if(memberToDisplay.getPhones() != null){
+                    for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                        if(memberToDisplay.getPhones().get(i).getType() == 1 && memberToDisplay.getPhones().get(i).isPublish()){
+                            phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                        }
+                    }
+                    if(phoneNum == ""){
+                        for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                            if(memberToDisplay.getPhones().get(i).getType() == 0 && memberToDisplay.getPhones().get(i).isPublish()){
+                                phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                            }
+                        }
+                    }
+                    if(phoneNum == ""){
+                        for (int i = 0; i < memberToDisplay.getPhones().size(); i++){
+                            if(memberToDisplay.getPhones().get(i).getType() == 2 && memberToDisplay.getPhones().get(i).isPublish()){
+                                phoneNum = memberToDisplay.getPhones().get(i).getPhoneNumber()+"-"+memberToDisplay.getPhones().get(i).getNumberType();
+                            }
+                        }
+                    }
+                    if(phoneNum == ""){
+                        phoneNum = "לא צויין";
+                    }
+                }
+                txtMebmberPhoneNumber.setText(phoneNum);
             }
         },
                 new Response.ErrorListener() {

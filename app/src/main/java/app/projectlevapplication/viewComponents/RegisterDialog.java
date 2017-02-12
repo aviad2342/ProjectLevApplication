@@ -37,9 +37,13 @@ import android.widget.Toast;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
+import app.projectlevapplication.MainActivity;
 import app.projectlevapplication.R;
+import app.projectlevapplication.core.Member;
+import app.projectlevapplication.core.Phone;
 import app.projectlevapplication.utils.DateSettings;
 import app.projectlevapplication.utils.InputValidation;
 import app.projectlevapplication.utils.Utils;
@@ -165,7 +169,31 @@ public class RegisterDialog extends DialogFragment{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(validate(new EditText[]{txtUserName, txtPassword, txtPasswordConfirmation, txtEmail, txtFirstName, txtLastName, txtPhone1})){
+                    if(txtDateOfBirth.length() > 0 && isPasswordMatches()){
+                        Member memberToAdd = new Member();
+                        Phone phone = new Phone();
 
+                        memberToAdd.setUsername(txtUserName.getText().toString());
+                        memberToAdd.setPassword(txtPassword.getText().toString());
+                        memberToAdd.setFullName(txtFirstName.getText().toString()+" "+txtLastName.getText().toString());
+                       // SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                        memberToAdd.setBirthDate(myCalendar.getTime());
+                        memberToAdd.setEmail(txtEmail.getText().toString());
+                        //memberToAdd.setGender(txtUserName.getText().toString());
+                        //memberToAdd.setStatus(txtUserName.getText().toString());
+                        memberToAdd.setProfilePic("blaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        memberToAdd.setRegistrationDate(new Date());
+                        memberToAdd.setSendMails(cbAddsConfirm.isChecked());
+
+
+                    }else {
+                        ageError.setError("זהו שדה חובה!");
+                        txtDateOfBirth.requestFocus();
+                        Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 
@@ -401,4 +429,27 @@ public class RegisterDialog extends DialogFragment{
         startActivityForResult(intent, CODE_CROP_PHOTO_REQUEST);
     }
 
+    private boolean validate(EditText[] fields){
+        for(int i=0; i<fields.length; i++){
+            if(fields[i].length()== 0){
+                fields[i].setError("זהו שדה חובה!");
+                fields[i].requestFocus();
+                Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isPasswordMatches() {
+        if (txtPasswordConfirmation.getText().length() > 0 && txtPassword.getText().length() > 0 ) {
+            if (txtPasswordConfirmation.getText().equals(txtPassword.getText())) {
+                return true;
+           }
+        }
+        txtPasswordConfirmation.setError("הסיסמא אינה תואמת!");
+        txtPasswordConfirmation.requestFocus();
+        Toast.makeText(activity, getString(R.string.error_validation_must_fill_all_fields), Toast.LENGTH_LONG).show();
+        return false;
+    }
 }
