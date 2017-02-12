@@ -10,7 +10,13 @@ public class Phone {
 	
 	private boolean publish;
 
-	/**
+    /**
+     *empty Constructor
+     */
+    public Phone() {
+    }
+
+    /**
 	 * Partial Constructor
 	 * @param phoneNumber
 	 */

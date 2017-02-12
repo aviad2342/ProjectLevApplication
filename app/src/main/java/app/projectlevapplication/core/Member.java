@@ -59,7 +59,6 @@ public class Member implements Serializable {
 
     /**
      * empty Constructor
-     *
      */
     public Member() {
     }
@@ -333,6 +332,20 @@ public class Member implements Serializable {
 			return "זכר";
 		}
 		return "נקבה";
+	}
+
+    public String getMemberStatus() {
+        if(status == 0){
+            return "רווק";
+        }
+        return "נשוי";
+    }
+
+	public String getMemberAddress() {
+		if(state != null && street != null && houseNum > 0){
+			return street+" "+houseNum+", "+state;
+		}
+		return "לא צויינה כתובת";
 	}
 
 	@Override

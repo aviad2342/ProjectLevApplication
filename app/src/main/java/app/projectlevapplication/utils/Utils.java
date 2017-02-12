@@ -24,6 +24,7 @@ import app.projectlevapplication.core.Article;
 import app.projectlevapplication.core.Comment;
 import app.projectlevapplication.core.Event;
 import app.projectlevapplication.core.Member;
+import app.projectlevapplication.core.Phone;
 
 /**
  * Created by user-pc on 24/01/2017.
@@ -40,6 +41,8 @@ public class Utils {
     public static final String ALL_COMMUNITY_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=8";
 
     public static final String ALL_COMMENTS_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=7&art=";
+
+    public static final String COMMUNITY_MEMBER_PHONES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
 
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
@@ -139,6 +142,33 @@ public class Utils {
             return null;
         }
         return member;
+    }
+
+    public ArrayList<Phone> responseToPhoneList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Phone> phones = new ArrayList<>();
+        Phone phone;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                phone = new Phone();
+
+                phone.setMemberID(Integer.parseInt(jsonObject.getString("memberID")));
+                phone.setPhoneNumber(jsonObject.getString("phoneNumber"));
+                phone.setType(Integer.parseInt(jsonObject.getString("type")));
+                phone.setPublish(getBool(jsonObject.getString("publish")));
+                phones.add(phone);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return phones;
     }
 
     public boolean isAdmin(String response)  {

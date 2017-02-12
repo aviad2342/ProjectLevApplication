@@ -13,10 +13,18 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_menu_bar">menuBarActivity</string>
+
+    <!-- Strings related to member profile -->
     <string name="member_profile_full_name">שם מלא:</string>
     <string name="member_profile_birth_date">תאריך לידה:</string>
     <string name="member_profile_email_address">דואר אלקטרוני:</string>
     <string name="member_profile_gender">מגדר:</string>
+    <string name="member_profile_Phone_number">מספר טלפון:</string>
+    <string name="member_profile_address">כתובת:</string>
+    <string name="member_profile_join_date">תאריך הצטרפות:</string>
+    <string name="member_profile_status">סטטוס:</string>
+    <string name="member_profile_end_subscription_date">תאריך סיום מנוי:</string>
+
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>
@@ -43,7 +51,7 @@
     <string name="error_validation_maile">כתובת מייל לא תקינה</string>
     <string name="error_validation_numbers">שדה זה מקבל מספרים בלבד</string>
     <string name="error_validation_age_over_18">אתה חייב להיות מעל גיל 18 כדי להרשם!</string>
-
+    <string name="member_profile_btn_edit">עריכה</string>
 
 
 </resources>
