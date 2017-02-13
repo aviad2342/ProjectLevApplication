@@ -103,6 +103,7 @@ public class RegisterDialog extends DialogFragment{
     Calendar myCalendar = Calendar.getInstance();
     EditText ageError;
     String imagePath;
+    String imageForNewMember;
 
 
     public interface DialogFragmentListener {
@@ -152,6 +153,7 @@ public class RegisterDialog extends DialogFragment{
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
         radioButton  = (RadioButton) view.findViewById(R.id.rbMobile);
         ageError = (EditText) view.findViewById(R.id.ageError);
+        imageForNewMember = Utils.NEW_MEMBER_DEFAULT_IMAGE;
 
         Drawable x = getResources().getDrawable(R.drawable.asterisk, null);
         Drawable cal = getResources().getDrawable(R.drawable.calendar, null);
@@ -206,7 +208,7 @@ public class RegisterDialog extends DialogFragment{
                         memberToAdd.setPhoneNumber(txtPhone1.getText().toString());
                         memberToAdd.setType(Integer.parseInt(radioButton.getTag().toString()));
                         memberToAdd.setPublish(cbPhone1Privacy.isChecked());
-                        memberToAdd.setProfilePic("blaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                        memberToAdd.setProfilePic(imageForNewMember);
                         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         memberToAdd.setRegistrationDate(new Date());
                         memberToAdd.setSendMails(cbAddsConfirm.isChecked());
@@ -224,8 +226,21 @@ public class RegisterDialog extends DialogFragment{
         btnCancelRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onDialogNegative(RegisterDialog.this);
-                dismiss();
+                if (!TextUtils.isEmpty(imagePath)) {
+                    /**
+                     * Uploading AsyncTask
+                     */
+                    if (Utils.checkConnection(activity)) {
+                        /******************Retrofit***************/
+                        uploadImage();
+                    } else {
+                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+                    }
+                } else {
+                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+                }
+               // mListener.onDialogNegative(RegisterDialog.this);
+               // dismiss();
             }
         });
 
@@ -342,7 +357,6 @@ public class RegisterDialog extends DialogFragment{
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            // TODO Auto-generated method stub
             myCalendar.set(Calendar.YEAR, year);
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -528,7 +542,9 @@ public class RegisterDialog extends DialogFragment{
             public void onResponse(Call<Result> call, Response<Result> response) {
 
                 loading.dismiss();
-
+                imageForNewMember = response.body().getResult();
+                Toast.makeText(activity,imageForNewMember,Toast.LENGTH_LONG).show();
+                Snackbar.make(mView, response.message(), Snackbar.LENGTH_LONG).show();
                 // Response Success or Fail
                 if (response.isSuccessful()) {
                     if (response.body().getResult().equals("success"))

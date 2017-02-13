@@ -62,6 +62,8 @@ public class Utils {
 
     public static final String DEFAULT_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/profile.jpg";
 
+    public static final String NEW_MEMBER_DEFAULT_IMAGE = "profile.jpg";
+
     private static Utils _instance;
 
     /** CHECK WHETHER INTERNET CONNECTION IS AVAILABLE OR NOT */

@@ -12,7 +12,7 @@ public class RetroClient {
      * You will find this file in php_upload folder in this project
      * You can copy that folder and paste in your htdocs folder...
      */
-    private static final String ROOT_URL = "http://192.168.0.105/php_upload/";
+    private static final String ROOT_URL = "http://arianlev.esy.es/ArianLev_Community/utils/upload_android.php/";
 
 
     public RetroClient() {
