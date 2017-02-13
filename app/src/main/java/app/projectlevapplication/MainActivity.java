@@ -107,7 +107,7 @@ public class MainActivity extends MyMenuBar{
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            android.Manifest.permission.CAMERA, android.Manifest.permission.INTERNET},
+                            android.Manifest.permission.CAMERA, android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_NETWORK_STATE},
                     PERMISSIONS_REQ);
         }
         else{

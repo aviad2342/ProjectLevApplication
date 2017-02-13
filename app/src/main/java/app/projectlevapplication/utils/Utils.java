@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
 
@@ -63,7 +64,10 @@ public class Utils {
 
     private static Utils _instance;
 
-    public static Member currentMemberLogin;
+    /** CHECK WHETHER INTERNET CONNECTION IS AVAILABLE OR NOT */
+    public static boolean checkConnection(Context context) {
+        return  ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
+    }
 
     /**
      * singleton

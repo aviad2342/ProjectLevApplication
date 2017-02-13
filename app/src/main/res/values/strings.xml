@@ -53,6 +53,13 @@
     <string name="error_validation_numbers">שדה זה מקבל מספרים בלבד</string>
     <string name="error_validation_age_over_18">אתה חייב להיות מעל גיל 18 כדי להרשם!</string>
     <string name="error_validation_must_fill_all_fields">יש למלא את כל שדות החובה!</string>
+    <string name="error_validation_user_name">שם המשתמש יכול להכיל אתיות באנגלית וספרות בלבד, 4-12 תווים.</string>
+    <string name="error_validation_password">סיסמא יכולה להכיל אתיות באנגלית ומספרים בלבד, 5-12 תווים.</string>
+    <string name="error_validation_password_confirmation">הסיסמא אינה תואמת!</string>
+    <string name="error_validation_phone">מספר אינו תקין!</string>
+    <string name="error_validation_alert_dialog_message">לא ניתן להמשיך בפעולה, קיים לפחות שדה אחד שאינו תקין!</string>
+    <string name="error_validation_alert_dialog_title">שדות לא תקינים</string>
+    <string name="error_validation_alert_dialog_ok">חזור</string>
 
 
 

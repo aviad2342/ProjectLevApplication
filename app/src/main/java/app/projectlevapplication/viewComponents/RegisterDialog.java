@@ -11,6 +11,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -19,7 +20,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,9 +48,18 @@ import app.projectlevapplication.MainActivity;
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.core.Phone;
+import app.projectlevapplication.model.ApiService;
+import app.projectlevapplication.model.Result;
+import app.projectlevapplication.model.RetroClient;
 import app.projectlevapplication.utils.DateSettings;
 import app.projectlevapplication.utils.InputValidation;
 import app.projectlevapplication.utils.Utils;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Aviad on 09/02/2017.
@@ -89,12 +102,7 @@ public class RegisterDialog extends DialogFragment{
     View mView;
     Calendar myCalendar = Calendar.getInstance();
     EditText ageError;
-    private int year;
-    private int month;
-    private int day;
-
-
-
+    String imagePath;
 
 
     public interface DialogFragmentListener {
@@ -142,6 +150,7 @@ public class RegisterDialog extends DialogFragment{
         cbAddsConfirm = (CheckBox) view.findViewById(R.id.cbAddsConfirm);
         cbPhone1Privacy = (CheckBox) view.findViewById(R.id.cbPhone1Privacy);
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
+        radioButton  = (RadioButton) view.findViewById(R.id.rbMobile);
         ageError = (EditText) view.findViewById(R.id.ageError);
 
         Drawable x = getResources().getDrawable(R.drawable.asterisk, null);
@@ -169,10 +178,22 @@ public class RegisterDialog extends DialogFragment{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!TextUtils.isEmpty(imagePath)) {
+                    /**
+                     * Uploading AsyncTask
+                     */
+                    if (Utils.checkConnection(context)) {
+                        /******************Retrofit***************/
+                        uploadImage();
+                    } else {
+                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+                    }
+                } else {
+                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+                }
                 if(validate(new EditText[]{txtUserName, txtPassword, txtPasswordConfirmation, txtEmail, txtFirstName, txtLastName, txtPhone1})){
-                    if(txtDateOfBirth.length() > 0 && isPasswordMatches()){
+                    if(validateUserName() && isPasswordMatches() && validatePassword() && validateFirstName() && validateLastName() && validateMail() && validateBirthDate() && validatePhone() ){
                         Member memberToAdd = new Member();
-                        Phone phone = new Phone();
 
                         memberToAdd.setUsername(txtUserName.getText().toString());
                         memberToAdd.setPassword(txtPassword.getText().toString());
@@ -182,6 +203,9 @@ public class RegisterDialog extends DialogFragment{
                         memberToAdd.setEmail(txtEmail.getText().toString());
                         //memberToAdd.setGender(txtUserName.getText().toString());
                         //memberToAdd.setStatus(txtUserName.getText().toString());
+                        memberToAdd.setPhoneNumber(txtPhone1.getText().toString());
+                        memberToAdd.setType(Integer.parseInt(radioButton.getTag().toString()));
+                        memberToAdd.setPublish(cbPhone1Privacy.isChecked());
                         memberToAdd.setProfilePic("blaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         memberToAdd.setRegistrationDate(new Date());
@@ -189,9 +213,8 @@ public class RegisterDialog extends DialogFragment{
 
 
                     }else {
-                        ageError.setError("זהו שדה חובה!");
-                        txtDateOfBirth.requestFocus();
-                        Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
+                        AlertDialog();
+                        //Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -224,6 +247,36 @@ public class RegisterDialog extends DialogFragment{
                 }
             }
         });
+        txtUserName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!InputValidation.isUserNameOnlyLettersAndNumbers(txtUserName) && txtUserName.length() > 0){
+                        txtUserName.setError(getString(R.string.error_validation_user_name));
+                    }
+                }
+            }
+        });
+        txtPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!InputValidation.isPasswordOnlyLettersAndNumbers(txtPassword) && txtPassword.length() > 0){
+                        txtPassword.setError(getString(R.string.error_validation_password));
+                    }
+                }
+            }
+        });
+        txtPasswordConfirmation.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!txtPasswordConfirmation.getText().equals(txtPassword.getText()) && txtPasswordConfirmation.getText().length() > 0){
+                        txtPasswordConfirmation.setError(getString(R.string.error_validation_password_confirmation));
+                    }
+                }
+            }
+        });
         txtFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -245,6 +298,17 @@ public class RegisterDialog extends DialogFragment{
             }
         });
 
+        txtPhone1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!InputValidation.isOnlyDigits(txtPhone1) && txtPhone1.length() > 0){
+                        txtPhone1.setError(getString(R.string.error_validation_phone));
+                    }
+                }
+            }
+        });
+
         ImageButton imageButton = (ImageButton)view.findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,7 +325,7 @@ public class RegisterDialog extends DialogFragment{
                 pickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "ביטול", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == DialogInterface.BUTTON_NEGATIVE) {
-                            // Do Stuff
+                            validateBirthDate();
                         }
                     }
                 });
@@ -327,6 +391,15 @@ public class RegisterDialog extends DialogFragment{
                 if (extras != null) {
                     registerImage.setImageBitmap((Bitmap) extras.getParcelable("data"));
                 }
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                Cursor cursor = activity.getContentResolver().query(mImageCaptureUri, filePathColumn, null, null, null);
+
+                if (cursor != null) {
+                    cursor.moveToFirst();
+                }
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    imagePath = cursor.getString(columnIndex);
 
                 if (isTakenFromCamera) {
                     File f = new File(mImageCaptureUri.getPath());
@@ -428,13 +501,89 @@ public class RegisterDialog extends DialogFragment{
         // identify the activity in onActivityResult() when it returns
         startActivityForResult(intent, CODE_CROP_PHOTO_REQUEST);
     }
+    private void uploadImage() {
+        /**
+         * Progressbar to Display if you need
+         */
+        loading = ProgressDialog.show(activity,"בבקשה המתן...","מחזיר מידע...",false,false);
+
+        //Create Upload Server Client
+        ApiService service = RetroClient.getApiService();
+
+        //File creating from selected URL
+        File file = new File(imagePath);
+
+        // create RequestBody instance from file
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        // MultipartBody.Part is used to send also the actual file name
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("uploaded_file", file.getName(), requestFile);
+
+        Call<Result> resultCall = service.uploadImage(body);
+
+        // finally, execute the request
+        resultCall.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+                loading.dismiss();
+
+                // Response Success or Fail
+                if (response.isSuccessful()) {
+                    if (response.body().getResult().equals("success"))
+                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
+                    else
+                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
+
+                } else {
+                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
+                }
+
+                /**
+                 * Update Views
+                 */
+                imagePath = "";
+//                textView.setVisibility(View.VISIBLE);
+//                imageView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                loading.dismiss();
+            }
+        });
+    }
+    public void AlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.error_validation_must_fill_all_fields);
+        builder.setTitle(R.string.error_validation_alert_dialog_title);
+        builder.setPositiveButton(R.string.error_validation_alert_dialog_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void AlertDialogErr(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.error_validation_alert_dialog_message);
+        builder.setTitle(R.string.error_validation_alert_dialog_title);
+        builder.setPositiveButton(R.string.error_validation_alert_dialog_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     private boolean validate(EditText[] fields){
         for(int i=0; i<fields.length; i++){
             if(fields[i].length()== 0){
                 fields[i].setError("זהו שדה חובה!");
                 fields[i].requestFocus();
-                Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
+                AlertDialogErr();
                 return false;
             }
         }
@@ -447,9 +596,72 @@ public class RegisterDialog extends DialogFragment{
                 return true;
            }
         }
-        txtPasswordConfirmation.setError("הסיסמא אינה תואמת!");
+        txtPasswordConfirmation.setError(getString(R.string.error_validation_password_confirmation));
         txtPasswordConfirmation.requestFocus();
-        Toast.makeText(activity, getString(R.string.error_validation_must_fill_all_fields), Toast.LENGTH_LONG).show();
+        return false;
+    }
+
+    private boolean validateMail(){
+        if(!InputValidation.isEmailValid(txtEmail) && txtEmail.length() > 0){
+            txtEmail.setError(getString(R.string.error_validation_maile));
+            return false;
+        }
+        return true;
+    }
+    private boolean validateUserName(){
+        if(!InputValidation.isUserNameOnlyLettersAndNumbers(txtUserName) && txtUserName.length() > 0){
+            txtUserName.setError(getString(R.string.error_validation_user_name));
+            return false;
+        }
+        return true;
+    }
+    private boolean validatePassword(){
+        if(!InputValidation.isPasswordOnlyLettersAndNumbers(txtPassword) && txtPassword.length() > 0){
+            txtPassword.setError(getString(R.string.error_validation_password));
+            return false;
+        }
+        return true;
+    }
+    private boolean validateFirstName(){
+        if(!InputValidation.isHebrewValid(txtFirstName) && txtFirstName.length() > 0){
+            txtFirstName.setError(getString(R.string.error_validation_hebrew));
+            return false;
+        }
+        return true;
+    }
+    private boolean validateLastName(){
+        if(!InputValidation.isHebrewValid(txtLastName) && txtLastName.length() > 0){
+            txtLastName.setError(getString(R.string.error_validation_hebrew));
+            return false;
+        }
+        return true;
+    }
+    private boolean validatePhone(){
+        if(!InputValidation.isOnlyDigits(txtPhone1) && txtPhone1.length() > 0){
+            txtPhone1.setError(getString(R.string.error_validation_phone));
+            return false;
+        }
+        return true;
+    }
+    private boolean validateBirthDate(){
+        if(txtDateOfBirth.length() > 0){
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            Calendar cal = Calendar.getInstance();
+            try {
+                date = format.parse(txtDateOfBirth.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            if(!InputValidation.isOver18(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH))){
+                ageError.setVisibility(View.VISIBLE);
+                ageError.setError(getString(R.string.error_validation_age_over_18));
+                return false;
+            }else {
+                return true;
+            }
+        }
         return false;
     }
 }

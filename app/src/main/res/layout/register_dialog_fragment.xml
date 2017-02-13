@@ -163,7 +163,8 @@
         android:ems="10"
         android:id="@+id/txtPhone1"
         android:hint="@string/ui_register_phone_number"
-        android:layout_weight="1.05" />
+        android:layout_weight="1.05"
+        android:maxLength="10" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -195,30 +196,30 @@
                 android:text="@string/ui_register_phone_type_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/radioButton5"
+                android:id="@+id/rbMobile"
                 android:layout_weight="1"
                 android:textDirection="rtl"
                 android:layoutDirection="rtl"
-                android:tag="mobile"
+                android:tag="1"
                 android:checked="true" />
 
             <RadioButton
                 android:text="@string/ui_register_phone_type_office"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/radioButton6"
+                android:id="@+id/rbOffice"
                 android:layout_weight="1"
                 android:layoutDirection="rtl"
-                android:tag="office" />
+                android:tag="2" />
 
             <RadioButton
                 android:text="@string/ui_register_phone_type_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/radioButton4"
+                android:id="@+id/rbHome"
                 android:layout_weight="1"
                 android:layoutDirection="rtl"
-                android:tag="home" />
+                android:tag="0" />
         </RadioGroup>
     </LinearLayout>
 

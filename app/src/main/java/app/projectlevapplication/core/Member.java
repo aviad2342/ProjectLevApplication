@@ -56,6 +56,13 @@ public class Member implements Serializable {
 	
 	private ArrayList<Phone> phones;
 
+    private String phoneNumber;
+
+    /** 1 = mobile, 0 = home, 2 = office*/
+    private int type;
+
+    private boolean publish;
+
 
     /**
      * empty Constructor
@@ -326,6 +333,30 @@ public class Member implements Serializable {
 	public void setPhones(ArrayList<Phone> phones) {
 		this.phones = phones;
 	}
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public boolean isPublish() {
+        return publish;
+    }
+
+    public void setPublish(boolean publish) {
+        this.publish = publish;
+    }
 
 	public String getMemberGender() {
 		if(gender == 0){

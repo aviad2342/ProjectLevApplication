@@ -34,6 +34,54 @@ public class InputValidation {
             return false;
     }
 
+    public static boolean isUserNameOnlyLettersAndNumbers(EditText editText)
+    {
+        String text = editText.getText().toString();
+        String regExpn = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{4,12}$";
+
+        CharSequence inputStr = text;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean isPasswordOnlyLettersAndNumbers(EditText editText)
+    {
+        String text = editText.getText().toString();
+        String regExpn = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{5,12}$";
+
+        CharSequence inputStr = text;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean isOnlyDigits(EditText editText)
+    {
+        String text = editText.getText().toString();
+        String regExpn = "([0-9]+).{9,10}$";
+
+        CharSequence inputStr = text;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
     public static boolean isHebrewValid(EditText editText)
     {
         String text = editText.getText().toString();
