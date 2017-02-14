@@ -161,7 +161,7 @@ public class RegisterDialog extends DialogFragment{
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
         radioButton  = (RadioButton) view.findViewById(R.id.rbMobile);
         ageError = (EditText) view.findViewById(R.id.ageError);
-        imageForNewMember = "null";
+        imageForNewMember = Utils.NEW_MEMBER_DEFAULT_IMAGE;
         isUserUploadingImage = false;
 
         Drawable x = getResources().getDrawable(R.drawable.asterisk, null);
@@ -618,6 +618,7 @@ public class RegisterDialog extends DialogFragment{
         builder.setTitle(R.string.error_validation_uploading_image_title);
         builder.setPositiveButton(R.string.error_validation_uploading_image_btn_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                imageForNewMember = Utils.NEW_MEMBER_DEFAULT_IMAGE;
             }
         });
         builder.setNegativeButton(R.string.error_validation_uploading_image_btn_no, new DialogInterface.OnClickListener() {
