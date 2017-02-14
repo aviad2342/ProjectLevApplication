@@ -26,6 +26,12 @@
     <string name="member_profile_end_subscription_date">תאריך סיום מנוי:</string>
     <string name="member_profile_btn_edit">עריכה</string>
 
+    <!-- Strings related to Article Activity -->
+    <string name="article_comment_success_message">התגובה נוספה בהצלחה</string>
+    <string name="article_comment_error_message">שליחת התגובה נכשלה, אנה נסה שנית</string>
+    <string name="article_uploading_comment_progress_dialog_title">שולח תגובה...</string>
+    <string name="article_uploading_comment_progress_dialog_message">בבקשה המתן...</string>
+
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>
@@ -46,6 +52,12 @@
     <string name="ui_register_phone_type_office">משרד</string>
     <string name="ui_register_phone_type_home">בית</string>
     <string name="ui_register_btn_submit_form">שלח טופס</string>
+    <string name="ui_register_successfully_submit_form">הפרטים נשלחו בהצלחה</string>
+    <string name="ui_register_error_submit_form">שליחת הפרטים נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="ui_register_progress_dialog_title">שולח...</string>
+    <string name="ui_register_progress_dialog_message">בבקשה המתן...</string>
+
+
 
     <!-- Strings related to Input Validation -->
     <string name="error_validation_hebrew">שדה זה מקבל אותיות בעיברית בלבד!</string>
@@ -60,6 +72,10 @@
     <string name="error_validation_alert_dialog_message">לא ניתן להמשיך בפעולה, קיים לפחות שדה אחד שאינו תקין!</string>
     <string name="error_validation_alert_dialog_title">שדות לא תקינים</string>
     <string name="error_validation_alert_dialog_ok">חזור</string>
+    <string name="error_validation_uploading_image_message">העלאת התמונה נכשלה, באפשרותך להמשיך או לצאת ולנסות מאוחר יותר.</string>
+    <string name="error_validation_uploading_image_title">העלאת תמונה נכשלה</string>
+    <string name="error_validation_uploading_image_btn_ok">המשך</string>
+    <string name="error_validation_uploading_image_btn_no">ביטול</string>
 
 
 

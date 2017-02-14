@@ -87,8 +87,7 @@ public class MemberProfileActivity extends MyMenuBar {
         txtMemberJoinDate.setText(Utils.eventToDateString(memberToDisplay.getRegistrationDate()));
         txtMemberStatus.setText(memberToDisplay.getMemberStatus());
         txtMemberEndSubscriptionDate.setText(Utils.eventToDateString(memberToDisplay.getSubExpire()));
-
-
+        System.out.print(memberToDisplay.toJsonObject().toString());
 
         Button btnEditMember = (Button) findViewById(R.id.btnEditMember);
         btnEditMember.setOnClickListener(new View.OnClickListener() {

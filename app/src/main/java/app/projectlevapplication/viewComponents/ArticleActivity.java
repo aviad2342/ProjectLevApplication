@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -92,7 +93,7 @@ public class ArticleActivity extends MyMenuBar {
                     commentToAdd.setAuthorID(currentMember.getMemberID());
                     commentToAdd.setArticleID(article.getArticleID());
 
-                    loading = ProgressDialog.show(ArticleActivity.this,"בבקשה המתן...","מחזיר מידע...",false,false);
+                    loading = ProgressDialog.show(ArticleActivity.this,getString(R.string.article_uploading_comment_progress_dialog_message),getString(R.string.article_uploading_comment_progress_dialog_title),false,false);
 
                     String url = Utils.POST_COMMENT_FOR_ARTICLE;
 
@@ -101,17 +102,19 @@ public class ArticleActivity extends MyMenuBar {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     loading.dismiss();
-                                    Toast.makeText(getApplicationContext(),"success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),getString(R.string.article_comment_success_message), Toast.LENGTH_SHORT).show();
+                                    loadCommentList();
                                     memberHeadline.setText("");
                                     commentContent.setText("");
-                                    loadCommentList();
                                 }
-                            }, new Response.ErrorListener() {
+                            }
+                            , new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             loading.dismiss();
-                            Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
-                            loadCommentList();
+                            Toast.makeText(getApplicationContext(),getString(R.string.article_comment_error_message), Toast.LENGTH_LONG).show();
+                            memberHeadline.setText("");
+                            commentContent.setText("");
                         }
                     });
 

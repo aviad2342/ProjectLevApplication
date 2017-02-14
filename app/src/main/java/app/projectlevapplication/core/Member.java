@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import app.projectlevapplication.utils.Utils;
+
 
 public class Member implements Serializable {
 	
@@ -446,27 +448,17 @@ public class Member implements Serializable {
 
 		JSONObject jsonObject= new JSONObject();
 		try {
-			jsonObject.put("memberID", getMemberID());
 			jsonObject.put("username", getUsername());
 			jsonObject.put("password", getPassword());
 			jsonObject.put("fullName", getFullName());
-			jsonObject.put("birthdate", getBirthDate());
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			jsonObject.put("birthdate",format.format(getBirthDate()));
 			jsonObject.put("email", getEmail());
-			jsonObject.put("gender", getGender());
-			jsonObject.put("status", getStatus());
-			jsonObject.put("children", getChildren());
-            jsonObject.put("state", getState());
-            jsonObject.put("street", getStreet());
-            jsonObject.put("houseNum", getHouseNum());
-            jsonObject.put("zipCode", getZipCode());
-            jsonObject.put("education", getEducation());
+			jsonObject.put("phoneNumber", getPhoneNumber());
+			jsonObject.put("type", getType());
+			jsonObject.put("publish", Utils.getBoolean(isPublish()));
 			jsonObject.put("profilePic", getProfilePic());
-			jsonObject.put("isApproved", isApproved());
-			jsonObject.put("registrationDate", getRegistrationDate());
-			jsonObject.put("subExpire", getSubExpire());
-			jsonObject.put("sendMails", isSendMails());
-
-
+			jsonObject.put("sendMails", Utils.getBoolean(isSendMails()));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

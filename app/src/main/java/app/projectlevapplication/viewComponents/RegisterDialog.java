@@ -37,6 +37,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -82,6 +89,7 @@ public class RegisterDialog extends DialogFragment{
 
     private Uri mImageCaptureUri;
     private boolean isTakenFromCamera;
+    boolean isUserUploadingImage;
 
     Context context;
     Activity activity;
@@ -153,7 +161,8 @@ public class RegisterDialog extends DialogFragment{
         phone1Group = (RadioGroup) view.findViewById(R.id.phone1Group);
         radioButton  = (RadioButton) view.findViewById(R.id.rbMobile);
         ageError = (EditText) view.findViewById(R.id.ageError);
-        imageForNewMember = Utils.NEW_MEMBER_DEFAULT_IMAGE;
+        imageForNewMember = "null";
+        isUserUploadingImage = false;
 
         Drawable x = getResources().getDrawable(R.drawable.asterisk, null);
         Drawable cal = getResources().getDrawable(R.drawable.calendar, null);
@@ -180,39 +189,45 @@ public class RegisterDialog extends DialogFragment{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(imagePath)) {
-                    /**
-                     * Uploading AsyncTask
-                     */
-                    if (Utils.checkConnection(context)) {
-                        /******************Retrofit***************/
-                        uploadImage();
-                    } else {
-                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
-                    }
-                } else {
-                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
-                }
                 if(validate(new EditText[]{txtUserName, txtPassword, txtPasswordConfirmation, txtEmail, txtFirstName, txtLastName, txtPhone1})){
                     if(validateUserName() && isPasswordMatches() && validatePassword() && validateFirstName() && validateLastName() && validateMail() && validateBirthDate() && validatePhone() ){
-                        Member memberToAdd = new Member();
+                        if(isUserUploadingImage && !executeImageUploading()) {
+                            uploadingImageAlertDialog();
+                        }
+                            Member memberToAdd = new Member();
 
-                        memberToAdd.setUsername(txtUserName.getText().toString());
-                        memberToAdd.setPassword(txtPassword.getText().toString());
-                        memberToAdd.setFullName(txtFirstName.getText().toString()+" "+txtLastName.getText().toString());
-                       // SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                        memberToAdd.setBirthDate(myCalendar.getTime());
-                        memberToAdd.setEmail(txtEmail.getText().toString());
-                        //memberToAdd.setGender(txtUserName.getText().toString());
-                        //memberToAdd.setStatus(txtUserName.getText().toString());
-                        memberToAdd.setPhoneNumber(txtPhone1.getText().toString());
-                        memberToAdd.setType(Integer.parseInt(radioButton.getTag().toString()));
-                        memberToAdd.setPublish(cbPhone1Privacy.isChecked());
-                        memberToAdd.setProfilePic(imageForNewMember);
-                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        memberToAdd.setRegistrationDate(new Date());
-                        memberToAdd.setSendMails(cbAddsConfirm.isChecked());
+                            memberToAdd.setUsername(txtUserName.getText().toString());
+                            memberToAdd.setPassword(txtPassword.getText().toString());
+                            memberToAdd.setFullName(txtFirstName.getText().toString() + " " + txtLastName.getText().toString());
+                            memberToAdd.setBirthDate(myCalendar.getTime());
+                            memberToAdd.setEmail(txtEmail.getText().toString());
+                            memberToAdd.setPhoneNumber(txtPhone1.getText().toString());
+                            memberToAdd.setType(Integer.parseInt(radioButton.getTag().toString()));
+                            memberToAdd.setPublish(cbPhone1Privacy.isChecked());
+                            memberToAdd.setProfilePic(imageForNewMember);
+                            memberToAdd.setRegistrationDate(new Date());
+                            memberToAdd.setSendMails(cbAddsConfirm.isChecked());
 
+                        loading = ProgressDialog.show(activity,getString(R.string.ui_register_progress_dialog_message),getString(R.string.ui_register_progress_dialog_title),false,false);
+
+                        String url = Utils.POST_COMMENT_FOR_ARTICLE;
+
+                        JsonObjectRequest request_json = new JsonObjectRequest(url, memberToAdd.toJsonObject(),
+                                new com.android.volley.Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        loading.dismiss();
+                                        Toast.makeText(activity,getString(R.string.ui_register_successfully_submit_form),Toast.LENGTH_LONG).show();
+                                    }
+                                }, new com.android.volley.Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                loading.dismiss();
+                                Toast.makeText(activity,getString(R.string.ui_register_error_submit_form),Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+                        requestQueue.add(request_json);
 
                     }else {
                         AlertDialog();
@@ -226,24 +241,10 @@ public class RegisterDialog extends DialogFragment{
         btnCancelRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(imagePath)) {
-                    /**
-                     * Uploading AsyncTask
-                     */
-                    if (Utils.checkConnection(activity)) {
-                        /******************Retrofit***************/
-                        uploadImage();
-                    } else {
-                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
-                    }
-                } else {
-                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
-                }
-               // mListener.onDialogNegative(RegisterDialog.this);
-               // dismiss();
+                mListener.onDialogNegative(RegisterDialog.this);
+                dismiss();
             }
         });
-
         phone1Group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -405,20 +406,22 @@ public class RegisterDialog extends DialogFragment{
                 if (extras != null) {
                     registerImage.setImageBitmap((Bitmap) extras.getParcelable("data"));
                 }
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                if(!isTakenFromCamera){
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-                Cursor cursor = activity.getContentResolver().query(mImageCaptureUri, filePathColumn, null, null, null);
+                    Cursor cursor = activity.getContentResolver().query(mImageCaptureUri, filePathColumn, null, null, null);
 
-                if (cursor != null) {
-                    cursor.moveToFirst();
-                }
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                    }
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     imagePath = cursor.getString(columnIndex);
-
-                if (isTakenFromCamera) {
-                    File f = new File(mImageCaptureUri.getPath());
-                    if (f.exists())
-                        f.delete();
+                }
+                else  {
+                    imagePath = mImageCaptureUri.getPath();
+//                    File f = new File(mImageCaptureUri.getPath());
+//                    if (f.exists())
+//                        f.delete();
                 }
                 break;
             case ID_PHOTO_PICKER_FROM_GALLERY:
@@ -430,6 +433,24 @@ public class RegisterDialog extends DialogFragment{
     }
 
     // ******* Photo picker dialog related functions ************//
+
+    public boolean executeImageUploading(){
+        if (!TextUtils.isEmpty(imagePath)) {
+            // Uploading AsyncTask
+            if (Utils.checkConnection(activity)) {
+                /******************Retrofit***************/
+                uploadImage();
+                return true;
+            } else {
+                return false;
+                //Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+            }
+        }
+            //Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_INDEFINITE).show();
+        return false;
+    }
+
+
     public void displayDialog() {
         final CharSequence[] items = { "צלם תמונה", "בחר מגלריית התמונות", "ביטול" };
 
@@ -442,12 +463,17 @@ public class RegisterDialog extends DialogFragment{
                 // boolean result=Utility.checkPermission(MainActivity.this);
                 switch (item) {
                     case 0:
+                        isTakenFromCamera = true;
+                        isUserUploadingImage = true;
                         onPhotoPickerItemSelected(ID_PHOTO_PICKER_FROM_CAMERA);
                         break;
                     case 1:
+                        isTakenFromCamera = false;
+                        isUserUploadingImage = true;
                         onPhotoPickerItemSelected(ID_PHOTO_PICKER_FROM_GALLERY);
                         break;
                     case 2:
+                        isUserUploadingImage = false;
                         return;
                 }
             }
@@ -516,9 +542,8 @@ public class RegisterDialog extends DialogFragment{
         startActivityForResult(intent, CODE_CROP_PHOTO_REQUEST);
     }
     private void uploadImage() {
-        /**
-         * Progressbar to Display if you need
-         */
+
+        //Progressbar to Display
         loading = ProgressDialog.show(activity,"בבקשה המתן...","מחזיר מידע...",false,false);
 
         //Create Upload Server Client
@@ -540,28 +565,21 @@ public class RegisterDialog extends DialogFragment{
         resultCall.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
-
                 loading.dismiss();
-                imageForNewMember = response.body().getResult();
-                Toast.makeText(activity,imageForNewMember,Toast.LENGTH_LONG).show();
-                Snackbar.make(mView, response.message(), Snackbar.LENGTH_LONG).show();
                 // Response Success or Fail
                 if (response.isSuccessful()) {
-                    if (response.body().getResult().equals("success"))
-                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
-                    else
-                        Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
-
+                    if (!response.body().getResult().equals("error")) {
+                        imageForNewMember = response.body().getResult();
+                        //Snackbar.make(mView, R.string.ui_register_successfully_submit_form, Snackbar.LENGTH_SHORT).show();
+                    }else {
+                        imageForNewMember = "null";
+                        //Snackbar.make(mView, R.string.ui_register_error_submit_form, Snackbar.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Snackbar.make(mView, R.string.action_sign_in, Snackbar.LENGTH_LONG).show();
+                    imageForNewMember = "null";
+                    //Snackbar.make(mView, R.string.ui_register_error_submit_form, Snackbar.LENGTH_SHORT).show();
                 }
-
-                /**
-                 * Update Views
-                 */
                 imagePath = "";
-//                textView.setVisibility(View.VISIBLE);
-//                imageView.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -588,6 +606,24 @@ public class RegisterDialog extends DialogFragment{
         builder.setTitle(R.string.error_validation_alert_dialog_title);
         builder.setPositiveButton(R.string.error_validation_alert_dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void uploadingImageAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.error_validation_uploading_image_message);
+        builder.setTitle(R.string.error_validation_uploading_image_title);
+        builder.setPositiveButton(R.string.error_validation_uploading_image_btn_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.setNegativeButton(R.string.error_validation_uploading_image_btn_no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                mListener.onDialogNegative(RegisterDialog.this);
+                dismiss();
             }
         });
         AlertDialog dialog = builder.create();

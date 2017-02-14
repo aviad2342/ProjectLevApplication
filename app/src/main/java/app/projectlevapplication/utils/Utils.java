@@ -98,6 +98,9 @@ public class Utils {
         return date.toString();
     }
 
+    public static int getBoolean(boolean b)  {
+        return (b) ? 1 : 0;
+    }
     public Member responseToMember(String response)  {
 
         if(response.length() < 1){
