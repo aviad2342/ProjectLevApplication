@@ -11,12 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/articleName"
-        android:layout_weight="0.04"
         android:textDirection="rtl"
         android:gravity="center_vertical"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -27,11 +28,11 @@
 
         <TextView
             android:text="שם המחבר:"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView9"
             android:gravity="center_vertical"
-            android:layout_weight="3.5" />
+            android:paddingLeft="5dp" />
 
         <TextView
             android:text="TextView"
@@ -47,7 +48,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:textDirection="rtl">
+        android:textDirection="rtl"
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:text="מועד פרסום:"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView18"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp" />
 
         <TextView
             android:text="TextView"
@@ -57,36 +67,40 @@
             android:layout_weight="1"
             android:gravity="center_vertical" />
 
-        <TextView
-            android:text="מועד פרסום:"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textView18"
-            android:layout_weight="3.5"
-            android:gravity="center_vertical" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="31dp"
-        android:textDirection="rtl">
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/commentsNumber"
-            android:layout_weight="1"
-            android:gravity="center_vertical" />
+        android:textDirection="rtl"
+        android:layoutDirection="rtl"
+        android:weightSum="1">
 
         <TextView
             android:text="תגובות:"
-            android:layout_width="64dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView14"
             android:gravity="center_vertical"
-            android:paddingRight="15dp" />
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/commentsNumber"
+            android:gravity="right|center_vertical"
+            android:layout_weight="0.06" />
+
+        <TextView
+            android:text="צפיות:"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView12"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp" />
 
         <TextView
             android:text="TextView"
@@ -95,11 +109,5 @@
             android:id="@+id/viewsNumber"
             android:gravity="center_vertical" />
 
-        <TextView
-            android:text="צפיות:"
-            android:layout_width="47dp"
-            android:layout_height="match_parent"
-            android:id="@+id/textView12"
-            android:gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>

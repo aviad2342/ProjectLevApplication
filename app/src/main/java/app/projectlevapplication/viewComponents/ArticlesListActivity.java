@@ -44,8 +44,8 @@ public class ArticlesListActivity extends MyMenuBar {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_articles_list);
-        getSupportActionBar().setTitle("מאמרים");
+        //setContentView(R.layout.activity_articles_list);
+
         list = (ListView) findViewById(R.id.articlesList);
         searchArticle = (TextView) findViewById(R.id.searchInArticels);
         searchArticle.addTextChangedListener(filterTextWatcher);

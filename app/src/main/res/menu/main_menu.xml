@@ -4,31 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layoutDirection="ltr">
 
-    <item android:title="Item"
-        android:id="@+id/menu"
-        android:icon="@drawable/ic_input_whit_24dp"
-        android:showAsAction="always"
-        android:orderInCategory="3"
-        app:showAsAction="always">
-    <menu >
-        <item android:title="חברי הקהילה"
-            android:showAsAction="always"
-            android:id="@+id/communityMembers" />
-        <item android:title="אירועים"
-            android:showAsAction="always"
-            android:id="@+id/events" />
-        <item android:title="מאמרים"
-        android:id="@+id/articles"
-            android:showAsAction="always" />
-    </menu>
-</item>
-    <item android:title="logout"
-        android:id="@+id/logout"
-        android:showAsAction="always"
-        android:orderInCategory="2"
-        android:icon="@drawable/logout_24dp"
-        android:visible="false"
-        android:enabled="false" />
     <item android:title="logIn"
         android:showAsAction="always"
         android:icon="@drawable/ic_input_white_24dp"

@@ -3,19 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:theme="@style/MyAppTheme">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.75">
+        android:layout_weight="0.75"
+        android:layoutDirection="rtl">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.5">
+            android:layout_weight="1"
+            android:layoutDirection="rtl"
+            android:textDirection="rtl">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtUserName"
+                android:hint="@string/ui_register_user_name"
+                android:layout_weight="1"
+                android:textDirection="rtl"
+                android:layoutDirection="ltr" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtPassword"
+                android:hint="@string/ui_register_password"
+                android:layout_weight="1"
+                android:layoutDirection="ltr"
+                android:textDirection="rtl"
+                android:textAlignment="textEnd" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtPasswordConfirmation"
+                android:hint="@string/ui_register_password_confirmation"
+                android:textAlignment="textEnd"
+                android:layout_weight="1"
+                android:layoutDirection="ltr" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:layoutDirection="rtl">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -36,42 +84,6 @@
                 android:layout_marginStart="5dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/txtUserName"
-                android:hint="@string/ui_register_user_name"
-                android:layout_weight="1" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/txtPassword"
-                android:hint="@string/ui_register_password"
-                android:textAlignment="textEnd"
-                android:layout_weight="1" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/txtPasswordConfirmation"
-                android:hint="@string/ui_register_password_confirmation"
-                android:textAlignment="textEnd"
-                android:layout_weight="1" />
-
-        </LinearLayout>
     </LinearLayout>
 
     <EditText
@@ -81,7 +93,9 @@
         android:ems="10"
         android:id="@+id/txtEmail"
         android:hint="@string/ui_register_email_address"
-        android:layout_weight="1.05" />
+        android:layout_weight="1.05"
+        android:layoutDirection="ltr"
+        android:textDirection="rtl" />
 
     <CheckBox
         android:text="@string/ui_register_add_confirm"
@@ -96,16 +110,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.05">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/txtLastName"
-            android:layout_weight="1"
-            android:hint="@string/ui_register_last_name" />
+        android:layout_weight="1.05"
+        android:layoutDirection="rtl">
 
         <EditText
             android:layout_width="match_parent"
@@ -114,7 +120,21 @@
             android:ems="10"
             android:id="@+id/txtFirstName"
             android:hint="@string/ui_register_first_name"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:layoutDirection="ltr"
+            android:textDirection="rtl" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtLastName"
+            android:layout_weight="1"
+            android:hint="@string/ui_register_last_name"
+            android:layoutDirection="ltr" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -123,16 +143,17 @@
         android:layout_height="wrap_content"
         android:gravity="right"
         android:weightSum="1"
-        android:textDirection="rtl">
+        android:textDirection="rtl"
+        android:layoutDirection="rtl">
 
-        <TextView
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:id="@+id/txtDateOfBirth"
-            android:gravity="right|center_vertical|center"
-            android:hint="@string/ui_register_birth_date"
-            android:textSize="18sp"
-            android:layout_weight="0.08" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar"
+            android:id="@+id/imageButton"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:visibility="gone" />
 
         <EditText
             android:layout_width="30dp"
@@ -144,16 +165,18 @@
             android:gravity="right|center_vertical"
             android:background="@android:color/transparent"
             android:visibility="gone"
-            android:editable="false" />
+            android:editable="false"
+            android:layoutDirection="ltr" />
 
-        <ImageButton
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/calendar"
-            android:id="@+id/imageButton"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginLeft="5dp"
-            android:visibility="gone" />
+            android:layout_height="46dp"
+            android:id="@+id/txtDateOfBirth"
+            android:gravity="right|center_vertical|center"
+            android:hint="@string/ui_register_birth_date"
+            android:textSize="18sp"
+            android:layout_weight="0.08" />
+
     </LinearLayout>
 
     <EditText
@@ -164,23 +187,15 @@
         android:id="@+id/txtPhone1"
         android:hint="@string/ui_register_phone_number"
         android:layout_weight="1.05"
-        android:maxLength="10" />
+        android:maxLength="10"
+        android:layoutDirection="ltr" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.1">
-
-        <CheckBox
-            android:text="@string/ui_register_phone_privacy"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cbPhone1Privacy"
-            android:layout_weight="2.5"
-            android:textAlignment="textStart"
-            android:layoutDirection="rtl"
-            android:layout_marginRight="15dp" />
+        android:layout_weight="1.1"
+        android:layoutDirection="rtl">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -221,13 +236,32 @@
                 android:layoutDirection="rtl"
                 android:tag="0" />
         </RadioGroup>
+
+        <CheckBox
+            android:text="@string/ui_register_phone_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cbPhone1Privacy"
+            android:layout_weight="2.5"
+            android:textAlignment="textStart"
+            android:layoutDirection="rtl"
+            android:layout_marginRight="15dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.05">
+        android:layout_weight="1.05"
+        android:layoutDirection="rtl">
+
+        <Button
+            android:text="@string/ui_register_btn_submit_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSubmit"
+            android:layout_weight="1" />
 
         <Button
             android:text="@string/ui_register_btn_cancel"
@@ -236,12 +270,6 @@
             android:id="@+id/btnCancelRegister"
             android:layout_weight="1" />
 
-        <Button
-            android:text="@string/ui_register_btn_submit_form"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btnSubmit"
-            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

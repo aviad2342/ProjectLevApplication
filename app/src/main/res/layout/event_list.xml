@@ -4,7 +4,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textDirection="rtl"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layoutDirection="rtl">
 
     <TextView
         android:text="TextView"
@@ -18,7 +19,15 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/event_24dp"
+            android:id="@+id/imageView3"
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:text="TextView"
@@ -29,18 +38,20 @@
             android:gravity="center_vertical"
             android:layout_marginRight="5dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/event_24dp"
-            android:id="@+id/imageView3"
-            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/user_group_24dp"
+            android:id="@+id/imageView4"
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:text="TextView"
@@ -51,18 +62,20 @@
             android:gravity="center_vertical"
             android:layout_marginRight="5dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/user_group_24dp"
-            android:id="@+id/imageView4"
-            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/marker_24dp"
+            android:id="@+id/imageView5"
+            android:layout_gravity="center_vertical" />
 
         <TextView
             android:text="TextView"
@@ -73,11 +86,5 @@
             android:gravity="center_vertical"
             android:layout_marginRight="5dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/marker_24dp"
-            android:id="@+id/imageView5"
-            android:layout_gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>

@@ -12,7 +12,6 @@
     </style>
 
     <style name="MyActionButtonStyle" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:gravity">center_horizontal</item>
         <item name="android:layoutDirection">rtl</item>
     </style>
 
@@ -22,13 +21,13 @@
          <item name="colorPrimary">@android:color/holo_purple</item>
          <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
          <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:layoutDirection">ltr</item>
-        <item name="android:dropDownItemStyle">@style/CustomActionBar</item>
+        <!--<item name="android:layoutDirection">ltr</item>-->
+        <!--<item name="android:dropDownItemStyle">@style/CustomActionBar</item>-->
          <!--<item name="android:layoutDirection">ltr</item>-->
           <!--<item name="android:textDirection">ltr</item>-->
-         <item name="android:popupMenuStyle">@style/CustomActionBar</item>
+         <!--<item name="android:popupMenuStyle">@style/CustomActionBar</item>-->
         <item name="android:itemBackground">@color/itemBack</item>
-        <item name="android:itemTextAppearance">@style/CustomActionBar</item>
+        <!--<item name="android:itemTextAppearance">@style/CustomActionBar</item>-->
      </style>
 
      <style name="AppTheme.NoActionBar">

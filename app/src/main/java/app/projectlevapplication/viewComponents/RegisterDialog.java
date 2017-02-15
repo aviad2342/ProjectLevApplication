@@ -22,7 +22,9 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -176,6 +178,67 @@ public class RegisterDialog extends DialogFragment{
         txtLastName.setCompoundDrawables(x, null, null, null);
         txtDateOfBirth.setCompoundDrawables(x, null, cal, null);
         txtPhone1.setCompoundDrawables(x, null, null, null);
+
+        txtUserName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(txtUserName.getText().length() == 0){
+                    txtUserName.setTextDirection(View.TEXT_DIRECTION_RTL);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                txtUserName.setTextDirection(View.TEXT_DIRECTION_RTL);
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                txtUserName.setTextDirection(View.TEXT_DIRECTION_LTR);
+            }
+        });
+        txtPassword.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(txtPassword.getText().length() == 0){
+                    txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+            }
+        });
+        txtPasswordConfirmation.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(txtPasswordConfirmation.getText().length() == 0){
+                    txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+            }
+        });
+        txtEmail.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                if(txtEmail.getText().length() == 0){
+                    txtEmail.setTextDirection(View.TEXT_DIRECTION_RTL);
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                txtEmail.setTextDirection(View.TEXT_DIRECTION_RTL);
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                txtEmail.setTextDirection(View.TEXT_DIRECTION_LTR);
+            }
+        });
 
         Button btnChooseImage = (Button)view.findViewById(R.id.btnChooseImage);
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -382,6 +445,7 @@ public class RegisterDialog extends DialogFragment{
         int selectedRadioButton = phone1Group.getCheckedRadioButtonId();
         radioButton = (RadioButton)view.findViewById(selectedRadioButton);
     }
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

@@ -54,10 +54,6 @@ public class MembersListActivity extends MyMenuBar {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MemberLogin = menu.findItem(R.id.logIn);
-        MemberLogout = menu.findItem(R.id.logout);
-        communityMembers = menu.findItem(R.id.communityMembers);
-        communityEvents = menu.findItem(R.id.events);
-        communityArticles = menu.findItem(R.id.articles);
         MemberLogin.setIcon(R.drawable.logout_24dp);
         return super.onPrepareOptionsMenu(menu);
     }

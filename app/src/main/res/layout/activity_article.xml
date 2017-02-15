@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:text="TextView"
@@ -29,7 +29,9 @@
                 android:id="@+id/articleTitle"
                 android:textStyle="bold"
                 android:textSize="24sp"
-                android:layout_marginRight="5dp" />
+                android:layout_marginRight="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
             <TextView
                 android:text="TextView"
@@ -44,7 +46,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textDirection="rtl"
-                android:gravity="right">
+                android:gravity="right"
+                android:layoutDirection="rtl">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    app:srcCompat="@mipmap/ic_lev"
+                    android:id="@+id/commentMemberImage" />
 
                 <TextView
                     android:text="TextView"
@@ -52,12 +61,6 @@
                     android:layout_height="match_parent"
                     android:id="@+id/commentMemberName"
                     android:gravity="right|center_vertical" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    app:srcCompat="@mipmap/ic_lev"
-                    android:id="@+id/commentMemberImage" />
 
             </LinearLayout>
 
@@ -88,7 +91,9 @@
                 android:text="שלח"
                 android:layout_width="58dp"
                 android:layout_height="37dp"
-                android:id="@+id/btnSendComment" />
+                android:id="@+id/btnSendComment"
+                android:textAllCaps="false"
+                android:layout_gravity="left" />
 
             <TextView
                 android:text="תגובות קודמות:"

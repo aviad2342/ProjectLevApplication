@@ -8,7 +8,8 @@
     android:orientation="vertical"
     tools:context="app.projectlevapplication.viewComponents.EventActivity"
     android:textDirection="rtl"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layoutDirection="rtl">
 
     <TextView
         android:text="TextView"
@@ -25,14 +26,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="31dp"
-        android:gravity="right">
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtDateTime"
-            android:gravity="center_vertical" />
+        android:gravity="right"
+        android:layoutDirection="rtl">
 
         <TextView
             android:text="מועד האירוע:"
@@ -43,28 +38,22 @@
             android:paddingLeft="5dp"
             android:textStyle="bold"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtDateTime"
+            android:gravity="center_vertical" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:gravity="right">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/marker_24dp"
-            android:id="@+id/imageView6"
-            android:layoutDirection="rtl"
-            android:layout_gravity="right" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtLocation"
-            android:gravity="center_vertical" />
+        android:gravity="right"
+        android:layoutDirection="rtl">
 
         <TextView
             android:text="מיקום האירוע:"
@@ -75,20 +64,30 @@
             android:paddingLeft="5dp"
             android:textStyle="bold"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtLocation"
+            android:gravity="center_vertical" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/marker_24dp"
+            android:id="@+id/imageView6"
+            android:layoutDirection="rtl"
+            android:layout_gravity="right" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:gravity="right">
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtMembesNumber"
-            android:gravity="center_vertical" />
+        android:gravity="right"
+        android:layoutDirection="rtl">
 
         <TextView
             android:text="מספר משתתפים:"
@@ -99,20 +98,22 @@
             android:paddingLeft="5dp"
             android:textStyle="bold"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtMembesNumber"
+            android:gravity="center_vertical" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="37dp"
-        android:gravity="right">
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtPublisher"
-            android:gravity="center_vertical" />
+        android:gravity="right"
+        android:layoutDirection="rtl">
 
         <TextView
             android:text="מפרסם האירוע:"
@@ -123,6 +124,14 @@
             android:paddingLeft="5dp"
             android:textStyle="bold"
             android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/txtPublisher"
+            android:gravity="center_vertical" />
+
     </LinearLayout>
 
     <TextView

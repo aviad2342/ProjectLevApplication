@@ -1,8 +1,11 @@
 package app.projectlevapplication.utils;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,8 +14,11 @@ import app.projectlevapplication.MainActivity;
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.viewComponents.ArticlesListActivity;
+import app.projectlevapplication.viewComponents.ArticlesListFragment;
 import app.projectlevapplication.viewComponents.EventListActivity;
+import app.projectlevapplication.viewComponents.EventListFragment;
 import app.projectlevapplication.viewComponents.MembersListActivity;
+import app.projectlevapplication.viewComponents.MembersListFragment;
 import app.projectlevapplication.viewComponents.RegisterDialog;
 
 /**
@@ -22,10 +28,7 @@ import app.projectlevapplication.viewComponents.RegisterDialog;
 public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFragmentListener , RegisterDialog.DialogFragmentListener{
 
     public MenuItem MemberLogin;
-    public MenuItem MemberLogout;
-    public MenuItem communityMembers;
-    public MenuItem communityEvents;
-    public MenuItem communityArticles;
+
 
 
     @Override
@@ -36,28 +39,19 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MemberLogin = menu.findItem(R.id.logIn);
-        MemberLogout = menu.findItem(R.id.logout);
-        communityMembers = menu.findItem(R.id.communityMembers);
-        communityEvents = menu.findItem(R.id.events);
-        communityArticles = menu.findItem(R.id.articles);
+
         if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
-            communityMembers.setEnabled(true);
-            communityEvents.setEnabled(true);
-            communityArticles.setEnabled(true);
-
         }else {
             MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
-            communityMembers.setEnabled(false);
-            communityEvents.setEnabled(false);
-            communityArticles.setEnabled(false);
         }
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment fragment = null;
+        FragmentManager fragmentManager = getFragmentManager();
         switch (item.getItemId()) {
             case R.id.logIn:
                 if(Utils.getInstance().loadMemberFromPrefs(this) == null) {
@@ -69,35 +63,24 @@ public class MyMenuBar extends AppCompatActivity implements LogInDialog.DialogFr
                     Intent homeIntent = new Intent(this, MainActivity.class);
                     startActivity(homeIntent);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
-                    communityMembers.setEnabled(false);
-                    communityEvents.setEnabled(false);
-                    communityArticles.setEnabled(false);
                 }
                 return true;
-            case R.id.communityMembers:
-                Intent membersListIntent = new Intent(this, MembersListActivity.class);
-                startActivity(membersListIntent);
-                return true;
-            case R.id.events:
-                Intent eventsListIntent = new Intent(this, EventListActivity.class);
-                startActivity(eventsListIntent);
-                return true;
-            case R.id.articles:
-                Intent articlesListIntent = new Intent(this, ArticlesListActivity.class);
-                startActivity(articlesListIntent);
-                return true;
+
             default:
-                return super.onOptionsItemSelected(item);
+
         }
+//        if (fragment != null) {
+//            FragmentManager fragmentManager = getFragmentManager();
+//            fragmentManager.beginTransaction()
+//                    .replace(R.id.frame_container, fragment).commit();
+//        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onDialogPositiveClick(LogInDialog dialog) {
         if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
-            communityMembers.setEnabled(true);
-            communityEvents.setEnabled(true);
-            communityArticles.setEnabled(true);
         }
     }
 

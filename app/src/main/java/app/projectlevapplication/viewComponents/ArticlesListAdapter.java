@@ -19,6 +19,7 @@ import java.util.List;
 
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Article;
+import app.projectlevapplication.utils.Utils;
 
 
 /**
@@ -71,8 +72,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> implements Filter
 
         articleName.setText(article.getHeadline());
         authorName.setText(article.getAuthorName());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        publishDate.setText(format.format(article.getPublishDate()));
+        publishDate.setText(Utils.eventToDateString(article.getPublishDate()));
         viewsNumber.setText(String.valueOf(article.getViews()));
         commentsNumber.setText(String.valueOf(article.getComments()));
 
