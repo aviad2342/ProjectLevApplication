@@ -12,6 +12,8 @@ import app.projectlevapplication.utils.Utils;
 
 
 public class Member implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private int memberID;
 	
@@ -361,30 +363,47 @@ public class Member implements Serializable {
     }
 
 	public String getMemberGender() {
-		if(gender == 0){
-			return "זכר";
-		}
-		return "נקבה";
+        switch (gender){
+            case 0:
+                return "זכר";
+            case 1:
+                return "נקבה";
+            default:
+                return "לא צויין";
+        }
 	}
 
     public String getMemberStatus() {
         if(gender == 0) {
-            if (status == 0) {
-                return "רווק";
+            switch (status){
+                case 0:
+                    return "רווק";
+                case 1:
+                    return "נשוי";
+                case 2:
+                    return "אלמן";
+                case 3:
+                    return "גרוש";
+                default:
+                    return "לא צויין";
             }
-            return "נשוי";
         }
         else if(gender == 1) {
-            if (status == 0) {
-                return "רווקה";
+            switch (status){
+                case 0:
+                    return "רווקה";
+                case 1:
+                    return "נשואה";
+                case 2:
+                    return "אלמנה";
+                case 3:
+                    return "גרושה";
+                default:
+                    return "לא צויין";
             }
-            return "נשואה";
         }
         else{
-            if (status == 0) {
-                return "רווקה/רווק";
-            }
-            return "נשואה/נשוי";
+            return "לא צויין";
         }
     }
 

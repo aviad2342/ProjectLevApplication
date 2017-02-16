@@ -50,6 +50,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.model.LinkToDataBase;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     public MenuItem MemberLogin;
-
+    public String sDefSystemLanguage;
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         setContentView(R.layout.activity_main);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
+        sDefSystemLanguage = Locale.getDefault().getDisplayLanguage();
        // getSupportActionBar().setIcon(R.mipmap.ic_lev);
 
         //txt.setText(Utils.getInstance().loadMemberFromPrefs(this).toString());
@@ -106,8 +108,13 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //Toast.makeText(getApplicationContext(),Locale.getDefault().getDisplayLanguage(), Toast.LENGTH_LONG).show();
+        if(sDefSystemLanguage == "English"){
+            mDrawerLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }else if(sDefSystemLanguage != "עיברית"){
+            mDrawerLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
@@ -160,6 +167,20 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             displayView(0);
         }
     }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        // TODO Auto-generated method stub
+//        super.onWindowFocusChanged(hasFocus);
+//        if (hasFocus) {
+//            getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
+//        }
+//    }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
+//    }
 
     /**
      * Slide menu item click listener
@@ -243,6 +264,9 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
+        if(sDefSystemLanguage == "עיברית"){
+            mDrawerLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LOCALE);
+        }
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -377,6 +401,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         // Handle action bar actions click
         switch (item.getItemId()) {
             case R.id.logIn:
+                getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
                 if(Utils.getInstance().loadMemberFromPrefs(this) == null) {
                     LogInDialog dialog = new LogInDialog();
                     dialog.show(getFragmentManager(), "dialog");
@@ -384,7 +409,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                     //getPreferences(MODE_PRIVATE).edit().clear().apply();
                     Utils.getInstance().writeMemberToPrefs(null,this);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
-                    getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
                 }
                 return true;
 //            case R.id.menu:

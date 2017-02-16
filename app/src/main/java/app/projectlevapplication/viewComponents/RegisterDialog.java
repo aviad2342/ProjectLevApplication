@@ -212,16 +212,16 @@ public class RegisterDialog extends DialogFragment{
         txtPasswordConfirmation.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 if(txtPasswordConfirmation.getText().length() == 0){
-                    txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                    txtPasswordConfirmation.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
                 }
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+                txtPasswordConfirmation.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                txtPassword.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
+                txtPasswordConfirmation.setTextAlignment(View.TEXT_ALIGNMENT_INHERIT);
             }
         });
         txtEmail.addTextChangedListener(new TextWatcher() {
@@ -273,7 +273,7 @@ public class RegisterDialog extends DialogFragment{
 
                         loading = ProgressDialog.show(activity,getString(R.string.ui_register_progress_dialog_message),getString(R.string.ui_register_progress_dialog_title),false,false);
 
-                        String url = Utils.POST_COMMENT_FOR_ARTICLE;
+                        String url = Utils.ADD_NEW_MEMBER;
 
                         JsonObjectRequest request_json = new JsonObjectRequest(url, memberToAdd.toJsonObject(),
                                 new com.android.volley.Response.Listener<JSONObject>() {
@@ -281,6 +281,7 @@ public class RegisterDialog extends DialogFragment{
                                     public void onResponse(JSONObject response) {
                                         loading.dismiss();
                                         Toast.makeText(activity,getString(R.string.ui_register_successfully_submit_form),Toast.LENGTH_LONG).show();
+                                        dismiss();
                                     }
                                 }, new com.android.volley.Response.ErrorListener() {
                             @Override
@@ -350,7 +351,7 @@ public class RegisterDialog extends DialogFragment{
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if(!txtPasswordConfirmation.getText().equals(txtPassword.getText()) && txtPasswordConfirmation.getText().length() > 0){
+                    if(!(txtPasswordConfirmation.getText().toString().trim().equals(txtPassword.getText().toString().trim())) && txtPasswordConfirmation.getText().length() > 0){
                         txtPasswordConfirmation.setError(getString(R.string.error_validation_password_confirmation));
                     }
                 }
@@ -709,7 +710,7 @@ public class RegisterDialog extends DialogFragment{
 
     private boolean isPasswordMatches() {
         if (txtPasswordConfirmation.getText().length() > 0 && txtPassword.getText().length() > 0 ) {
-            if (txtPasswordConfirmation.getText().equals(txtPassword.getText())) {
+            if (txtPasswordConfirmation.getText().toString().trim().equals(txtPassword.getText().toString().trim())) {
                 return true;
            }
         }

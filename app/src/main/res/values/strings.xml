@@ -67,7 +67,7 @@
     <string name="ui_register_add_confirm">אפשר קבלת מידע פרסומי ועידכונים</string>
     <string name="ui_register_phone_privacy">פרטי</string>
     <string name="ui_register_btn_cancel">ביטול</string>
-    <string name="ui_register_choose_image">בחר תמונת פרופיל</string>
+    <string name="ui_register_choose_image">בחר תמונה</string>
     <string name="ui_register_phone_type_mobile">נייד</string>
     <string name="ui_register_phone_type_office">משרד</string>
     <string name="ui_register_phone_type_home">בית</string>

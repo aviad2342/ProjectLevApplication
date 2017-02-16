@@ -48,6 +48,8 @@ public class Utils {
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
 
+    public static final String ADD_NEW_MEMBER =  "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=12";
+
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
     public static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
@@ -62,7 +64,7 @@ public class Utils {
 
     public static final String DEFAULT_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/profile.jpg";
 
-    public static final String NEW_MEMBER_DEFAULT_IMAGE = "profile.jpg";
+    public static final String NEW_MEMBER_DEFAULT_IMAGE = "null_profile.jpg";
 
     private static Utils _instance;
 

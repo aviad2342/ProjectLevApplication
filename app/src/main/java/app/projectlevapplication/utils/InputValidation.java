@@ -85,8 +85,8 @@ public class InputValidation {
     public static boolean isHebrewValid(EditText editText)
     {
         String text = editText.getText().toString();
-        String regExpn ="^[א-ת]+$";
-
+       // String regExpn ="[א-ת]+$+";
+        String regExpn ="[א-ת]+([ '-][א-ת]+)*";
         CharSequence inputStr = text;
 
         Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);

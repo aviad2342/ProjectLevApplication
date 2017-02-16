@@ -1,6 +1,8 @@
 package app.projectlevapplication.core;
 
-public class Media {
+import java.io.Serializable;
+
+public class Media implements Serializable {
 
 	private int mediaID;
 	
