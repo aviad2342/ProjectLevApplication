@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -117,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
+        setFragment(new HomeFragment(),"HomeFragment");
+
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
         // adding nav drawer items to array
@@ -226,8 +229,9 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
 
         if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+            setFragment(fragment,fragment.getClass().getName());
+           // FragmentManager fragmentManager = getFragmentManager();
+            //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
@@ -240,6 +244,14 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+
+    public void setFragment(Fragment fragment, String name) {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
+        ft.replace(R.id.frame_container, fragment,name);
+        ft.addToBackStack(name);
+        ft.commit();
     }
 
     @Override
