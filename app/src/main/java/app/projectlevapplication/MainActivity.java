@@ -58,6 +58,7 @@ import app.projectlevapplication.model.LinkToDataBase;
 import app.projectlevapplication.model.NavDrawerItem;
 import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
+import app.projectlevapplication.viewComponents.AboutFragment;
 import app.projectlevapplication.viewComponents.ArticlesListFragment;
 import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.EventListFragment;
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
+      //  if(Utils.getInstance().loadMemberFromPrefs(this) != null){
         // adding nav drawer items to array
         // Home
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4],R.mipmap.ic_home));
         // What's hot, We  will add a counter here
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about, true, "50+"));
+       // }
 
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
@@ -221,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                 //fragment = new PagesFragment();
                 break;
             case 5:
-                //fragment = new WhatsHotFragment();
+                fragment = new AboutFragment();
                 break;
 
             default:

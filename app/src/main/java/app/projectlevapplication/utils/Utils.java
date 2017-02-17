@@ -45,6 +45,8 @@ public class Utils {
 
     public static final String COMMUNITY_MEMBER_PHONES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
 
+    public static final String COMMUNITY_ABOUT = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=5";
+
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
 
@@ -180,6 +182,23 @@ public class Utils {
             return null;
         }
         return phones;
+    }
+
+    public String responseToAbout(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+      String about;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            about = (jsonObject.getString("bigBlob"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return about;
     }
 
     public boolean isAdmin(String response)  {

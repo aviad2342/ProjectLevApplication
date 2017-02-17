@@ -22,6 +22,9 @@
         <item>@drawable/eye</item>
     </array>
 
+    <!-- Strings related to Abouy -->
+    <string name="about_title">אודות בית אריאן לב</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
