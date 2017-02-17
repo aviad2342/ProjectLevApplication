@@ -9,8 +9,14 @@ public class Media implements Serializable {
 	private int eventID;
 	
 	private String fileName;
-	
-	/**
+
+    /**
+     * empty Constructor
+     */
+    public Media() {
+    }
+
+    /**
 	 * Partial Constructor 
 	 * @param mediaID
 	 */

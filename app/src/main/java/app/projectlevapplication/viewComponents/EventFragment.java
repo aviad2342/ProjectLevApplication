@@ -2,6 +2,9 @@ package app.projectlevapplication.viewComponents;
 
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,8 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.Date;
 
 import app.projectlevapplication.R;
+import app.projectlevapplication.core.Comment;
 import app.projectlevapplication.core.Event;
 import app.projectlevapplication.utils.Utils;
 
@@ -29,6 +45,8 @@ public class EventFragment extends Fragment {
     TextView membesNumber;
     TextView publisher;
     TextView description;
+    TextView txtGalleryPics;
+    FragmentManager fragmentManager;
 
     public EventFragment() {
         // Required empty public constructor
@@ -40,6 +58,7 @@ public class EventFragment extends Fragment {
         View view =  inflater.inflate(R.layout.activity_event, container, false);
         context = view.getContext();
         activity = getActivity();
+        fragmentManager = activity.getFragmentManager();
 
         eventTitle = (TextView) view.findViewById(R.id.txtEventTitle);
         dateTime = (TextView) view.findViewById(R.id.txtDateTime);
@@ -47,6 +66,7 @@ public class EventFragment extends Fragment {
         membesNumber = (TextView) view.findViewById(R.id.txtMembesNumber);
         publisher = (TextView) view.findViewById(R.id.txtPublisher);
         description = (TextView) view.findViewById(R.id.txtDescription);
+        txtGalleryPics = (TextView) view.findViewById(R.id.txtGalleryPics);
 
         Bundle args = getArguments();
         eventToDisplay = (Event) args.getSerializable("mEvent");
@@ -57,6 +77,21 @@ public class EventFragment extends Fragment {
         membesNumber.setText(String.valueOf(eventToDisplay.getCapacity()));
         publisher.setText(eventToDisplay.getTitle());
         description.setText(Html.fromHtml(eventToDisplay.getDescription()));
+
+        txtGalleryPics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EventGalleryFragment();
+                Bundle args = new Bundle();
+                args.putInt("mEventId",eventToDisplay.getEventID());
+                fragment.setArguments(args);
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
+                ft.replace(R.id.frame_container, fragment,"EventGalleryFragment");
+                ft.addToBackStack("EventGalleryFragment");
+                ft.commit();
+            }
+        });
 
         return view;
     }

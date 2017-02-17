@@ -24,6 +24,7 @@ import java.util.List;
 import app.projectlevapplication.core.Article;
 import app.projectlevapplication.core.Comment;
 import app.projectlevapplication.core.Event;
+import app.projectlevapplication.core.Media;
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.core.Phone;
 
@@ -46,6 +47,8 @@ public class Utils {
     public static final String COMMUNITY_MEMBER_PHONES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
 
     public static final String COMMUNITY_ABOUT = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=5";
+
+    public static final String ALL_ARTICLE_IMAGES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
 
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
@@ -184,6 +187,33 @@ public class Utils {
         return phones;
     }
 
+    public ArrayList<Media> responseToMediaList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<Media> medias = new ArrayList<>();
+        Media media;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                media = new Media();
+
+                media.setMediaID(Integer.parseInt(jsonObject.getString("mediaID")));
+                media.setEventID(Integer.parseInt(jsonObject.getString("event")));
+                media.setFileName(jsonObject.getString("fileName"));
+
+                medias.add(media);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return medias;
+    }
+
     public String responseToAbout(String response)  {
 
         if(response.length() < 1){
@@ -191,8 +221,7 @@ public class Utils {
         }
       String about;
         try {
-            JSONArray jsonArray = new JSONArray(response);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            JSONObject jsonObject = new JSONObject(response);
             about = (jsonObject.getString("bigBlob"));
         } catch (JSONException e) {
             e.printStackTrace();
