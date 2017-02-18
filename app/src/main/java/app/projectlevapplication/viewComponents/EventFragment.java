@@ -19,7 +19,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -46,7 +48,9 @@ public class EventFragment extends Fragment {
     TextView publisher;
     TextView description;
     TextView txtGalleryPics;
+    TextView btnWatch;
     FragmentManager fragmentManager;
+    ProgressDialog loading;
 
     public EventFragment() {
         // Required empty public constructor
@@ -67,6 +71,7 @@ public class EventFragment extends Fragment {
         publisher = (TextView) view.findViewById(R.id.txtPublisher);
         description = (TextView) view.findViewById(R.id.txtDescription);
         txtGalleryPics = (TextView) view.findViewById(R.id.txtGalleryPics);
+        btnWatch = (TextView) view.findViewById(R.id.btnWatch);
 
         Bundle args = getArguments();
         eventToDisplay = (Event) args.getSerializable("mEvent");
@@ -78,7 +83,15 @@ public class EventFragment extends Fragment {
         publisher.setText(eventToDisplay.getTitle());
         description.setText(Html.fromHtml(eventToDisplay.getDescription()));
 
-        txtGalleryPics.setOnClickListener(new View.OnClickListener() {
+        if(eventToDisplay.getImageCount() > 0){
+            txtGalleryPics.setText(String.valueOf(eventToDisplay.getImageCount()));
+            btnWatch.setVisibility(View.VISIBLE);
+        }else{
+            txtGalleryPics.setText(getString(R.string.event_no_gallery_picture_found));
+            btnWatch.setVisibility(View.INVISIBLE);
+        }
+
+        btnWatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new EventGalleryFragment();
@@ -95,5 +108,4 @@ public class EventFragment extends Fragment {
 
         return view;
     }
-
 }

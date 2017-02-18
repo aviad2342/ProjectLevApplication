@@ -63,6 +63,7 @@ import app.projectlevapplication.viewComponents.ArticlesListFragment;
 import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.EventListFragment;
 import app.projectlevapplication.viewComponents.EventsListAdapter;
+import app.projectlevapplication.viewComponents.GalleryAdapter;
 import app.projectlevapplication.viewComponents.HomeFragment;
 import app.projectlevapplication.viewComponents.MembersListActivity;
 import app.projectlevapplication.viewComponents.MembersListFragment;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     private ActionBarDrawerToggle mDrawerToggle;
     public MenuItem MemberLogin;
     public String sDefSystemLanguage;
+    String numberOfEvents = "";
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -101,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         setContentView(R.layout.activity_main);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
+        getNumberOfEvents();
         sDefSystemLanguage = Locale.getDefault().getDisplayLanguage();
        // getSupportActionBar().setIcon(R.mipmap.ic_lev);
 
@@ -132,11 +135,11 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         // Photos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], R.mipmap.ic_article));
         // Communities, Will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3],R.mipmap.ic_events, true, "22"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3],R.mipmap.ic_events, true,""));
         // Pages
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4],R.mipmap.ic_home));
         // What's hot, We  will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about, true, "50+"));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
        // }
 
 
@@ -172,6 +175,30 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             // on first time display view for first nav item
             displayView(0);
         }
+    }
+
+    public void getNumberOfEvents(){
+        //loading = ProgressDialog.show(this,"בבקשה המתן...","מחזיר מידע...",false,false);
+        String url = Utils.NUMBER_OF_EVENTS;
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+               // loading.dismiss();
+                navDrawerItems.get(3).setCount(Utils.getInstance().responseToEventsNumber(response));
+                adapter.notifyDataSetChanged();
+
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                       // loading.dismiss();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 //    @Override
 //    public void onWindowFocusChanged(boolean hasFocus) {

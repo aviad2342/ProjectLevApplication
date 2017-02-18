@@ -50,6 +50,8 @@ public class Utils {
 
     public static final String ALL_ARTICLE_IMAGES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
 
+    public static final String NUMBER_OF_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=16";
+
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
 
@@ -214,12 +216,36 @@ public class Utils {
         return medias;
     }
 
+    public ArrayList<String> responseToMediaUrlList(String response)  {
+
+        if(response.length() < 1){
+            return null;
+        }
+        ArrayList<String> medias = new ArrayList<>();
+        String media;
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                //media = new String();
+                media = EVENTS_IMAGE+jsonObject.getString("fileName");
+
+                medias.add(media);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return medias;
+    }
+
     public String responseToAbout(String response)  {
 
         if(response.length() < 1){
             return null;
         }
-      String about;
+        String about;
         try {
             JSONObject jsonObject = new JSONObject(response);
             about = (jsonObject.getString("bigBlob"));
@@ -228,6 +254,19 @@ public class Utils {
             return null;
         }
         return about;
+    }
+
+    public String responseToEventsNumber(String response)  {
+        if(response.length() < 1){
+            return "";
+        }
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            return jsonObject.getString("count");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     public boolean isAdmin(String response)  {
@@ -380,6 +419,7 @@ public class Utils {
                 event.setLocation(jsonObject.getString("location"));
                 event.setDescription(jsonObject.getString("description"));
                 event.setPublisherID(Integer.parseInt(jsonObject.getString("publisher")));
+                event.setImageCount(Integer.parseInt(jsonObject.getString("count")));
 
                 events.add(event);
             }

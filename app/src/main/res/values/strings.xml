@@ -49,12 +49,14 @@
     <string name="member_profile_end_subscription_date">תאריך סיום מנוי:</string>
     <string name="member_profile_btn_edit">עריכה</string>
 
-    <!-- Strings related to Article Activity -->
+    <!-- Strings related to Article -->
     <string name="article_comment_success_message">התגובה נוספה בהצלחה</string>
     <string name="article_comment_error_message">שליחת התגובה נכשלה, אנה נסה שנית</string>
     <string name="article_uploading_comment_progress_dialog_title">שולח תגובה...</string>
     <string name="article_uploading_comment_progress_dialog_message">בבקשה המתן...</string>
 
+    <!-- Strings related to Event -->
+    <string name="event_no_gallery_picture_found">"לא נמצאו תמונות מאירוע זה"</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>

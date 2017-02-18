@@ -1,12 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.projectlevapplication.viewComponents.EventGalleryFragment">
+    android:orientation="vertical"
+    android:background="@drawable/app_dark_back"
+    tools:context="app.projectlevapplication.viewComponents.EventGalleryFragment"
+    android:layoutDirection="rtl">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Gallery
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></Gallery>
+        android:layout_height="260dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageDisplay"
+        android:layout_gravity="center" />
 
-</FrameLayout>
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:layoutDirection="rtl"
+        android:id="@+id/galleryGridView"
+        android:textDirection="rtl"
+        android:columnWidth="180dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth" />
+</LinearLayout>

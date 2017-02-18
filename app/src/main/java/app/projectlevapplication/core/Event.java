@@ -22,6 +22,9 @@ public class Event implements Serializable {
 	
 	private ArrayList<Media> media;
 
+	private int imageCount;
+
+
     /**
      * Empty Constructor
      */
@@ -113,8 +116,6 @@ public class Event implements Serializable {
 	public void setPublisherID(int publisherID) {
 		this.publisherID = publisherID;
 	}
-
-	
 	
 	public ArrayList<Media> getMedia() {
 		return media;
@@ -123,6 +124,14 @@ public class Event implements Serializable {
 	public void setMedia(ArrayList<Media> media) {
 		this.media = media;
 	}
+
+    public int getImageCount() {
+        return imageCount;
+    }
+
+    public void setImageCount(int imageCount) {
+        this.imageCount = imageCount;
+    }
 
 	@Override
 	public int hashCode() {
