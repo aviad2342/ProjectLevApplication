@@ -24,7 +24,7 @@
         android:layoutDirection="rtl"
         android:id="@+id/galleryGridView"
         android:textDirection="rtl"
-        android:columnWidth="180dp"
+        android:columnWidth="115dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:stretchMode="columnWidth" />

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1030000666170",
+    "firebase_url": "https://arian-lev.firebaseio.com",
+    "project_id": "arian-lev",
+    "storage_bucket": "arian-lev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030000666170:android:dbf0ddcfb9e79d69",
+        "android_client_info": {
+          "package_name": "app.projectlevapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030000666170-s63t4kg419p9jugksq0bi213talfpran.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCe38eGekui4nn_iGitoOGMyDP657oZP4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

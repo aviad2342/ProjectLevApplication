@@ -19,8 +19,11 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import app.projectlevapplication.R;
 import app.projectlevapplication.utils.Utils;
@@ -35,6 +38,8 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
     TextView aboutTitle;
     TextView aboutContent;
     ProgressDialog loading;
+    long start;
+    long duration;
 
     public AboutFragment() {
         // Required empty public constructor
@@ -44,6 +49,7 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_about, container, false);
+        start = System.currentTimeMillis();
         context = view.getContext();
         activity = getActivity();
         aboutTitle = (TextView) view.findViewById(R.id.aboutTitle);
@@ -101,5 +107,28 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
         d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
 
         return d;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        duration = System.currentTimeMillis() - start;
+        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        String url = Utils.POST_USAGE_STATISTICS;
+        JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"אודות"),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }
+                , new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        requestQueue.add(request_json);
     }
 }

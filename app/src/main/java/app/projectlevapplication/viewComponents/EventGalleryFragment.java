@@ -24,10 +24,13 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -53,6 +56,8 @@ public class EventGalleryFragment extends Fragment {
     ArrayList<Bitmap> bitmapList;
     GalleryAdapter adapter;
     int eventId;
+    long start;
+    long duration;
 
     public EventGalleryFragment() {
         // Required empty public constructor
@@ -61,6 +66,7 @@ public class EventGalleryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_event_gallery, container, false);
+        start = System.currentTimeMillis();
         context = view.getContext();
         activity = getActivity();
         urls = new ArrayList<>();
@@ -149,5 +155,26 @@ public class EventGalleryFragment extends Fragment {
 //        }
 //        return result;
 //    }
+@Override
+public void onPause() {
+    super.onPause();
+    duration = System.currentTimeMillis() - start;
+    int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+    String url = Utils.POST_USAGE_STATISTICS;
+    JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"גלריית אירוע"),
+            new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
 
+                }
+            }
+            , new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+
+        }
+    });
+    RequestQueue requestQueue = Volley.newRequestQueue(activity);
+    requestQueue.add(request_json);
+}
 }

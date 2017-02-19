@@ -11,6 +11,7 @@ import android.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.FragmentTransaction;
+
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.util.Date;
 
 import app.projectlevapplication.MainActivity;
 import app.projectlevapplication.R;
 import app.projectlevapplication.core.Article;
+import app.projectlevapplication.core.Comment;
 import app.projectlevapplication.utils.Utils;
 
 import static app.projectlevapplication.MainActivity.hideSoftKeyboard;
@@ -48,6 +56,8 @@ public class ArticlesListFragment extends Fragment {
     Context context;
     Activity activity;
     FragmentManager fragmentManager;
+    long start;
+    long duration;
 
 
     public ArticlesListFragment() {
@@ -58,6 +68,7 @@ public class ArticlesListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.activity_articles_list, container, false);
+        start = System.currentTimeMillis();
         context = view.getContext();
         activity= getActivity();
         fragmentManager = activity.getFragmentManager();
@@ -73,6 +84,7 @@ public class ArticlesListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 hideSoftKeyboard(activity);
                 Article selectedItem = adapter.getItem(position);
+                postArticleWatch(selectedItem.getArticleID());
                 Fragment fragment = new ArticleFragment();
                 Bundle args = new Bundle();
                 args.putSerializable("mArticle",(Serializable)selectedItem);
@@ -84,7 +96,6 @@ public class ArticlesListFragment extends Fragment {
                 ft.commit();
             }
         });
-
         return view;
     }
     private TextWatcher filterTextWatcher = new TextWatcher() {
@@ -142,5 +153,62 @@ public class ArticlesListFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         requestQueue.add(stringRequest);
     }
+    public void postArticleWatch(int articleId) {
 
+            String url = Utils.POST_ARTICLE_IS_WATCHED+articleId;
+//            JSONObject jsonObject = new JSONObject();
+//
+//            JsonObjectRequest request_json = new JsonObjectRequest(url, jsonObject,
+//                    new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//
+//                        }
+//                    }
+//                    , new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//
+//                }
+//            });
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+              // Toast.makeText(activity,response,Toast.LENGTH_LONG).show();
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(activity,error.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            RequestQueue requestQueue = Volley.newRequestQueue(activity);
+            requestQueue.add(stringRequest);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        duration = System.currentTimeMillis() - start;
+        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        String url = Utils.POST_USAGE_STATISTICS;
+            JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"רשימת מאמרים"),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                        }
+                    }
+                    , new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        requestQueue.add(request_json);
+    }
 }

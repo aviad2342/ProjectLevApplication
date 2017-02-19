@@ -57,6 +57,8 @@ public class ArticleFragment extends Fragment {
     Member currentMember;
     SharedPreferences mPrefs;
     Button submitComment;
+    long start;
+    long duration;
 
     CommentsListAdapter adapter;
     public ProgressDialog loading;
@@ -69,6 +71,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.activity_article, container, false);
+        start = System.currentTimeMillis();
         context = view.getContext();
         activity = getActivity();
         content = (TextView) view.findViewById(R.id.txtContent);
@@ -100,6 +103,7 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (memberHeadline.length() > 0) {
+                    Utils.hideSoftKeyboard(activity);
                     Comment commentToAdd = new Comment();
                     commentToAdd.setHeadline(memberHeadline.getText().toString());
                     commentToAdd.setPublishDate(new Date());
@@ -171,5 +175,28 @@ public class ArticleFragment extends Fragment {
 
         RequestQueue requestQueue = Volley.newRequestQueue(activity);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        duration = System.currentTimeMillis() - start;
+        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        String url = Utils.POST_USAGE_STATISTICS;
+        JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"מאמרים"),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }
+                , new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        requestQueue.add(request_json);
     }
 }

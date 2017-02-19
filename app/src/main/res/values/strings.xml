@@ -57,6 +57,7 @@
 
     <!-- Strings related to Event -->
     <string name="event_no_gallery_picture_found">"לא נמצאו תמונות מאירוע זה"</string>
+    <string name="evernt_watch_gallery">כניסה לגלריה</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>
@@ -106,4 +107,5 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+
 </resources>

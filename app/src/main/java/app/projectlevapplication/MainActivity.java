@@ -23,6 +23,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Config;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        setFragment(new HomeFragment(),"HomeFragment");
+       // setFragment(new HomeFragment(),"HomeFragment");
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
@@ -253,13 +254,14 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             case 5:
                 fragment = new AboutFragment();
                 break;
-
             default:
+                fragment = new HomeFragment();
+                setTitle(getString(R.string.app_name));
                 break;
         }
 
         if (fragment != null) {
-            setFragment(fragment,fragment.getClass().getName());
+            setFragment(fragment,fragment.getClass().getSimpleName());
            // FragmentManager fragmentManager = getFragmentManager();
             //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
 
@@ -277,11 +279,30 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     }
 
     public void setFragment(Fragment fragment, String name) {
+//        Toast.makeText(this,name,Toast.LENGTH_LONG).show();
+//        if(name.equals("EventListFragment")){
+//            getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//            //getFragmentManager().beginTransaction().add(new HomeFragment(), "HomeFragment").addToBackStack("HomeFragment").commit();
+//        }
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
         ft.replace(R.id.frame_container, fragment,name);
         ft.addToBackStack(name);
         ft.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
+            if(currentFragment != null) {
+                if (!currentFragment.getClass().getSimpleName().equals("HomeFragment")) {
+                    getFragmentManager().popBackStack();
+                }
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

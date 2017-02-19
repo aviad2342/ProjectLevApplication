@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -36,40 +37,44 @@ public class Utils {
 
     // --------------------------------------------------------Data URLs----------------------------------------------------------------------------
 
-    public static final String ALL_COMMUNITY_MEMBERS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=1";
+    public static final String ALL_COMMUNITY_MEMBERS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=1";
 
-    public static final String ALL_COMMUNITY_ARTICLES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=6";
+    public static final String ALL_COMMUNITY_ARTICLES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=6";
 
-    public static final String ALL_COMMUNITY_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=8";
+    public static final String ALL_COMMUNITY_EVENTS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=8";
 
-    public static final String ALL_COMMENTS_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=7&art=";
+    public static final String ALL_COMMENTS_FOR_ARTICLE = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=7&art=";
 
-    public static final String COMMUNITY_MEMBER_PHONES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
+    public static final String COMMUNITY_MEMBER_PHONES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
 
-    public static final String COMMUNITY_ABOUT = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=5";
+    public static final String COMMUNITY_ABOUT = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=5";
 
-    public static final String ALL_ARTICLE_IMAGES = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
+    public static final String ALL_ARTICLE_IMAGES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
 
-    public static final String NUMBER_OF_EVENTS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=16";
+    public static final String NUMBER_OF_EVENTS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=16";
 
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
-    public static final String POST_COMMENT_FOR_ARTICLE = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=11";
+    public static final String POST_COMMENT_FOR_ARTICLE = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=11";
 
-    public static final String ADD_NEW_MEMBER =  "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=12";
+    public static final String ADD_NEW_MEMBER =  "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=12";
+
+    public static final String POST_ARTICLE_IS_WATCHED = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=17&art=";
+
+    public static final String POST_USAGE_STATISTICS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=17&art=";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
-    public static final String MEMBER_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/members/";
+    public static final String MEMBER_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/members/";
 
-    public static final String EVENTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/events/";
+    public static final String EVENTS_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/events/";
 
-    public static final String TESTIMONY_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/testimony/";
+    public static final String TESTIMONY_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/testimony/";
 
-    public static final String THERAPISTS_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/uploads/therapists/";
+    public static final String THERAPISTS_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/therapists/";
 
     public static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
 
-    public static final String DEFAULT_IMAGE = "http://arianlev.esy.es/ArianLev_Community/public/img/profile.jpg";
+    public static final String DEFAULT_IMAGE = "http://ortalitah.com/arianLev/public/img/profile.jpg";
 
     public static final String NEW_MEMBER_DEFAULT_IMAGE = "null_profile.jpg";
 
@@ -548,5 +553,28 @@ public class Utils {
         String json = mPrefs.getString("loginMember", "");
         Member obj = gson.fromJson(json, Member.class);
         return obj;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public static JSONObject UsageStatisticsToJsonObject(int userID, double usage, String uiName){
+
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("userID", String.valueOf(userID));
+            jsonObject.put("duration", String.valueOf(usage));
+            jsonObject.put("uiName", uiName);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static double milliToSeconds(long milliseconds){
+        return milliseconds / 1000.0;
     }
 }

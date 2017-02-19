@@ -51,6 +51,8 @@ public class EventFragment extends Fragment {
     TextView btnWatch;
     FragmentManager fragmentManager;
     ProgressDialog loading;
+    long start;
+    long duration;
 
     public EventFragment() {
         // Required empty public constructor
@@ -60,6 +62,7 @@ public class EventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.activity_event, container, false);
+        start = System.currentTimeMillis();
         context = view.getContext();
         activity = getActivity();
         fragmentManager = activity.getFragmentManager();
@@ -107,5 +110,28 @@ public class EventFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        duration = System.currentTimeMillis() - start;
+        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        String url = Utils.POST_USAGE_STATISTICS;
+        JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"אירוע"),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }
+                , new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+        requestQueue.add(request_json);
     }
 }

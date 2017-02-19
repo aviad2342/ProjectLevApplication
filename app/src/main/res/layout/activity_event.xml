@@ -9,182 +9,194 @@
     tools:context="app.projectlevapplication.viewComponents.EventActivity"
     android:textDirection="rtl"
     android:weightSum="1"
-    android:layoutDirection="rtl">
+    android:layoutDirection="rtl"
+    android:layout_weight="1">
 
-    <TextView
-        android:text="TextView"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtEventTitle"
-        android:layout_weight="0.05"
-        android:gravity="center_vertical"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="31dp"
-        android:gravity="right"
-        android:layoutDirection="rtl">
-
-        <TextView
-            android:text="מועד האירוע:"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/textView8"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+            android:orientation="vertical">
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtDateTime"
-            android:gravity="center_vertical" />
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtEventTitle"
+                android:layout_weight="0.05"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:gravity="right"
+                android:layoutDirection="rtl">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:gravity="right"
-        android:layoutDirection="rtl">
+                <TextView
+                    android:text="מועד האירוע:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView8"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
 
-        <TextView
-            android:text="מיקום האירוע:"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView11"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txtDateTime"
+                    android:gravity="center_vertical" />
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtLocation"
-            android:gravity="center_vertical" />
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/marker_24dp"
-            android:id="@+id/imageView6"
-            android:layoutDirection="rtl"
-            android:layout_gravity="right" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layoutDirection="rtl">
 
-    </LinearLayout>
+                <TextView
+                    android:text="מיקום האירוע:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:gravity="right"
-        android:layoutDirection="rtl">
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txtLocation"
+                    android:gravity="center_vertical" />
 
-        <TextView
-            android:text="מספר משתתפים:"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView15"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/marker_24dp"
+                    android:id="@+id/imageView6"
+                    android:layoutDirection="rtl"
+                    android:layout_gravity="right" />
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtMembesNumber"
-            android:gravity="center_vertical" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="right"
+                android:layoutDirection="rtl">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:gravity="right"
-        android:layoutDirection="rtl">
+                <TextView
+                    android:text="מספר משתתפים:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView15"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
 
-        <TextView
-            android:text="מפרסם האירוע:"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView17"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black" />
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txtMembesNumber"
+                    android:gravity="center_vertical" />
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtPublisher"
-            android:gravity="center_vertical" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:gravity="right"
+                android:layoutDirection="rtl">
 
-    <TextView
-        android:text="תיאור האירוע:"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:gravity="center_vertical"
-        android:layout_weight="0.05"
-        android:textStyle="bold"
-        android:textColor="@android:color/black" />
+                <TextView
+                    android:text="מפרסם האירוע:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView17"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtDescription"
-        android:layout_weight="0.34"
-        android:gravity="top|start" />
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txtPublisher"
+                    android:gravity="center_vertical" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="34dp">
+            </LinearLayout>
 
-        <TextView
-            android:text="תמונות:"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView10"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp" />
+            <TextView
+                android:text="תיאור האירוע:"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:id="@+id/textView6"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
 
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/txtGalleryPics"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp" />
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDescription"
+                android:gravity="top|start" />
 
-        <TextView
-            android:text="לצפייה..."
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btnWatch"
-            android:layout_weight="1"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textStyle="normal|bold"
-            android:gravity="center_vertical"
-            android:visibility="invisible" />
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="28dp">
+
+                <TextView
+                    android:text="תמונות:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView10"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txtGalleryPics"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp" />
+
+                <TextView
+                    android:text="@string/evernt_watch_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnWatch"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textStyle="normal|bold"
+                    android:gravity="center_vertical"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
