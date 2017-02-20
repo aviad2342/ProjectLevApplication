@@ -26,10 +26,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -102,14 +104,11 @@ public class ArticlesListFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            // TODO Auto-generated method stub
 
         }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count,
-                                      int after) {
-            // TODO Auto-generated method stub
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
         }
 
@@ -154,58 +153,49 @@ public class ArticlesListFragment extends Fragment {
         requestQueue.add(stringRequest);
     }
     public void postArticleWatch(int articleId) {
-
-            String url = Utils.POST_ARTICLE_IS_WATCHED+articleId;
-//            JSONObject jsonObject = new JSONObject();
-//
-//            JsonObjectRequest request_json = new JsonObjectRequest(url, jsonObject,
-//                    new Response.Listener<JSONObject>() {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//
-//                        }
-//                    }
-//                    , new Response.ErrorListener() {
-//                @Override
-//                public void onErrorResponse(VolleyError error) {
-//
-//                }
-//            });
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT,url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-              // Toast.makeText(activity,response,Toast.LENGTH_LONG).show();
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //Toast.makeText(activity,error.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
-
-            RequestQueue requestQueue = Volley.newRequestQueue(activity);
-            requestQueue.add(stringRequest);
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        duration = System.currentTimeMillis() - start;
-        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
-        String url = Utils.POST_USAGE_STATISTICS;
-            JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"רשימת מאמרים"),
+            String url = Utils.POST_ARTICLE_IS_WATCHED;
+            JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("articleID", String.valueOf(articleId));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+            JsonObjectRequest request_json = new JsonObjectRequest(url, jsonObject,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-
                         }
                     }
                     , new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
+                }
+            });
+            RequestQueue requestQueue = Volley.newRequestQueue(activity);
+            requestQueue.add(request_json);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        duration = System.currentTimeMillis() - start;
+        int uID;
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        }else{
+            uID = 27;
+        }
+        String url = Utils.POST_USAGE_STATISTICS;
+            JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"רשימת מאמרים"),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                        }
+                    }
+                    , new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
                 }
             });
         RequestQueue requestQueue = Volley.newRequestQueue(activity);

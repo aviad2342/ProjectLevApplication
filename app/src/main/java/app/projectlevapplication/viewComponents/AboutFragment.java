@@ -113,7 +113,12 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
     public void onPause() {
         super.onPause();
         duration = System.currentTimeMillis() - start;
-        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        int uID;
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        }else{
+            uID = 27;
+        }
         String url = Utils.POST_USAGE_STATISTICS;
         JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"אודות"),
                 new Response.Listener<JSONObject>() {

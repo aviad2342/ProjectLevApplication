@@ -58,9 +58,9 @@ public class Utils {
 
     public static final String ADD_NEW_MEMBER =  "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=12";
 
-    public static final String POST_ARTICLE_IS_WATCHED = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=17&art=";
+    public static final String POST_ARTICLE_IS_WATCHED = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=17";
 
-    public static final String POST_USAGE_STATISTICS = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=17&art=";
+    public static final String POST_USAGE_STATISTICS = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=18";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
@@ -564,8 +564,22 @@ public class Utils {
 
         JSONObject jsonObject= new JSONObject();
         try {
+            jsonObject.put("userID", userID);
+            jsonObject.put("uiName", uiName);
+            jsonObject.put("duration", usage);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static JSONObject statisticsToJsonObject(int userID, String uiName){
+
+        JSONObject jsonObject= new JSONObject();
+        try {
             jsonObject.put("userID", String.valueOf(userID));
-            jsonObject.put("duration", String.valueOf(usage));
+
             jsonObject.put("uiName", uiName);
         } catch (JSONException e) {
             // TODO Auto-generated catch block

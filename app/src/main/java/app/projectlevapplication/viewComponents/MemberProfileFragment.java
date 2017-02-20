@@ -73,9 +73,11 @@ public class MemberProfileFragment extends Fragment {
         gender = (TextView) view.findViewById(R.id.txtGender);
         txtMebmberPhoneNumber = (TextView) view.findViewById(R.id.txtMebmberPhoneNumber);
         txtMemberAddress = (TextView) view.findViewById(R.id.txtMemberAddress);
+
         txtMemberJoinDate = (TextView) view.findViewById(R.id.txtMemberJoinDate);
         txtMemberStatus = (TextView) view.findViewById(R.id.txtMemberStatus);
         txtMemberEndSubscriptionDate = (TextView) view.findViewById(R.id.txtMemberEndSubscriptionDate);
+
         adminViewStatus = (LinearLayout) view.findViewById(R.id.adminViewStatus);
         adminViewSubscription = (LinearLayout) view.findViewById(R.id.adminViewSubscription);
         adminViewBtn = (LinearLayout) view.findViewById(R.id.adminViewBtn);
@@ -91,7 +93,7 @@ public class MemberProfileFragment extends Fragment {
         if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
             adminViewStatus.setVisibility(View.VISIBLE);
             adminViewSubscription.setVisibility(View.VISIBLE);
-            adminViewBtn.setVisibility(View.VISIBLE);
+            //adminViewBtn.setVisibility(View.VISIBLE);
             loadMemberPhoneForAdmin();
         }else {
             loadMemberPhone();
@@ -216,7 +218,12 @@ public class MemberProfileFragment extends Fragment {
     public void onPause() {
         super.onPause();
         duration = System.currentTimeMillis() - start;
-        int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        int uID;
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+        }else{
+            uID = 27;
+        }
         String url = Utils.POST_USAGE_STATISTICS;
         JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"פרופיל משתמש"),
                 new Response.Listener<JSONObject>() {

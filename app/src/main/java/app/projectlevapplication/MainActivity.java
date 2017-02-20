@@ -104,7 +104,10 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         setContentView(R.layout.activity_main);
         mPrefs = getPreferences(MODE_PRIVATE);
         permissionsRequest();
-        getNumberOfEvents();
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null) {
+            getNumberOfEvents();
+        }
+
         sDefSystemLanguage = Locale.getDefault().getDisplayLanguage();
        // getSupportActionBar().setIcon(R.mipmap.ic_lev);
 
@@ -127,22 +130,27 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
-      //  if(Utils.getInstance().loadMemberFromPrefs(this) != null){
-        // adding nav drawer items to array
-        // Home
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
-        // Find People
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], R.mipmap.ic_members));
-        // Photos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], R.mipmap.ic_article));
-        // Communities, Will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3],R.mipmap.ic_events, true,""));
-        // Pages
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4],R.mipmap.ic_home));
-        // What's hot, We  will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
-       // }
+        if(Utils.getInstance().loadMemberFromPrefs(this) != null) {
 
+            // adding nav drawer items to array
+            // Home
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
+            // Community Members
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], R.mipmap.ic_members));
+            // Community Articles
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], R.mipmap.ic_article));
+            // Community events
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], R.mipmap.ic_events, true, ""));
+            // Pages
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], R.mipmap.ic_home));
+            // About
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
+        } else {
+            // Home
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
+            // About
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
+        }
 
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
@@ -203,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     }
 //    @Override
 //    public void onWindowFocusChanged(boolean hasFocus) {
-//        // TODO Auto-generated method stub
 //        super.onWindowFocusChanged(hasFocus);
 //        if (hasFocus) {
 //            getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
@@ -240,7 +247,11 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                 setTitle(getString(R.string.app_name));
                 break;
             case 1:
-                fragment = new MembersListFragment();
+                if(Utils.getInstance().loadMemberFromPrefs(this) != null) {
+                    fragment = new MembersListFragment();
+                }else{
+                    fragment = new AboutFragment();
+                }
                 break;
             case 2:
                 fragment = new ArticlesListFragment();
@@ -472,6 +483,13 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                     //getPreferences(MODE_PRIVATE).edit().clear().apply();
                     Utils.getInstance().writeMemberToPrefs(null,this);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+                    navDrawerItems.clear();
+                    // Home
+                    navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
+                    // About
+                    navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
+                    adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+                    adapter.notifyDataSetChanged();
                 }
                 return true;
 //            case R.id.menu:
@@ -484,6 +502,23 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     public void onDialogPositiveClick(LogInDialog dialog) {
         if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
+            getNumberOfEvents();
+            navDrawerItems.clear();
+
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
+            // Community Members
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], R.mipmap.ic_members));
+            // Community Articles
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], R.mipmap.ic_article));
+            // Community events
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], R.mipmap.ic_events, true, ""));
+            // Pages
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], R.mipmap.ic_home));
+            // About
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
+
+            adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+            adapter.notifyDataSetChanged();
         }
     }
 

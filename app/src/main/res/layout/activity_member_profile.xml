@@ -35,7 +35,7 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
                         android:layoutDirection="rtl">
 
                         <TextView
@@ -64,7 +64,7 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
+                        android:layout_height="45dp"
                         android:textDirection="rtl"
                         android:layoutDirection="rtl">
 
@@ -93,7 +93,7 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="47dp"
+                        android:layout_height="45dp"
                         android:layoutDirection="rtl">
 
                         <TextView
@@ -167,34 +167,6 @@
                 android:layout_height="45dp"
                 android:layoutDirection="rtl">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl">
-
-                    <TextView
-                        android:text="@string/member_profile_email_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView3"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="286dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtEmail"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
-
                 <TextView
                     android:text="@string/member_profile_Phone_number"
                     android:layout_width="wrap_content"
@@ -211,7 +183,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/txtMebmberPhoneNumber"
                     android:layout_weight="1"
-                    android:gravity="right|center_vertical" />
+                    android:gravity="right|center_vertical"
+                    android:textDirection="rtl" />
 
             </LinearLayout>
 
@@ -220,62 +193,6 @@
                 android:layout_width="match_parent"
                 android:layoutDirection="rtl"
                 android:layout_height="45dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl">
-
-                    <TextView
-                        android:text="@string/member_profile_email_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView3"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="286dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtEmail"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl">
-
-                    <TextView
-                        android:text="@string/member_profile_email_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView3"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="286dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtEmail"
-                        android:textDirection="rtl"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
 
                 <TextView
                     android:text="@string/member_profile_address"
@@ -293,7 +210,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/txtMemberAddress"
                     android:layout_weight="1"
-                    android:gravity="right|center_vertical" />
+                    android:gravity="right|center_vertical"
+                    android:textDirection="rtl" />
 
             </LinearLayout>
 
@@ -302,334 +220,6 @@
                 android:layout_width="match_parent"
                 android:layoutDirection="rtl"
                 android:layout_height="45dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="@string/member_profile_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView19"
-                        android:gravity="center_vertical"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:paddingLeft="5dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtMemberAddress"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="@string/member_profile_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView19"
-                        android:gravity="center_vertical"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:paddingLeft="5dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtMemberAddress"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="@string/member_profile_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView19"
-                        android:gravity="center_vertical"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:paddingLeft="5dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtMemberAddress"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layoutDirection="rtl">
-
-                        <TextView
-                            android:text="@string/member_profile_email_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:id="@+id/textView3"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:text="TextView"
-                            android:layout_width="286dp"
-                            android:layout_height="match_parent"
-                            android:id="@+id/txtEmail"
-                            android:textDirection="rtl"
-                            android:gravity="center_vertical"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:text="@string/member_profile_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/textView19"
-                        android:gravity="center_vertical"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:paddingLeft="5dp" />
-
-                    <TextView
-                        android:text="TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/txtMemberAddress"
-                        android:layout_weight="1"
-                        android:gravity="right|center_vertical" />
-
-                </LinearLayout>
 
                 <TextView
                     android:text="@string/member_profile_join_date"
@@ -647,8 +237,8 @@
                     android:layout_height="match_parent"
                     android:id="@+id/txtMemberJoinDate"
                     android:layout_weight="1"
-                    android:gravity="right|center_vertical" />
-
+                    android:gravity="right|center_vertical"
+                    android:textDirection="rtl" />
             </LinearLayout>
 
             <LinearLayout

@@ -159,7 +159,12 @@ public class EventGalleryFragment extends Fragment {
 public void onPause() {
     super.onPause();
     duration = System.currentTimeMillis() - start;
-    int uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+    int uID;
+    if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+        uID = Utils.getInstance().loadMemberFromPrefs(context).getMemberID();
+    }else{
+        uID = 27;
+    }
     String url = Utils.POST_USAGE_STATISTICS;
     JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.UsageStatisticsToJsonObject(uID,Utils.milliToSeconds(duration),"גלריית אירוע"),
             new Response.Listener<JSONObject>() {
