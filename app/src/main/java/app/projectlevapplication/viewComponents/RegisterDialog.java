@@ -74,7 +74,7 @@ import retrofit2.Response;
  * Created by Aviad on 09/02/2017.
  */
 
-public class RegisterDialog extends DialogFragment{
+public class RegisterDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     private static final int READ_EXTERNAL_STORAGE_REQUEST = 1;
     private static final int CAMERA_REQUEST = 2;
@@ -92,7 +92,7 @@ public class RegisterDialog extends DialogFragment{
     private Uri mImageCaptureUri;
     private boolean isTakenFromCamera;
     boolean isUserUploadingImage;
-
+    DatePickerDialog fromDatePickerDialog;
     Context context;
     Activity activity;
     public ProgressDialog loading;
@@ -114,7 +114,22 @@ public class RegisterDialog extends DialogFragment{
     EditText ageError;
     String imagePath;
     String imageForNewMember;
+    private SimpleDateFormat dateFormatter;
+    LayoutInflater inflater;
+    DatePicker datePicker;
+    //AlertDialog.Builder builder;
+    DatePickerDialog.Builder builder;
+    AlertDialog bla;
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        myCalendar.set(Calendar.YEAR, year);
+        myCalendar.set(Calendar.MONTH, month);
+        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+        txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
+    }
 
     public interface DialogFragmentListener {
         public void onDialogPositive(RegisterDialog dialog);
@@ -393,59 +408,134 @@ public class RegisterDialog extends DialogFragment{
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+               // new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 
         txtDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ageError.setVisibility(View.GONE);
-                DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
-                pickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "ביטול", new DialogInterface.OnClickListener() {
+//                MyDatePickerDialog pickerDialog = new MyDatePickerDialog();
+//                pickerDialog.show(getFragmentManager(),"naab");
+//                ageError.setVisibility(View.GONE);
+//                DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+//                pickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "ביטול", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if (which == DialogInterface.BUTTON_NEGATIVE) {
+//                            validateBirthDate();
+//                        }
+//                    }
+//                });
+//                pickerDialog.getDatePicker().setCalendarViewShown(false);
+//                pickerDialog.getDatePicker().setSpinnersShown(true);
+//                pickerDialog.show();
+                show();
+            }
+        });
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        //setDateTimeField();
+        inflater = activity.getLayoutInflater();
+        datePicker = (DatePicker) inflater.inflate(R.layout.my_date_picker,null);
+        builder = new DatePickerDialog.Builder(activity);
+
+        builder.setTitle(getString(R.string.ui_register_date_picker_title));
+
+        builder.setPositiveButton(getString(R.string.ui_register_date_picker_ok), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DialogInterface.BUTTON_POSITIVE) {
+                    myCalendar.set(Calendar.YEAR, datePicker.getYear());
+                    myCalendar.set(Calendar.MONTH, datePicker.getMonth());
+                    myCalendar.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                    String myFormat = "dd/MM/yyyy"; //In which you need put here
+                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+                    txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
+                    if(!InputValidation.isOver18(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth())){
+                        ageError.setVisibility(View.VISIBLE);
+                        ageError.setError(getString(R.string.error_validation_age_over_18));
+                    }else{
+                        ageError.setVisibility(View.GONE);
+                        ageError.setError(null);
+                    }
+                }
+            }
+        });
+        builder.setNegativeButton(getString(R.string.ui_register_date_picker_cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == DialogInterface.BUTTON_NEGATIVE) {
-                            validateBirthDate();
+
                         }
                     }
                 });
-                pickerDialog.getDatePicker().setCalendarViewShown(false);
-                pickerDialog.getDatePicker().setSpinnersShown(true);
-                pickerDialog.show();
-            }
-        });
-
+        builder.setView(datePicker);
+        bla = builder.create();
         return view;
     }
 
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-            if(!InputValidation.isOver18(year,monthOfYear,dayOfMonth)){
-                ageError.setVisibility(View.VISIBLE);
-                ageError.setError(getString(R.string.error_validation_age_over_18));
-            }else{
-                ageError.setVisibility(View.GONE);
-                ageError.setError(null);
-            }
-        }
-    };
-
-    private void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-        txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
+    public void build(){
+        builder = new DatePickerDialog.Builder(activity);
+        builder.setView(datePicker);
+        bla = builder.create();
     }
 
-    public void rbClick(View view){
-        int selectedRadioButton = phone1Group.getCheckedRadioButtonId();
-        radioButton = (RadioButton)view.findViewById(selectedRadioButton);
+    /**
+     * Show month year picker dialog.
+     */
+    public void show() {
+        bla.show();
+
     }
+//    private void setDateTimeField() {
+//        txtDateOfBirth.setOnClickListener(this);
+//
+//        Calendar newCalendar = Calendar.getInstance();
+//
+//        fromDatePickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+//
+//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//                Calendar newDate = Calendar.getInstance();
+//                newDate.set(year, monthOfYear, dayOfMonth);
+//                txtDateOfBirth.setText(dateFormatter.format(newDate.getTime()));
+//            }
+//        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+//    }
+
+//    @Override
+//    public void onClick(View v) {
+//        if(v == txtDateOfBirth) {
+//            //fromDatePickerDialog.show();
+//            bla.show();
+//        }
+//    }
+
+//    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+//
+//        @Override
+//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//            myCalendar.set(Calendar.YEAR, year);
+//            myCalendar.set(Calendar.MONTH, monthOfYear);
+//            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//            updateLabel();
+//            if(!InputValidation.isOver18(year,monthOfYear,dayOfMonth)){
+//                ageError.setVisibility(View.VISIBLE);
+//                ageError.setError(getString(R.string.error_validation_age_over_18));
+//            }else{
+//                ageError.setVisibility(View.GONE);
+//                ageError.setError(null);
+//            }
+//        }
+//    };
+
+//    private void updateLabel() {
+//        String myFormat = "dd/MM/yyyy"; //In which you need put here
+//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
+//        txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
+//    }
+
+//    public void rbClick(View view){
+//        int selectedRadioButton = phone1Group.getCheckedRadioButtonId();
+//        radioButton = (RadioButton)view.findViewById(selectedRadioButton);
+//    }
 
 
     @Override

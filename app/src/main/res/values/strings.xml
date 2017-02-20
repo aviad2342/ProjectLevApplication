@@ -82,6 +82,9 @@
     <string name="ui_register_error_submit_form">שליחת הפרטים נכשלה, אנה נסה מאוחר יותר</string>
     <string name="ui_register_progress_dialog_title">שולח...</string>
     <string name="ui_register_progress_dialog_message">בבקשה המתן...</string>
+    <string name="ui_register_date_picker_title">בחר תאריך לידה</string>
+    <string name="ui_register_date_picker_ok">אישור</string>
+    <string name="ui_register_date_picker_cancel">ביטול</string>
 
 
     <!-- Strings related to Input Validation -->

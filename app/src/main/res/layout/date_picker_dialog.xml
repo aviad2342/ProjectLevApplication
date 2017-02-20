@@ -12,7 +12,6 @@
         android:spinnersShown="true"
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
-        android:layout_centerHorizontal="false"
-        android:layout_centerVertical="false"
-        android:layout_centerInParent="true" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
