@@ -9,6 +9,7 @@
     tools:context="app.projectlevapplication.viewComponents.ArticleActivity"
     android:textDirection="rtl"
     android:focusable="true"
+    android:background="@drawable/off_white"
     android:focusableInTouchMode="true"
     android:tag="ArticleFragment">
 
@@ -21,18 +22,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layoutDirection="rtl">
 
             <TextView
                 android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/articleTitle"
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:layout_marginRight="5dp"
                 android:focusable="true"
-                android:focusableInTouchMode="true" />
+                android:focusableInTouchMode="true"
+                android:textColor="@android:color/black"
+                android:layoutDirection="rtl" />
 
             <TextView
                 android:text="TextView"
@@ -61,7 +65,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/commentMemberName"
-                    android:gravity="right|center_vertical" />
+                    android:gravity="right|center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
 
             </LinearLayout>
 

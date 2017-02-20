@@ -4,20 +4,30 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textDirection="rtl"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layoutDirection="rtl">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textDirection="rtl"
-        android:gravity="right">
+        android:layoutDirection="rtl">
+
+        <ImageView
+            android:layout_width="37dp"
+            android:layout_height="36dp"
+            app:srcCompat="@mipmap/ic_lev"
+            android:id="@+id/commentListImage"
+            android:layout_marginRight="5dp"
+            android:layoutDirection="rtl" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layoutDirection="rtl">
+            android:layoutDirection="rtl"
+            android:layout_marginRight="5dp">
 
             <TextView
                 android:text="TextView"
@@ -33,12 +43,6 @@
                 android:id="@+id/commentDateTime" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="37dp"
-            android:layout_height="36dp"
-            app:srcCompat="@mipmap/ic_lev"
-            android:id="@+id/commentListImage"
-            android:layout_marginRight="5dp" />
     </LinearLayout>
 
     <TextView
