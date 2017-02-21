@@ -64,6 +64,12 @@ public class Utils {
 
     public static final String POST_USAGE_STATISTICS = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=18";
 
+    public static final String ADD_NEW_ARTICLE =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=15";
+
+    public static final String REMOVE_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=19";
+
+    public static final String REMOVE_ARTICLE =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=20";
+
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
@@ -571,25 +577,31 @@ public class Utils {
             jsonObject.put("uiName", uiName);
             jsonObject.put("duration", usage);
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return jsonObject;
     }
 
-    public static JSONObject statisticsToJsonObject(int userID, String uiName){
-
+    public static JSONObject eventIdToJsonObject(int eventID){
         JSONObject jsonObject= new JSONObject();
         try {
-            jsonObject.put("userID", String.valueOf(userID));
-
-            jsonObject.put("uiName", uiName);
+            jsonObject.put("eventID", eventID);
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return jsonObject;
     }
+
+    public static JSONObject articleIdToJsonObject(int articleID){
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("articleID", articleID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
 
     public static double milliToSeconds(long milliseconds){
         return milliseconds / 1000.0;

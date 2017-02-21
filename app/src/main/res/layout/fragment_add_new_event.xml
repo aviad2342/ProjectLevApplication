@@ -9,8 +9,8 @@
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="461dp"
         android:layoutDirection="rtl">
 
         <LinearLayout
@@ -154,40 +154,33 @@
                 android:layout_marginTop="8dp"
                 android:layoutDirection="ltr" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="199dp"
-                android:layoutDirection="rtl">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layoutDirection="rtl">
-
-                    <Button
-                        android:text="הוסף אירוע"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/btnAddEvent"
-                        android:layout_weight="1"
-                        android:layout_gravity="bottom"
-                        android:textDirection="rtl"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:text="ביטול"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/btnCancelNewEvent"
-                        android:layout_weight="1"
-                        android:layout_gravity="bottom"
-                        android:textDirection="rtl"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl">
+
+        <Button
+            android:text="הוסף אירוע"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddEvent"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:textDirection="rtl"
+            android:textStyle="bold" />
+
+        <Button
+            android:text="ביטול"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCancelNewEvent"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:textDirection="rtl"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

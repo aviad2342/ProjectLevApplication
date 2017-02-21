@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="app.projectlevapplication.viewComponents.EventActivity"
+    tools:context="app.projectlevapplication.viewComponents.EventFragment"
     android:textDirection="rtl"
     android:weightSum="1"
     android:background="@drawable/off_white"
@@ -199,5 +199,15 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:text="מחק אירוע זה"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRemoveEvent"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
 </LinearLayout>

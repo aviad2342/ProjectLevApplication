@@ -1,6 +1,10 @@
 package app.projectlevapplication.core;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Article implements Serializable {
@@ -144,5 +148,19 @@ public class Article implements Serializable {
 		return "Article{" +
 				"headline='" + headline + '\'' +
 				'}';
+	}
+
+	public JSONObject toJsonObject(){
+
+		JSONObject jsonObject= new JSONObject();
+		try {
+			jsonObject.put("headline", getHeadline());
+			jsonObject.put("content", getContent());
+			jsonObject.put("author", getAuthorID());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
 	}
 }

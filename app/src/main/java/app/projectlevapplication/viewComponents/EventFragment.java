@@ -2,16 +2,19 @@ package app.projectlevapplication.viewComponents;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +54,7 @@ public class EventFragment extends Fragment {
     TextView btnWatch;
     FragmentManager fragmentManager;
     ProgressDialog loading;
+    Button btnRemoveEvent;
     long start;
     long duration;
 
@@ -75,6 +79,14 @@ public class EventFragment extends Fragment {
         description = (TextView) view.findViewById(R.id.txtDescription);
         txtGalleryPics = (TextView) view.findViewById(R.id.txtGalleryPics);
         btnWatch = (TextView) view.findViewById(R.id.btnWatch);
+        btnRemoveEvent = (Button) view.findViewById(R.id.btnRemoveEvent);
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+                btnRemoveEvent.setVisibility(View.VISIBLE);
+            }else {
+                btnRemoveEvent.setVisibility(View.GONE);
+            }
+        }
 
         Bundle args = getArguments();
         eventToDisplay = (Event) args.getSerializable("mEvent");
@@ -106,6 +118,47 @@ public class EventFragment extends Fragment {
                 ft.replace(R.id.frame_container, fragment,"EventGalleryFragment");
                 ft.addToBackStack("EventGalleryFragment");
                 ft.commit();
+            }
+        });
+
+        btnRemoveEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.event_remove_dialog_message);
+                builder. setTitle(R.string.event_remove_dialog_title);
+                builder.setPositiveButton(R.string.event_remove_dialog_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        loading = ProgressDialog.show(activity,getString(R.string.event_remove_progress_dialog_message),getString(R.string.event_remove_progress_dialog_title),false,false);
+                        String url = Utils.REMOVE_EVENT;
+                        JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.eventIdToJsonObject(eventToDisplay.getEventID()),
+                                new com.android.volley.Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        loading.dismiss();
+                                        Toast.makeText(activity,getString(R.string.event_remove_event_successfully),Toast.LENGTH_SHORT).show();
+                                        getFragmentManager().popBackStack();
+                                    }
+                                }, new com.android.volley.Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                loading.dismiss();
+                                Toast.makeText(activity,getString(R.string.event_remove_event_error),Toast.LENGTH_SHORT).show();
+                                getFragmentManager().popBackStack();
+                            }
+                        });
+                        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+                        requestQueue.add(request_json);
+                    }
+                });
+                builder.setNegativeButton(R.string.event_remove_dialog_abort, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context, getString(R.string.event_remove_abort_message),Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

@@ -475,6 +475,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     public boolean onOptionsItemSelected(MenuItem item) {
         // toggle nav drawer on selecting action bar app icon/title
         if (mDrawerToggle.onOptionsItemSelected(item)) {
+            getNumberOfEvents();
             return true;
         }
         // Handle action bar actions click

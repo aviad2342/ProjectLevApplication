@@ -127,16 +127,14 @@ public class AddNewEventFragment extends Fragment implements DatePickerDialog.On
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     loading.dismiss();
-                                    Toast.makeText(activity,response.toString(),Toast.LENGTH_LONG).show();
-                                    Toast.makeText(activity,getString(R.string.event_add_new_event_successfully_submit_form),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity,getString(R.string.event_add_new_event_successfully_submit_form),Toast.LENGTH_SHORT).show();
                                     getFragmentManager().popBackStack();
                                 }
                             }, new com.android.volley.Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             loading.dismiss();
-                            Toast.makeText(activity,error.getMessage(),Toast.LENGTH_LONG).show();
-                            Toast.makeText(activity,getString(R.string.event_add_new_event_error_submit_form),Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity,getString(R.string.event_add_new_event_error_submit_form),Toast.LENGTH_SHORT).show();
                             getFragmentManager().popBackStack();
                         }
                     });

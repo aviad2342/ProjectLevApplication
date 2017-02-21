@@ -93,7 +93,7 @@ public class MemberProfileFragment extends Fragment {
         if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
             adminViewStatus.setVisibility(View.VISIBLE);
             adminViewSubscription.setVisibility(View.VISIBLE);
-            //adminViewBtn.setVisibility(View.VISIBLE);
+            adminViewBtn.setVisibility(View.VISIBLE);
             loadMemberPhoneForAdmin();
         }else {
             loadMemberPhone();

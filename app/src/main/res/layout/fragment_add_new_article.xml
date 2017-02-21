@@ -1,13 +1,70 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.projectlevapplication.viewComponents.AddNewArticleFragment">
+    android:orientation="vertical"
+    tools:context="app.projectlevapplication.viewComponents.AddNewArticleFragment"
+    android:layoutDirection="rtl"
+    android:weightSum="1">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:layout_weight="0.98">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layoutDirection="rtl"
+            android:textDirection="rtl">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/articleSetHeadline"
+                android:hint="הכנס כותרת"
+                android:textColor="@android:color/black"
+                android:layoutDirection="ltr" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/articleSetContent"
+                android:hint="הכנס תוכן"
+                android:textColor="@android:color/black"
+                android:layoutDirection="ltr" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:text="הוסף מאמר"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddNewArticle"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+
+        <Button
+            android:text="ביטול"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCancelNewArticle"
+            android:layout_weight="1"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

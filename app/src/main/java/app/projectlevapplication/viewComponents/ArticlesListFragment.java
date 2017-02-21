@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ public class ArticlesListFragment extends Fragment {
     Context context;
     Activity activity;
     FragmentManager fragmentManager;
+    Button newItemBtn = null;
     long start;
     long duration;
 
@@ -78,6 +80,14 @@ public class ArticlesListFragment extends Fragment {
         list = (ListView) view.findViewById(R.id.articlesList);
         searchArticle = (TextView) view.findViewById(R.id.searchInArticels);
         searchArticle.addTextChangedListener(filterTextWatcher);
+        newItemBtn  = (Button) view.findViewById(R.id.new_article_btn);
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+                newItemBtn.setVisibility(View.VISIBLE);
+            }
+        }else{
+            newItemBtn.setVisibility(View.INVISIBLE);
+        }
         loadArticleList();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -95,6 +105,18 @@ public class ArticlesListFragment extends Fragment {
                 ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
                 ft.replace(R.id.frame_container, fragment,"ArticleFragment");
                 ft.addToBackStack("ArticleFragment");
+                ft.commit();
+            }
+        });
+
+        newItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AddNewArticleFragment();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_right);
+                ft.replace(R.id.frame_container, fragment,"AddNewArticleFragment");
+                ft.addToBackStack("AddNewArticleFragment");
                 ft.commit();
             }
         });

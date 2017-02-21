@@ -54,16 +54,34 @@
     <string name="article_comment_error_message">שליחת התגובה נכשלה, אנה נסה שנית</string>
     <string name="article_uploading_comment_progress_dialog_title">שולח תגובה...</string>
     <string name="article_uploading_comment_progress_dialog_message">בבקשה המתן...</string>
+    <string name="article_add_new_article_successfully_submit_form">המאמר נוסף בהצלחה</string>
+    <string name="article_add_new_article_error_submit_form">הוספת המאמר נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="article_remove_article_successfully">המאמר נמחק בהצלחה</string>
+    <string name="article_remove_article_error">מחיקת המאמר נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="article_remove_dialog_title">אשר מחיקת מאמר</string>
+    <string name="article_remove_dialog_message">אתה בטוח שברצונך למחוק מאמר זה?</string>
+    <string name="article_remove_dialog_ok">מחק</string>
+    <string name="article_remove_dialog_abort">בטל מחיקה</string>
+    <string name="article_remove_abort_message">מחיקת המאמר בוטלה</string>
 
     <!-- Strings related to Event -->
     <string name="event_no_gallery_picture_found">"לא נמצאו תמונות מאירוע זה"</string>
     <string name="evernt_watch_gallery">כניסה לגלריה</string>
     <string name="event_add_new_event_successfully_submit_form">האירוע נוסף בהצלחה</string>
     <string name="event_add_new_event_error_submit_form">הוספת האירוע נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="event_remove_event_successfully">האירוע נמחק בהצלחה</string>
+    <string name="event_remove_event_error">מחיקת האירוע נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="event_remove_progress_dialog_title">מסיר נתונים...</string>
+    <string name="event_remove_progress_dialog_message">בבקשה המתן...</string>
     <string name="event_date_picker_title">בחר את תאריך האירוע</string>
     <string name="event_time_picker_title">בחר שעה</string>
     <string name="event_error_validation_alert_dialog_title">שדות חסרים</string>
     <string name="event_error_validation_must_fill_all_fields">יש למלא את כל שדות החובה!</string>
+    <string name="event_remove_dialog_title">אשר מחיקת אירוע</string>
+    <string name="event_remove_dialog_message">אתה בטוח שברצונך למחוק אירוע זה?</string>
+    <string name="event_remove_dialog_ok">מחק</string>
+    <string name="event_remove_dialog_abort">בטל מחיקה</string>
+    <string name="event_remove_abort_message">מחיקת האירוע בוטלה</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>

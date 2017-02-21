@@ -2,8 +2,10 @@ package app.projectlevapplication.viewComponents;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -57,6 +59,7 @@ public class ArticleFragment extends Fragment {
     Member currentMember;
     SharedPreferences mPrefs;
     Button submitComment;
+    Button btnRemoveArticle;
     long start;
     long duration;
 
@@ -82,6 +85,14 @@ public class ArticleFragment extends Fragment {
         commentMemberName = (TextView) view.findViewById(R.id.commentMemberName);
         commentContent = (EditText) view.findViewById(R.id.commentContent);
         memberHeadline = (EditText) view.findViewById(R.id.memberHeadline);
+        btnRemoveArticle = (Button) view.findViewById(R.id.btnRemoveArticle);
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+                btnRemoveArticle.setVisibility(View.VISIBLE);
+            }else {
+                btnRemoveArticle.setVisibility(View.GONE);
+            }
+        }
 
         mPrefs = activity.getPreferences(MODE_PRIVATE);
         Bundle args = getArguments();
@@ -139,6 +150,47 @@ public class ArticleFragment extends Fragment {
                     RequestQueue requestQueue = Volley.newRequestQueue(activity);
                     requestQueue.add(request_json);
                 }
+            }
+        });
+
+        btnRemoveArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.article_remove_dialog_message);
+                builder. setTitle(R.string.article_remove_dialog_title);
+                builder.setPositiveButton(R.string.article_remove_dialog_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        loading = ProgressDialog.show(activity,getString(R.string.event_remove_progress_dialog_message),getString(R.string.event_remove_progress_dialog_title),false,false);
+                        String url = Utils.REMOVE_ARTICLE;
+                        JsonObjectRequest request_json = new JsonObjectRequest(url, Utils.articleIdToJsonObject(article.getArticleID()),
+                                new com.android.volley.Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        loading.dismiss();
+                                        Toast.makeText(activity,getString(R.string.article_remove_article_successfully),Toast.LENGTH_SHORT).show();
+                                        getFragmentManager().popBackStack();
+                                    }
+                                }, new com.android.volley.Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                loading.dismiss();
+                                Toast.makeText(activity,getString(R.string.article_remove_article_error),Toast.LENGTH_SHORT).show();
+                                getFragmentManager().popBackStack();
+                            }
+                        });
+                        RequestQueue requestQueue = Volley.newRequestQueue(activity);
+                        requestQueue.add(request_json);
+
+                    }
+                });
+                builder.setNegativeButton(R.string.article_remove_dialog_abort, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(context, getString(R.string.article_remove_abort_message),Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
