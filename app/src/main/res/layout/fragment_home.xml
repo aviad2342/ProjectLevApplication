@@ -2,12 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.projectlevapplication.viewComponents.HomeFragment">
+    tools:context="app.projectlevapplication.viewComponents.HomeFragment"
+    android:background="@drawable/opening_backgrounds"
+    android:layoutDirection="rtl">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="239dp"
+        android:layout_height="235dp"
+        android:text="text"
+        android:textDirection="rtl"
+        android:id="@+id/txtOpening"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal" />
 
 </FrameLayout>

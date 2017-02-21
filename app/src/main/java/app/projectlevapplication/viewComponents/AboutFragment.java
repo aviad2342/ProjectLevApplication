@@ -85,7 +85,6 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
 
     @Override
     public Drawable getDrawable(String source) {
-        // TODO Auto-generated method stub
         int id = R.drawable.personal_small;
 
         if(source.equals("http://arianlev.com/gallery/personal_small.jpg")){

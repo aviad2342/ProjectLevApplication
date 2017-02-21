@@ -53,6 +53,9 @@ public class Utils {
 
     public static final String NUMBER_OF_EVENTS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=16";
 
+    public static final String COMMUNITY_OPENING_STATEMENT = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=4";
+
+
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
     public static final String POST_COMMENT_FOR_ARTICLE = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=11";
 
@@ -255,7 +258,6 @@ public class Utils {
     }
 
     public String responseToAbout(String response)  {
-
         if(response.length() < 1){
             return null;
         }
@@ -263,6 +265,21 @@ public class Utils {
         try {
             JSONObject jsonObject = new JSONObject(response);
             about = (jsonObject.getString("bigBlob"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return about;
+    }
+
+    public String responseToOpening(String response)  {
+        if(response.length() < 1){
+            return null;
+        }
+        String about;
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            about = (jsonObject.getString("smallText"));
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

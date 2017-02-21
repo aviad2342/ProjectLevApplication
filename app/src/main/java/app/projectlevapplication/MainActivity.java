@@ -1,40 +1,28 @@
 package app.projectlevapplication;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Config;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -42,32 +30,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import app.projectlevapplication.core.Member;
-import app.projectlevapplication.model.LinkToDataBase;
 import app.projectlevapplication.model.NavDrawerItem;
-import app.projectlevapplication.utils.MyMenuBar;
 import app.projectlevapplication.utils.Utils;
 import app.projectlevapplication.viewComponents.AboutFragment;
 import app.projectlevapplication.viewComponents.ArticlesListFragment;
-import app.projectlevapplication.viewComponents.EventListActivity;
 import app.projectlevapplication.viewComponents.EventListFragment;
-import app.projectlevapplication.viewComponents.EventsListAdapter;
-import app.projectlevapplication.viewComponents.GalleryAdapter;
 import app.projectlevapplication.viewComponents.HomeFragment;
-import app.projectlevapplication.viewComponents.MembersListActivity;
 import app.projectlevapplication.viewComponents.MembersListFragment;
 import app.projectlevapplication.viewComponents.NavDrawerListAdapter;
 import app.projectlevapplication.viewComponents.RegisterDialog;
@@ -143,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             // Community events
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], R.mipmap.ic_events, true, ""));
             // Pages
-            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], R.mipmap.ic_home));
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], R.mipmap.ic_clock));
             // About
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_about));
         } else {
