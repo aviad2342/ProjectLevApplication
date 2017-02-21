@@ -1,8 +1,14 @@
 package app.projectlevapplication.core;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import app.projectlevapplication.utils.Utils;
 
 public class Event implements Serializable {
 
@@ -154,7 +160,23 @@ public class Event implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	public JSONObject toJsonObject(){
+
+		JSONObject jsonObject= new JSONObject();
+		try {
+			jsonObject.put("title", getTitle());
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			jsonObject.put("dateTime",format.format(getPublishDate()));
+			jsonObject.put("capacity", getCapacity());
+			jsonObject.put("location", getLocation());
+			jsonObject.put("description", getDescription());
+			jsonObject.put("publisher", getPublisherID());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
 	
 }

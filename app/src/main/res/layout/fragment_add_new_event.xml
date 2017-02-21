@@ -7,7 +7,6 @@
     tools:context="app.projectlevapplication.viewComponents.AddNewEventFragment"
     android:layoutDirection="rtl">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,9 +24,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/eventSetTitle"
                 android:textDirection="rtl"
-                android:hint="נושא" />
+                android:hint="נושא"
+                android:textColor="@android:color/black"
+                android:layoutDirection="ltr" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -35,27 +36,36 @@
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
                 android:weightSum="1"
-                android:id="@+id/eventSetTime">
+                android:layout_marginTop="5dp">
 
                 <TextView
-                    android:text="תאריך"
-                    android:layout_width="115dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="43dp"
                     android:id="@+id/eventSetDate"
                     android:textDirection="rtl"
                     android:gravity="center_vertical"
-                    android:layout_weight="0.07"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:hint="בחר תאריך"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layoutDirection="ltr"
+                    android:layout_weight="0.27" />
 
                 <TextView
-                    android:text="שעה"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView20"
+                    android:id="@+id/eventSetTime"
                     android:textDirection="rtl"
                     android:gravity="center_vertical"
-                    android:layout_weight="0.27"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:hint="בחר שעה"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_weight="0.08"
+                    android:layoutDirection="ltr"
+                    android:layout_marginRight="10dp" />
 
             </LinearLayout>
 
@@ -66,40 +76,51 @@
                 android:ems="10"
                 android:id="@+id/eventSetCity"
                 android:textDirection="rtl"
-                android:hint="עיר" />
+                android:hint="עיר"
+                android:textColor="@android:color/black"
+                android:layoutDirection="ltr" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layoutDirection="rtl">
+                android:layoutDirection="rtl"
+                android:weightSum="1"
+                android:layout_marginTop="5dp">
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="215dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/eventSetStreet"
                     android:textDirection="rtl"
-                    android:hint="רחוב" />
+                    android:hint="רחוב"
+                    android:textColor="@android:color/black"
+                    android:layoutDirection="ltr" />
 
                 <EditText
-                    android:layout_width="95dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/eventSetHomeNumber"
                     android:hint="מספר בית"
                     android:textDirection="rtl"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:layoutDirection="ltr"
+                    android:layout_weight="0.24"
+                    android:maxLength="4" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:weightSum="1">
+                android:layout_height="68dp"
+                android:weightSum="1"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:text="כמות משתתפים:"
@@ -109,28 +130,34 @@
                     android:textDirection="rtl"
                     android:gravity="right|center_vertical"
                     android:paddingLeft="10dp"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black" />
 
                 <NumberPicker
-                    android:layout_width="251dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="match_parent"
                     android:id="@+id/numberOfParticipants"
-                    android:textDirection="rtl" />
+                    android:textDirection="rtl"
+                    android:layoutDirection="rtl"
+                    android:solidColor="@android:color/holo_purple" />
             </LinearLayout>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/eventSetDescription"
                 android:hint="תיאור האירוע"
-                android:textDirection="rtl" />
+                android:textDirection="rtl"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="8dp"
+                android:layoutDirection="ltr" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="241dp"
+                android:layout_height="199dp"
                 android:layoutDirection="rtl">
 
                 <LinearLayout
@@ -143,7 +170,7 @@
                         android:text="הוסף אירוע"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button3"
+                        android:id="@+id/btnAddEvent"
                         android:layout_weight="1"
                         android:layout_gravity="bottom"
                         android:textDirection="rtl"
@@ -153,7 +180,7 @@
                         android:text="ביטול"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button"
+                        android:id="@+id/btnCancelNewEvent"
                         android:layout_weight="1"
                         android:layout_gravity="bottom"
                         android:textDirection="rtl"

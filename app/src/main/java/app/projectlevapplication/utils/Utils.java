@@ -58,9 +58,12 @@ public class Utils {
 
     public static final String ADD_NEW_MEMBER =  "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=12";
 
+    public static final String ADD_NEW_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=13";
+
     public static final String POST_ARTICLE_IS_WATCHED = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=17";
 
     public static final String POST_USAGE_STATISTICS = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=18";
+
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 

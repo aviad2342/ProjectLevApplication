@@ -58,6 +58,12 @@
     <!-- Strings related to Event -->
     <string name="event_no_gallery_picture_found">"לא נמצאו תמונות מאירוע זה"</string>
     <string name="evernt_watch_gallery">כניסה לגלריה</string>
+    <string name="event_add_new_event_successfully_submit_form">האירוע נוסף בהצלחה</string>
+    <string name="event_add_new_event_error_submit_form">הוספת האירוע נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="event_date_picker_title">בחר את תאריך האירוע</string>
+    <string name="event_time_picker_title">בחר שעה</string>
+    <string name="event_error_validation_alert_dialog_title">שדות חסרים</string>
+    <string name="event_error_validation_must_fill_all_fields">יש למלא את כל שדות החובה!</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>

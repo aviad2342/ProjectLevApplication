@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class EventListFragment extends Fragment {
     Context context;
     Activity activity;
     FragmentManager fragmentManager;
+    Button newItemBtn = null;
     long start;
     long duration;
 
@@ -58,7 +60,14 @@ public class EventListFragment extends Fragment {
         context = view.getContext();
         activity = getActivity();
         fragmentManager = activity.getFragmentManager();
-
+        newItemBtn  = (Button) view.findViewById(R.id.new_item_btn);
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
+            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+                newItemBtn.setVisibility(View.VISIBLE);
+            }
+        }else{
+            newItemBtn.setVisibility(View.INVISIBLE);
+        }
         list = (ListView) view.findViewById(R.id.eventsList);
         loadEventsList();
 
@@ -75,6 +84,18 @@ public class EventListFragment extends Fragment {
                 ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
                 ft.replace(R.id.frame_container, fragment,"EventFragment");
                 ft.addToBackStack("EventFragment");
+                ft.commit();
+            }
+        });
+
+        newItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AddNewEventFragment();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_right);
+                ft.replace(R.id.frame_container, fragment,"AddNewEventFragment");
+                ft.addToBackStack("AddNewEventFragment");
                 ft.commit();
             }
         });
