@@ -170,9 +170,10 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
             @Override
             public void onResponse(String response) {
                // loading.dismiss();
-                navDrawerItems.get(3).setCount(Utils.getInstance().responseToEventsNumber(response));
-                adapter.notifyDataSetChanged();
-
+                if(navDrawerItems.get(3) != null) {
+                    navDrawerItems.get(3).setCount(Utils.getInstance().responseToEventsNumber(response));
+                    adapter.notifyDataSetChanged();
+                }
             }
         },
                 new Response.ErrorListener() {
@@ -450,7 +451,10 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     public boolean onOptionsItemSelected(MenuItem item) {
         // toggle nav drawer on selecting action bar app icon/title
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            getNumberOfEvents();
+            if(Utils.getInstance().loadMemberFromPrefs(this) != null) {
+                getNumberOfEvents();
+            }
+
             return true;
         }
         // Handle action bar actions click

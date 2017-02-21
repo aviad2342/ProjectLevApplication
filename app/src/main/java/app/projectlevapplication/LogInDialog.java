@@ -88,8 +88,6 @@ public class LogInDialog extends DialogFragment {
         eye.setBounds(0, 0, eye.getIntrinsicWidth(), eye.getIntrinsicHeight());
         userName.setCompoundDrawables(null, null, user, null);
         password.setCompoundDrawables(null, null, eye, null);
-        userName.setText("Admin");
-        password.setText("Admin");
 
 //        userName.addTextChangedListener(new TextWatcher() {
 //            public void afterTextChanged(Editable s) {
