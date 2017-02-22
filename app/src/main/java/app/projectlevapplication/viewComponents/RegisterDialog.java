@@ -489,7 +489,6 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
             // Uploading AsyncTask
             if (Utils.checkConnection(activity)) {
                 /******************Retrofit***************/
-                Snackbar.make(mView, "connection ok", Snackbar.LENGTH_INDEFINITE).show();
                 uploadImage();
                 return true;
             } else {
@@ -539,9 +538,9 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
                 // Take photo from camera，Construct an intent with action MediaStore.ACTION_IMAGE_CAPTURE
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // Construct temporary image path and name to save the taken photo
-               // mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
-                mImageCaptureUri = FileProvider.getUriForFile(activity, "app.projectlevapplication.provider",
-                       new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
+                mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
+//                mImageCaptureUri = FileProvider.getUriForFile(activity, "app.projectlevapplication.provider",
+//                       new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
                 intent.putExtra("return-data", true);
                 try {

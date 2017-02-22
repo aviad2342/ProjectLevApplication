@@ -33,9 +33,9 @@
         android:layout_weight="1"
         android:hint="@string/login_user_password_label"
         android:textDirection="rtl"
-        android:textAlignment="viewEnd"
         android:layout_gravity="right"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textAlignment="textEnd" />
 
     <Button
         android:text="@string/login_log_btn"

@@ -321,12 +321,16 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                         != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this,
                         android.Manifest.permission.WAKE_LOCK)
+                        != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.SET_WALLPAPER)
                         != PackageManager.PERMISSION_GRANTED
                 ){
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            android.Manifest.permission.CAMERA, android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_NETWORK_STATE,android.Manifest.permission.WAKE_LOCK},
+                            android.Manifest.permission.CAMERA, android.Manifest.permission.SET_WALLPAPER,
+                            android.Manifest.permission.INTERNET, android.Manifest.permission.ACCESS_NETWORK_STATE,android.Manifest.permission.WAKE_LOCK},
                     PERMISSIONS_REQ);
         }
         else{

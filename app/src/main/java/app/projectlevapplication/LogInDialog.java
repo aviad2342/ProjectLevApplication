@@ -103,7 +103,7 @@ public class LogInDialog extends DialogFragment {
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                password.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
