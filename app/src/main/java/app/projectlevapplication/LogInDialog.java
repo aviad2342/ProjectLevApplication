@@ -94,22 +94,6 @@ public class LogInDialog extends DialogFragment {
         userName.setCompoundDrawables(null, null, user, null);
         password.setCompoundDrawables(null, null, eye, null);
 
-//        userName.addTextChangedListener(new TextWatcher() {
-//            public void afterTextChanged(Editable s) {
-//                if(userName.getText().length() == 0){
-//                    userName.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-//                }
-//            }
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                userName.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-//            }
-//        });
-
 
         password.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -132,7 +116,7 @@ public class LogInDialog extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-                loading = ProgressDialog.show(activity,"Please wait...","Fetching...",false,false);
+                loading = ProgressDialog.show(context,getString(R.string.progress_dialog_message),getString(R.string.progress_dialog_title),false,false);
                 String name = userName.getText().toString();
                 String pass = password.getText().toString();
 

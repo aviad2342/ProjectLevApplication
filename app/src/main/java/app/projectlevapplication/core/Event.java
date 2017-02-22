@@ -161,8 +161,11 @@ public class Event implements Serializable {
 		return true;
 	}
 
+	/**
+	 * Convert Event Object Into JSONObject
+	 * @return JSONObject
+     */
 	public JSONObject toJsonObject(){
-
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("title", getTitle());

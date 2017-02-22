@@ -117,7 +117,6 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
     private SimpleDateFormat dateFormatter;
     LayoutInflater inflater;
     DatePicker datePicker;
-    //AlertDialog.Builder builder;
     DatePickerDialog.Builder builder;
     AlertDialog bla;
 
@@ -310,7 +309,6 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
 
                     }else {
                         AlertDialog();
-                        //Toast.makeText(activity,getString(R.string.error_validation_must_fill_all_fields),Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -416,20 +414,6 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
         txtDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                MyDatePickerDialog pickerDialog = new MyDatePickerDialog();
-//                pickerDialog.show(getFragmentManager(),"naab");
-//                ageError.setVisibility(View.GONE);
-//                DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
-//                pickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "ביטול", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        if (which == DialogInterface.BUTTON_NEGATIVE) {
-//                            validateBirthDate();
-//                        }
-//                    }
-//                });
-//                pickerDialog.getDatePicker().setCalendarViewShown(false);
-//                pickerDialog.getDatePicker().setSpinnersShown(true);
-//                pickerDialog.show();
                 show();
             }
         });
@@ -485,57 +469,6 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
         bla.show();
 
     }
-//    private void setDateTimeField() {
-//        txtDateOfBirth.setOnClickListener(this);
-//
-//        Calendar newCalendar = Calendar.getInstance();
-//
-//        fromDatePickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
-//
-//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                Calendar newDate = Calendar.getInstance();
-//                newDate.set(year, monthOfYear, dayOfMonth);
-//                txtDateOfBirth.setText(dateFormatter.format(newDate.getTime()));
-//            }
-//        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-//    }
-
-//    @Override
-//    public void onClick(View v) {
-//        if(v == txtDateOfBirth) {
-//            //fromDatePickerDialog.show();
-//            bla.show();
-//        }
-//    }
-
-//    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//        @Override
-//        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//            myCalendar.set(Calendar.YEAR, year);
-//            myCalendar.set(Calendar.MONTH, monthOfYear);
-//            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//            updateLabel();
-//            if(!InputValidation.isOver18(year,monthOfYear,dayOfMonth)){
-//                ageError.setVisibility(View.VISIBLE);
-//                ageError.setError(getString(R.string.error_validation_age_over_18));
-//            }else{
-//                ageError.setVisibility(View.GONE);
-//                ageError.setError(null);
-//            }
-//        }
-//    };
-
-//    private void updateLabel() {
-//        String myFormat = "dd/MM/yyyy"; //In which you need put here
-//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-//        txtDateOfBirth.setText(sdf.format(myCalendar.getTime()));
-//    }
-
-//    public void rbClick(View view){
-//        int selectedRadioButton = phone1Group.getCheckedRadioButtonId();
-//        radioButton = (RadioButton)view.findViewById(selectedRadioButton);
-//    }
 
 
     @Override
@@ -699,7 +632,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
     private void uploadImage() {
 
         //Progressbar to Display
-        loading = ProgressDialog.show(activity,"בבקשה המתן...","מחזיר מידע...",false,false);
+        loading = ProgressDialog.show(context,getString(R.string.progress_dialog_message),getString(R.string.progress_dialog_title),false,false);
 
         //Create Upload Server Client
         ApiService service = RetroClient.getApiService();
@@ -725,14 +658,11 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
                 if (response.isSuccessful()) {
                     if (!response.body().getResult().equals("error")) {
                         imageForNewMember = response.body().getResult();
-                        //Snackbar.make(mView, R.string.ui_register_successfully_submit_form, Snackbar.LENGTH_SHORT).show();
                     }else {
                         imageForNewMember = "null";
-                        //Snackbar.make(mView, R.string.ui_register_error_submit_form, Snackbar.LENGTH_SHORT).show();
                     }
                 } else {
                     imageForNewMember = "null";
-                    //Snackbar.make(mView, R.string.ui_register_error_submit_form, Snackbar.LENGTH_SHORT).show();
                 }
                 imagePath = "";
             }

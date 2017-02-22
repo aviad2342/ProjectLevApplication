@@ -80,12 +80,6 @@ public class Utils {
 
     public static final String EVENTS_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/events/";
 
-    public static final String TESTIMONY_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/testimony/";
-
-    public static final String THERAPISTS_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/therapists/";
-
-    public static final String GALLERY_IMAGE = "http://arianlev.com/gallery/";
-
     public static final String DEFAULT_IMAGE = "http://ortalitah.com/arianLev/public/img/profile.jpg";
 
     public static final String NEW_MEMBER_DEFAULT_IMAGE = "null_profile.jpg";
@@ -110,23 +104,31 @@ public class Utils {
         return _instance;
     }
 
-    public static void loadMemberImage(Activity activity, String imageToLoad, ImageView view)  {
-        Picasso.with(activity).load(MEMBER_IMAGE+imageToLoad).into(view);
-    }
 
+    /**
+     * Format a Date Object
+     * @param date
+     * @return String Date Format
+     */
     public static String getBirthDate(Date date)  {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         return format.format(date);
     }
 
-    public static String getGender(Date date)  {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        return date.toString();
-    }
-
+    /**
+     * Convert Boolean To Int Value
+     * @param b
+     * @return Int
+     */
     public static int getBoolean(boolean b)  {
         return (b) ? 1 : 0;
     }
+
+    /**
+     * Parse jsonObject Response From Server Into Member object
+     * @param response
+     * @return Member Object
+     */
     public Member responseToMember(String response)  {
 
         if(response.length() < 1){
@@ -179,6 +181,11 @@ public class Utils {
         return member;
     }
 
+    /**
+     * Parse JSONArray Response From Server Into Phone ArrayList
+     * @param response
+     * @return ArrayList<Phone>
+     */
     public ArrayList<Phone> responseToPhoneList(String response)  {
 
         if(response.length() < 1){
@@ -206,33 +213,12 @@ public class Utils {
         return phones;
     }
 
-    public ArrayList<Media> responseToMediaList(String response)  {
 
-        if(response.length() < 1){
-            return null;
-        }
-        ArrayList<Media> medias = new ArrayList<>();
-        Media media;
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < jsonArray.length(); i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                media = new Media();
-
-                media.setMediaID(Integer.parseInt(jsonObject.getString("mediaID")));
-                media.setEventID(Integer.parseInt(jsonObject.getString("event")));
-                media.setFileName(jsonObject.getString("fileName"));
-
-                medias.add(media);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return medias;
-    }
-
+    /**
+     * Convert Image Server Response To Url Server Image
+     * @param response
+     * @return String Url
+     */
     public ArrayList<String> responseToMediaUrlList(String response)  {
 
         if(response.length() < 1){
@@ -257,6 +243,11 @@ public class Utils {
         return medias;
     }
 
+    /**
+     * Parse Response From Server Into About
+     * @param response
+     * @return String About
+     */
     public String responseToAbout(String response)  {
         if(response.length() < 1){
             return null;
@@ -272,6 +263,11 @@ public class Utils {
         return about;
     }
 
+    /**
+     *Parse Response From Server Into Opening Statement
+     * @param response
+     * @return String Opening Statement
+     */
     public String responseToOpening(String response)  {
         if(response.length() < 1){
             return null;
@@ -287,6 +283,11 @@ public class Utils {
         return about;
     }
 
+    /**
+     * Parse Response From Server Into Number Of Events
+     * @param response
+     * @return String Events Number
+     */
     public String responseToEventsNumber(String response)  {
         if(response.length() < 1){
             return "";
@@ -300,25 +301,11 @@ public class Utils {
         }
     }
 
-    public boolean isAdmin(String response)  {
-
-        if(response.length() < 1){
-            return false;
-        }
-        boolean isAdmin;
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-            //JSONObject jsonObject = new JSONObject(response);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-            isAdmin = (Integer.parseInt(jsonObject.getString("TRUE")) != 0);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return isAdmin;
-    }
-
+    /**
+     * Parse JSONArray Response From Server Into Member ArrayList
+     * @param response
+     * @return ArrayList<Member>
+     */
     public ArrayList<Member> responseToMembersList(String response)  {
 
         if(response.length() < 1){
@@ -381,6 +368,11 @@ public class Utils {
         return members;
     }
 
+    /**
+     * Parse JSONArray Response From Server Into Article ArrayList
+     * @param response
+     * @return ArrayList<Article>
+     */
     public ArrayList<Article> responseToArticleList(String response)  {
 
         if(response.length() < 1){
@@ -423,6 +415,11 @@ public class Utils {
         return articles;
     }
 
+    /**
+     * Parse JSONArray Response From Server Into Event ArrayList
+     * @param response
+     * @return ArrayList<Event>
+     */
     public ArrayList<Event> responseToEventList(String response)  {
 
         if(response.length() < 1){
@@ -465,6 +462,11 @@ public class Utils {
         return events;
     }
 
+    /**
+     * Parse JSONArray Response From Server Into Comment ArrayList
+     * @param response
+     * @return ArrayList<Comment>
+     */
     public ArrayList<Comment> responseToCommentsList(String response)  {
 
         if(response.length() < 1){
@@ -513,26 +515,11 @@ public class Utils {
         return comments;
     }
 
-    public ArrayList<String> responseToArticleHeadlineList(String response)  {
-        if(response.length() < 1){
-            return null;
-        }
-        ArrayList<String> headlines = new ArrayList<>();
-
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-
-            for (int i = 0; i < jsonArray.length(); i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                headlines.add(jsonObject.getString("headline"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return headlines;
-    }
-
+    /**
+     * Convert String To Boolean Value
+     * @param b
+     * @return boolean
+     */
     public boolean getBool(String b){
         if(b == "null"){
             return false;
@@ -540,6 +527,11 @@ public class Utils {
         return (Integer.parseInt(b) == 1);
     }
 
+    /**
+     * Convert Date Object To String Date Format
+     * @param dateToStr
+     * @return String Date Format
+     */
     public static String eventToDateString(Date dateToStr)  {
         String date;
         String time;
@@ -551,7 +543,7 @@ public class Utils {
         return  date+"  בשעה: "+time;
     }
     /**
-     * write \ update a Member record to SharedPreferences
+     * Write a Logd-in Member Object to SharedPreferences
      * @param context
      * @param member
      */
@@ -569,9 +561,9 @@ public class Utils {
     }
 
     /**
-     * load Member from SharedPreferences
+     * Load Logd-in Member Object from SharedPreferences
      * @param context
-     * @return UserProfile
+     * @return Member Object
      */
     public Member loadMemberFromPrefs(Context context)  {
         SharedPreferences mPrefs =  PreferenceManager.getDefaultSharedPreferences(context);
@@ -581,11 +573,22 @@ public class Utils {
         return obj;
     }
 
+    /**
+     * Hide Keyboard
+     * @param activity
+     */
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
+    /**
+     * Convert Usage Statistics Data To JSONObject
+     * @param userID
+     * @param usage
+     * @param uiName
+     * @return JSONObject
+     */
     public static JSONObject UsageStatisticsToJsonObject(int userID, double usage, String uiName){
 
         JSONObject jsonObject= new JSONObject();
@@ -599,6 +602,11 @@ public class Utils {
         return jsonObject;
     }
 
+    /**
+     * Convert Int Event ID To JSONObject
+     * @param eventID
+     * @return JSONObject
+     */
     public static JSONObject eventIdToJsonObject(int eventID){
         JSONObject jsonObject= new JSONObject();
         try {
@@ -609,6 +617,11 @@ public class Utils {
         return jsonObject;
     }
 
+    /**
+     * Convert Int Article ID  To JSONObject
+     * @param articleID
+     * @return
+     */
     public static JSONObject articleIdToJsonObject(int articleID){
         JSONObject jsonObject= new JSONObject();
         try {
@@ -620,6 +633,11 @@ public class Utils {
     }
 
 
+    /**
+     * Convert Long Milliseconds To Double Seconds
+     * @param milliseconds
+     * @return Double Seconds
+     */
     public static double milliToSeconds(long milliseconds){
         return milliseconds / 1000.0;
     }

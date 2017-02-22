@@ -53,7 +53,6 @@ import app.projectlevapplication.viewComponents.RegisterDialog;
 public class MainActivity extends AppCompatActivity implements LogInDialog.DialogFragmentListener , RegisterDialog.DialogFragmentListener{
 
     private final int PERMISSIONS_REQ= 1212;
-    private static final String JSON_URL = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=0&user=Admin&pass=Admin";
     public ProgressDialog loading;
     SharedPreferences mPrefs;
     private DrawerLayout mDrawerLayout;
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     private ActionBarDrawerToggle mDrawerToggle;
     public MenuItem MemberLogin;
     public String sDefSystemLanguage;
-    String numberOfEvents = "";
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -86,16 +84,14 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
 
         sDefSystemLanguage = Locale.getDefault().getDisplayLanguage();
-       // getSupportActionBar().setIcon(R.mipmap.ic_lev);
 
-        //txt.setText(Utils.getInstance().loadMemberFromPrefs(this).toString());
         mTitle = mDrawerTitle = getTitle();
 
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //Toast.makeText(getApplicationContext(),Locale.getDefault().getDisplayLanguage(), Toast.LENGTH_LONG).show();
+
         if(sDefSystemLanguage == "English"){
             mDrawerLayout.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }else if(sDefSystemLanguage != "עיברית"){
@@ -103,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-       // setFragment(new HomeFragment(),"HomeFragment");
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
@@ -164,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     }
 
     public void getNumberOfEvents(){
-        //loading = ProgressDialog.show(this,"בבקשה המתן...","מחזיר מידע...",false,false);
         String url = Utils.NUMBER_OF_EVENTS;
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
@@ -187,19 +181,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//        if (hasFocus) {
-//            getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
-//        }
-//    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
-//    }
 
     /**
      * Slide menu item click listener
@@ -207,8 +188,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // display view for selected nav drawer item
-           // hideSoftKeyboard(MainActivity.this);
             hideKeyboard();
             displayView(position);
         }
@@ -252,9 +231,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
 
         if (fragment != null) {
             setFragment(fragment,fragment.getClass().getSimpleName());
-           // FragmentManager fragmentManager = getFragmentManager();
-            //fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
-
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
@@ -401,9 +377,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MemberLogin = menu.findItem(R.id.logIn);
-        // if nav drawer is opened, hide the action items
-//        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-//        menu.findItem(R.id.menu).setVisible(!drawerOpen);
         if(Utils.getInstance().loadMemberFromPrefs(this) != null){
             MemberLogin.setIcon(R.drawable.logout_24dp);
         }else {
@@ -454,8 +427,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                     adapter.notifyDataSetChanged();
                 }
                 return true;
-//            case R.id.menu:
-//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

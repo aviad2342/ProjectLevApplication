@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadOpening(){
-        loading = ProgressDialog.show(activity,"בבקשה המתן...","מחזיר מידע...",false,false);
+        loading = ProgressDialog.show(context,getString(R.string.progress_dialog_message),getString(R.string.progress_dialog_title),false,false);
         String url = Utils.COMMUNITY_OPENING_STATEMENT;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        Toast.makeText(context,"error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,getString(R.string.error_server_request), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        // Loading Usage Statistics To Server Using Request_json
         duration = System.currentTimeMillis() - start;
         int uID;
         if(Utils.getInstance().loadMemberFromPrefs(context) != null){

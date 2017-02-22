@@ -19,7 +19,7 @@
         android:ems="10"
         android:id="@+id/searchInArticels"
         android:textDirection="rtl"
-        android:hint="חפש מאמר..."
+        android:hint="@string/article_list_search_filter"
         android:textColorLink="@android:color/black"
         android:textSize="24sp"
         android:layout_alignParentTop="true" />

@@ -83,7 +83,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/memberHeadline"
-                    android:hint="כותרת" />
+                    android:hint="@string/article_input_headline" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -91,12 +91,12 @@
                     android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/commentContent"
-                    android:hint="תגובה" />
+                    android:hint="@string/article_input_content" />
 
             </LinearLayout>
 
             <Button
-                android:text="שלח"
+                android:text="@string/article_btn_send_comment"
                 android:layout_width="58dp"
                 android:layout_height="37dp"
                 android:id="@+id/btnSendComment"
@@ -104,7 +104,7 @@
                 android:layout_gravity="left" />
 
             <TextView
-                android:text="תגובות קודמות:"
+                android:text="@string/article_previous_comments"
                 android:layout_width="match_parent"
                 android:layout_height="27dp"
                 android:id="@+id/textView2"
@@ -127,7 +127,7 @@
         android:layout_weight="10">
 
         <Button
-            android:text="מחק מאמר"
+            android:text="@string/article_btn_remove_article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnRemoveArticle"

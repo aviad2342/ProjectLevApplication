@@ -463,8 +463,11 @@ public class Member implements Serializable {
                 '}';
     }
 
+	/**
+	 * Convert Member Object Into JSONObject
+	 * @return
+     */
     public JSONObject toJsonObject(){
-
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("username", getUsername());

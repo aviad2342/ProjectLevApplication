@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
 
 public class InputValidation {
 
+    /**
+     * Validate Email Address
+     * @param mail
+     * @return boolean
+     */
     public static boolean isEmailValid(EditText mail)
     {
         String email = mail.getText().toString();
@@ -34,6 +39,11 @@ public class InputValidation {
             return false;
     }
 
+    /**
+     * Validate Only Letters And Numbers In Field With Length Between 4 And 12
+     * @param editText
+     * @return boolean
+     */
     public static boolean isUserNameOnlyLettersAndNumbers(EditText editText)
     {
         String text = editText.getText().toString();
@@ -50,6 +60,11 @@ public class InputValidation {
             return false;
     }
 
+    /**
+     * Validate Only Letters And Numbers In Field With Length Between 5 And 12
+     * @param editText
+     * @return boolean
+     */
     public static boolean isPasswordOnlyLettersAndNumbers(EditText editText)
     {
         String text = editText.getText().toString();
@@ -66,6 +81,11 @@ public class InputValidation {
             return false;
     }
 
+    /**
+     * Validate Only Digits In Field With Length Between 9 And 10
+     * @param editText
+     * @return boolean
+     */
     public static boolean isOnlyDigits(EditText editText)
     {
         String text = editText.getText().toString();
@@ -82,6 +102,11 @@ public class InputValidation {
             return false;
     }
 
+    /**
+     * Validate Only Hebrew Letters In Field
+     * @param editText
+     * @return boolean
+     */
     public static boolean isHebrewValid(EditText editText)
     {
         String text = editText.getText().toString();
@@ -98,6 +123,13 @@ public class InputValidation {
             return false;
     }
 
+    /**
+     * Validate Member Age Is Over 18
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
     public static boolean isOver18(int year, int month, int day){
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();

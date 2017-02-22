@@ -153,11 +153,13 @@ private int commentID;
 		return true;
 	}
 
+	/**
+	 * Convert Comment Object Into JSONObject
+	 * @return JSONObject
+     */
 	public JSONObject toJsonObject(){
-
 		JSONObject jsonObject= new JSONObject();
 		try {
-
 			jsonObject.put("headline", getHeadline());
 			//jsonObject.put("dateTime", getPublishDate());
 			jsonObject.put("content", getContent());

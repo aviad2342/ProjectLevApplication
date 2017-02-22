@@ -19,9 +19,10 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/loginUserName"
-        android:hint="  שם משתמש"
+        android:hint="@string/login_user_name_label"
         android:layout_gravity="right"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="5dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -30,29 +31,36 @@
         android:ems="10"
         android:id="@+id/loginPassword"
         android:layout_weight="1"
-        android:hint="סיסמא "
+        android:hint="@string/login_user_password_label"
         android:textDirection="rtl"
         android:textAlignment="viewEnd"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:layout_marginTop="5dp" />
 
     <Button
-        android:text="התחבר"
+        android:text="@string/login_log_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/btnLogin"
         android:layout_weight="1"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp" />
 
     <Button
-        android:text="ביטול"
+        android:text="@string/login_cancel_log_btn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/btnCancel"
         android:layout_weight="1"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp" />
 
     <TextView
-        android:text="הירשם"
+        android:text="@string/login_register_label"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:id="@+id/registerLink"
@@ -62,5 +70,6 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textStyle="bold"
         android:layout_gravity="right"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp" />
 </LinearLayout>

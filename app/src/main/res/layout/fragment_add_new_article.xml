@@ -28,7 +28,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/articleSetHeadline"
-                android:hint="הכנס כותרת"
+                android:hint="@string/article_add_new_article_headline_label"
                 android:textColor="@android:color/black"
                 android:layoutDirection="ltr" />
 
@@ -38,7 +38,7 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/articleSetContent"
-                android:hint="הכנס תוכן"
+                android:hint="@string/article_add_new_article_content_label"
                 android:textColor="@android:color/black"
                 android:layoutDirection="ltr" />
 
@@ -52,7 +52,7 @@
         android:layout_gravity="bottom">
 
         <Button
-            android:text="הוסף מאמר"
+            android:text="@string/article_add_new_article_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnAddNewArticle"
@@ -60,7 +60,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:text="ביטול"
+            android:text="@string/article_add_new_article_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnCancelNewArticle"

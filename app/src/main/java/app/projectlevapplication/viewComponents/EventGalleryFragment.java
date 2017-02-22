@@ -90,7 +90,7 @@ public class EventGalleryFragment extends Fragment {
     }
 
     public void loadGallery(){
-        loading = ProgressDialog.show(activity,"בבקשה המתן...","מחזיר מידע...",false,false);
+        loading = ProgressDialog.show(context,getString(R.string.progress_dialog_message),getString(R.string.progress_dialog_title),false,false);
 
         String url = Utils.ALL_ARTICLE_IMAGES+eventId;
 
@@ -101,37 +101,6 @@ public class EventGalleryFragment extends Fragment {
                 adapter = new GalleryAdapter(context, Utils.getInstance().responseToMediaUrlList(response));
                 galleryGridView.setAdapter(adapter);
                 Picasso.with(context).load(adapter.getItem(0)).into(imageDisplay);
-               // medias = Utils.getInstance().responseToMediaList(response);
-//                urls = Utils.getInstance().responseToMediaUrlList(response);
-//                for(int i = 0; i < urls.size(); i++){
-//                    Picasso.with(activity).load(urls.get(i)).into(new Target() {
-//                        @Override
-//                        public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
-//                /* Save the bitmap or do something with it here */
-//                            //Set it in the ImageView
-//                            bitmapList.add(bitmap);
-//                        }
-//
-//                        @Override
-//                        public void onPrepareLoad(Drawable placeHolderDrawable) {}
-//
-//                        @Override
-//                        public void onBitmapFailed(Drawable errorDrawable) {}
-//                    });
-////                    if(i == medias.size()){
-////                        galleryGridView.setAdapter(new GalleryAdapter(context, bitmapList));
-////                    }
-//                }
-
-//                try {
-//                    for(int i = 0; i < medias.size(); i++){
-//                        bitmapList.add(urlImageToBitmap(Utils.EVENTS_IMAGE+medias.get(i).getFileName()));
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                        //galleryGridView.setAdapter(new GalleryAdapter(context, bitmapList));
-
 
             }
         },
@@ -139,7 +108,7 @@ public class EventGalleryFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
-                        Toast.makeText(context,"error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,getString(R.string.error_server_request), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -158,6 +127,7 @@ public class EventGalleryFragment extends Fragment {
 @Override
 public void onPause() {
     super.onPause();
+    // Loading Usage Statistics To Server Using Request_json
     duration = System.currentTimeMillis() - start;
     int uID;
     if(Utils.getInstance().loadMemberFromPrefs(context) != null){

@@ -168,6 +168,7 @@ public class EventFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        // Loading Usage Statistics To Server Using Request_json
         duration = System.currentTimeMillis() - start;
         int uID;
         if(Utils.getInstance().loadMemberFromPrefs(context) != null){

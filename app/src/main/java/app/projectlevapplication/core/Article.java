@@ -150,15 +150,17 @@ public class Article implements Serializable {
 				'}';
 	}
 
+	/**
+	 * Convert Article Object Into JSONObject
+	 * @return JSONObject
+     */
 	public JSONObject toJsonObject(){
-
 		JSONObject jsonObject= new JSONObject();
 		try {
 			jsonObject.put("headline", getHeadline());
 			jsonObject.put("content", getContent());
 			jsonObject.put("author", getAuthorID());
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jsonObject;

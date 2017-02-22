@@ -26,7 +26,7 @@
                 android:ems="10"
                 android:id="@+id/eventSetTitle"
                 android:textDirection="rtl"
-                android:hint="נושא"
+                android:hint="@string/event_add_new_event_title_label"
                 android:textColor="@android:color/black"
                 android:layoutDirection="ltr" />
 
@@ -46,7 +46,7 @@
                     android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:textColor="@android:color/black"
-                    android:hint="בחר תאריך"
+                    android:hint="@string/event_add_new_event_choose_date_label"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:layoutDirection="ltr"
@@ -60,7 +60,7 @@
                     android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:textColor="@android:color/black"
-                    android:hint="בחר שעה"
+                    android:hint="@string/event_add_new_event_choose_time_label"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:layout_weight="0.08"
@@ -76,7 +76,7 @@
                 android:ems="10"
                 android:id="@+id/eventSetCity"
                 android:textDirection="rtl"
-                android:hint="עיר"
+                android:hint="@string/event_add_new_event_city_label"
                 android:textColor="@android:color/black"
                 android:layoutDirection="ltr" />
 
@@ -95,7 +95,7 @@
                     android:ems="10"
                     android:id="@+id/eventSetStreet"
                     android:textDirection="rtl"
-                    android:hint="רחוב"
+                    android:hint="@string/event_add_new_event_street_label"
                     android:textColor="@android:color/black"
                     android:layoutDirection="ltr" />
 
@@ -105,7 +105,7 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/eventSetHomeNumber"
-                    android:hint="מספר בית"
+                    android:hint="@string/event_add_new_event_house_number_label"
                     android:textDirection="rtl"
                     android:paddingRight="10dp"
                     android:textColor="@android:color/black"
@@ -123,7 +123,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:text="כמות משתתפים:"
+                    android:text="@string/event_add_new_event_participate_number_label"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/textView22"
@@ -148,7 +148,7 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/eventSetDescription"
-                android:hint="תיאור האירוע"
+                android:hint="@string/event_add_new_event_descrription_label"
                 android:textDirection="rtl"
                 android:textColor="@android:color/black"
                 android:layout_marginTop="8dp"
@@ -164,7 +164,7 @@
         android:layoutDirection="rtl">
 
         <Button
-            android:text="הוסף אירוע"
+            android:text="@string/event_add_new_event_add_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnAddEvent"
@@ -174,7 +174,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:text="ביטול"
+            android:text="@string/event_add_new_event_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnCancelNewEvent"

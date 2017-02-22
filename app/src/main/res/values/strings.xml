@@ -22,8 +22,13 @@
         <item>@drawable/eye</item>
     </array>
 
-    <!-- Strings related to Abouy -->
+    <!-- Strings related to About -->
     <string name="about_title">אודות בית אריאן לב</string>
+
+    <!-- General Strings -->
+    <string name="error_server_request">השרת אינו זמין כרגע. אנא נסה במועד מאוחר יותר</string>
+    <string name="progress_dialog_title">מחזיר מידע...</string>
+    <string name="progress_dialog_message">בבקשה המתן...</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -41,6 +46,11 @@
     <string name="login_error_dialog_ok">נסה שנית</string>
     <string name="login_error_dialog_abort">יציאה</string>
     <string name="login_error_abort">בחרת לבטל את ההתחברות</string>
+    <string name="login_user_name_label">שם משתמש</string>
+    <string name="login_user_password_label">סיסמא</string>
+    <string name="login_log_btn">התחבר</string>
+    <string name="login_cancel_log_btn">ביטול</string>
+    <string name="login_register_label">הירשם</string>
 
     <!-- Strings related to member profile -->
     <string name="member_profile_full_name">שם מלא:</string>
@@ -56,24 +66,38 @@
 
     <!-- Strings related to Article -->
     <string name="article_comment_success_message">התגובה נוספה בהצלחה</string>
-    <string name="article_comment_error_message">שליחת התגובה נכשלה, אנה נסה שנית</string>
+    <string name="article_comment_error_message">שליחת התגובה נכשלה, אנא נסה שנית</string>
     <string name="article_uploading_comment_progress_dialog_title">שולח תגובה...</string>
     <string name="article_uploading_comment_progress_dialog_message">בבקשה המתן...</string>
     <string name="article_add_new_article_successfully_submit_form">המאמר נוסף בהצלחה</string>
-    <string name="article_add_new_article_error_submit_form">הוספת המאמר נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="article_add_new_article_error_submit_form">הוספת המאמר נכשלה, אנא נסה מאוחר יותר</string>
     <string name="article_remove_article_successfully">המאמר נמחק בהצלחה</string>
-    <string name="article_remove_article_error">מחיקת המאמר נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="article_remove_article_error">מחיקת המאמר נכשלה, אנא נסה מאוחר יותר</string>
     <string name="article_remove_dialog_title">אשר מחיקת מאמר</string>
     <string name="article_remove_dialog_message">אתה בטוח שברצונך למחוק מאמר זה?</string>
     <string name="article_remove_dialog_ok">מחק</string>
     <string name="article_remove_dialog_abort">בטל מחיקה</string>
     <string name="article_remove_abort_message">מחיקת המאמר בוטלה</string>
+    <string name="article_input_headline">כותרת</string>
+    <string name="article_input_content">תגובה</string>
+    <string name="article_btn_send_comment">שלח</string>
+    <string name="article_btn_remove_article">מחק מאמר</string>
+    <string name="article_previous_comments">תגובות קודמות:</string>
+    <string name="article_list_search_filter">חפש מאמר...</string>
+    <string name="article_list_author_name">שם המחבר:</string>
+    <string name="article_list_publish_date">מועד פרסום:</string>
+    <string name="article_list_comments_number">תגובות:</string>
+    <string name="article_list_views_number">צפיות:</string>
+    <string name="article_add_new_article_headline_label">הכנס כותרת</string>
+    <string name="article_add_new_article_content_label">הכנס תוכן</string>
+    <string name="article_add_new_article_btn">הוסף מאמר</string>
+    <string name="article_add_new_article_cancel_btn">ביטול</string>
 
     <!-- Strings related to Event -->
     <string name="event_no_gallery_picture_found">"לא נמצאו תמונות מאירוע זה"</string>
     <string name="evernt_watch_gallery">כניסה לגלריה</string>
     <string name="event_add_new_event_successfully_submit_form">האירוע נוסף בהצלחה</string>
-    <string name="event_add_new_event_error_submit_form">הוספת האירוע נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="event_add_new_event_error_submit_form">הוספת האירוע נכשלה, אנא נסה מאוחר יותר</string>
     <string name="event_remove_event_successfully">האירוע נמחק בהצלחה</string>
     <string name="event_remove_event_error">מחיקת האירוע נכשלה, אנה נסה מאוחר יותר</string>
     <string name="event_remove_progress_dialog_title">מסיר נתונים...</string>
@@ -87,6 +111,23 @@
     <string name="event_remove_dialog_ok">מחק</string>
     <string name="event_remove_dialog_abort">בטל מחיקה</string>
     <string name="event_remove_abort_message">מחיקת האירוע בוטלה</string>
+    <string name="event_date_of_event_label">מועד האירוע:</string>
+    <string name="event_location_label">מיקום האירוע:</string>
+    <string name="event_number_of_members_label">מספר משתתפים:</string>
+    <string name="event_posting_member_label">מפרסם האירוע:</string>
+    <string name="event_description_label">תיאור האירוע:</string>
+    <string name="event_images_label">תמונות:</string>
+    <string name="event_remove_btn">מחק אירוע זה</string>
+    <string name="event_add_new_event_title_label">נושא</string>
+    <string name="event_add_new_event_choose_date_label">בחר תאריך</string>
+    <string name="event_add_new_event_choose_time_label">בחר שעה</string>
+    <string name="event_add_new_event_city_label">עיר</string>
+    <string name="event_add_new_event_street_label">רחוב</string>
+    <string name="event_add_new_event_house_number_label">מספר בית</string>
+    <string name="event_add_new_event_participate_number_label">כמות משתתפים:</string>
+    <string name="event_add_new_event_descrription_label">תיאור האירוע</string>
+    <string name="event_add_new_event_add_btn">הוסף אירוע</string>
+    <string name="event_add_new_event_cancel_btn">ביטול</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>
@@ -108,7 +149,7 @@
     <string name="ui_register_phone_type_home">בית</string>
     <string name="ui_register_btn_submit_form">שלח טופס</string>
     <string name="ui_register_successfully_submit_form">הפרטים נשלחו בהצלחה</string>
-    <string name="ui_register_error_submit_form">שליחת הפרטים נכשלה, אנה נסה מאוחר יותר</string>
+    <string name="ui_register_error_submit_form">שליחת הפרטים נכשלה, אנא נסה מאוחר יותר</string>
     <string name="ui_register_progress_dialog_title">שולח...</string>
     <string name="ui_register_progress_dialog_message">בבקשה המתן...</string>
     <string name="ui_register_date_picker_title">בחר תאריך לידה</string>
@@ -134,10 +175,12 @@
     <string name="error_validation_uploading_image_btn_ok">המשך</string>
     <string name="error_validation_uploading_image_btn_no">ביטול</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+
+
 
 </resources>

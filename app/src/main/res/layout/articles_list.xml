@@ -27,12 +27,14 @@
         android:textDirection="rtl">
 
         <TextView
-            android:text="שם המחבר:"
+            android:text="@string/article_list_author_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView9"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:text="TextView"
@@ -52,12 +54,14 @@
         android:layoutDirection="rtl">
 
         <TextView
-            android:text="מועד פרסום:"
+            android:text="@string/article_list_publish_date"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView18"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:text="TextView"
@@ -78,13 +82,15 @@
         android:weightSum="1">
 
         <TextView
-            android:text="תגובות:"
+            android:text="@string/article_list_comments_number"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView14"
             android:gravity="center_vertical"
             android:paddingRight="5dp"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:text="TextView"
@@ -95,12 +101,14 @@
             android:layout_weight="0.06" />
 
         <TextView
-            android:text="צפיות:"
+            android:text="@string/article_list_views_number"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView12"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp" />
+            android:paddingLeft="5dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:text="TextView"
