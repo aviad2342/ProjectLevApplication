@@ -2,8 +2,10 @@ package app.projectlevapplication;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,8 +27,11 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import app.projectlevapplication.core.Member;
 import app.projectlevapplication.utils.Utils;
@@ -144,8 +149,24 @@ public class LogInDialog extends DialogFragment {
                                 mListener.onDialogPositiveClick(LogInDialog.this);
                                 dismiss();
                             }else{
-                                mListener.onDialogRegisterClick(LogInDialog.this);
-                                dismiss();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setMessage(R.string.login_error_dialog_message);
+                                builder. setTitle(R.string.login_error_dialog_title);
+                                builder.setPositiveButton(R.string.login_error_dialog_ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+                                builder.setNegativeButton(R.string.login_error_dialog_abort, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context, getString(R.string.login_error_abort),Toast.LENGTH_SHORT).show();
+                                        mListener.onDialogNegativeClick(LogInDialog.this);
+                                        dismiss();
+                                    }
+                                });
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+
                             }
 
                         }

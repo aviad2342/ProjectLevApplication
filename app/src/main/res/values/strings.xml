@@ -36,6 +36,11 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_menu_bar">menuBarActivity</string>
+    <string name="login_error_dialog_title">התחברות נכשלה</string>
+    <string name="login_error_dialog_message">שם המשתמש או הסיסמא אינם נכונים.</string>
+    <string name="login_error_dialog_ok">נסה שנית</string>
+    <string name="login_error_dialog_abort">יציאה</string>
+    <string name="login_error_abort">בחרת לבטל את ההתחברות</string>
 
     <!-- Strings related to member profile -->
     <string name="member_profile_full_name">שם מלא:</string>
