@@ -61,12 +61,12 @@ public class EventListFragment extends Fragment {
         activity = getActivity();
         fragmentManager = activity.getFragmentManager();
         newItemBtn  = (Button) view.findViewById(R.id.new_item_btn);
-        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
-            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null) {
+            if (Utils.getInstance().loadMemberFromPrefs(context).isAdmin()) {
                 newItemBtn.setVisibility(View.VISIBLE);
+            } else {
+                newItemBtn.setVisibility(View.INVISIBLE);
             }
-        }else{
-            newItemBtn.setVisibility(View.INVISIBLE);
         }
         list = (ListView) view.findViewById(R.id.eventsList);
         loadEventsList();

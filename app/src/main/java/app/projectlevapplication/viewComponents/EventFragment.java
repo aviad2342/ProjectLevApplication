@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,8 @@ public class EventFragment extends Fragment {
     FragmentManager fragmentManager;
     ProgressDialog loading;
     Button btnRemoveEvent;
+    Button btnEditEvent;
+    LinearLayout adminEventSet;
     long start;
     long duration;
 
@@ -80,11 +83,13 @@ public class EventFragment extends Fragment {
         txtGalleryPics = (TextView) view.findViewById(R.id.txtGalleryPics);
         btnWatch = (TextView) view.findViewById(R.id.btnWatch);
         btnRemoveEvent = (Button) view.findViewById(R.id.btnRemoveEvent);
+        btnEditEvent = (Button) view.findViewById(R.id.btnEditEvent);
+        adminEventSet = (LinearLayout) view.findViewById(R.id.adminEventSet);
         if(Utils.getInstance().loadMemberFromPrefs(context) != null){
             if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
-                btnRemoveEvent.setVisibility(View.VISIBLE);
+                adminEventSet.setVisibility(View.VISIBLE);
             }else {
-                btnRemoveEvent.setVisibility(View.GONE);
+                adminEventSet.setVisibility(View.GONE);
             }
         }
 
@@ -159,6 +164,21 @@ public class EventFragment extends Fragment {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+
+        btnEditEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EditEventFragment();
+                Bundle args = new Bundle();
+                args.putSerializable("mEventToEdit",(Serializable)eventToDisplay);
+                fragment.setArguments(args);
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.setCustomAnimations(R.animator.slide_in_up, R.animator.slide_out_right);
+                ft.replace(R.id.frame_container, fragment,"EditEventFragment");
+                ft.addToBackStack("EditEventFragment");
+                ft.commit();
             }
         });
 

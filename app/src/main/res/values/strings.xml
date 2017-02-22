@@ -98,6 +98,8 @@
     <string name="evernt_watch_gallery">כניסה לגלריה</string>
     <string name="event_add_new_event_successfully_submit_form">האירוע נוסף בהצלחה</string>
     <string name="event_add_new_event_error_submit_form">הוספת האירוע נכשלה, אנא נסה מאוחר יותר</string>
+    <string name="event_edit_event_successfully_submit_form">האירוע נערך בהצלחה</string>
+    <string name="event_edit_event_error_submit_form">עריכת האירוע נכשלה, אנא נסה מאוחר יותר</string>
     <string name="event_remove_event_successfully">האירוע נמחק בהצלחה</string>
     <string name="event_remove_event_error">מחיקת האירוע נכשלה, אנה נסה מאוחר יותר</string>
     <string name="event_remove_progress_dialog_title">מסיר נתונים...</string>
@@ -126,8 +128,10 @@
     <string name="event_add_new_event_house_number_label">מספר בית</string>
     <string name="event_add_new_event_participate_number_label">כמות משתתפים:</string>
     <string name="event_add_new_event_descrription_label">תיאור האירוע</string>
-    <string name="event_add_new_event_add_btn">הוסף אירוע</string>
+    <string name="event_add_new_event_add_btn">שלח</string>
     <string name="event_add_new_event_cancel_btn">ביטול</string>
+    <string name="event_edit_location_hint_label">הכנס מיקום רחוב מספר, עיר</string>
+    <string name="event_edit_btn">ערוך אירוע</string>
 
     <!-- Strings related to register -->
     <string name="ui_register_user">"בחר תמונת פרופיל"</string>

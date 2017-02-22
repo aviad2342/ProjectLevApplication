@@ -207,14 +207,31 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:text="@string/event_remove_btn"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRemoveEvent"
-        android:layout_weight="1"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:visibility="gone" />
+        android:layout_gravity="bottom"
+        android:id="@+id/adminEventSet">
+
+        <Button
+            android:text="@string/event_edit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnEditEvent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <Button
+            android:text="@string/event_remove_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnRemoveEvent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:visibility="visible" />
+    </LinearLayout>
 
 </LinearLayout>

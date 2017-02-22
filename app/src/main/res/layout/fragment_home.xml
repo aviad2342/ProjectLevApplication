@@ -7,14 +7,15 @@
     android:layoutDirection="rtl">
 
     <TextView
-        android:layout_width="239dp"
-        android:layout_height="235dp"
+        android:layout_width="230dp"
+        android:layout_height="258dp"
         android:text="text"
         android:textDirection="rtl"
         android:id="@+id/txtOpening"
         android:textStyle="bold"
         android:textSize="18sp"
         android:gravity="center_vertical|center_horizontal"
-        android:layout_gravity="center_vertical|center_horizontal" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textColor="@android:color/black" />
 
 </FrameLayout>

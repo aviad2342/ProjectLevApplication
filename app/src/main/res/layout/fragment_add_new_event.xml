@@ -9,7 +9,7 @@
 
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="461dp"
         android:layoutDirection="rtl">
 
@@ -86,7 +86,8 @@
                 android:layout_height="match_parent"
                 android:layoutDirection="rtl"
                 android:weightSum="1"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:id="@+id/streetAndNumber">
 
                 <EditText
                     android:layout_width="215dp"

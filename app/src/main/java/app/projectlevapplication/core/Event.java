@@ -176,10 +176,30 @@ public class Event implements Serializable {
 			jsonObject.put("description", getDescription());
 			jsonObject.put("publisher", getPublisherID());
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jsonObject;
 	}
+
+    /**
+     * Convert Event Object Into JSONObject for edit
+     * @return JSONObject
+     */
+    public JSONObject toEditJsonObject(){
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("eventID", getEventID());
+            jsonObject.put("title", getTitle());
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            jsonObject.put("dateTime",format.format(getPublishDate()));
+            jsonObject.put("capacity", getCapacity());
+            jsonObject.put("location", getLocation());
+            jsonObject.put("description", getDescription());
+            jsonObject.put("publisher", getPublisherID());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
 	
 }

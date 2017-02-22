@@ -73,6 +73,7 @@ public class Utils {
 
     public static final String REMOVE_ARTICLE =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=20";
 
+    public static final String EDIT_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=21";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 

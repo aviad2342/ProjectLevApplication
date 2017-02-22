@@ -20,8 +20,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.BuildConfig;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -77,15 +79,15 @@ import retrofit2.Response;
 public class RegisterDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     private static final int READ_EXTERNAL_STORAGE_REQUEST = 1;
-    private static final int CAMERA_REQUEST = 2;
+    private static final int CAMERA_REQUEST = 0;
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST = 3;
     public static final int CODE_CROP_PHOTO_REQUEST = 4;
 
     // For photo picker selection:
-    public static final int ID_PHOTO_PICKER_FROM_CAMERA = 0;
+    public static final int ID_PHOTO_PICKER_FROM_CAMERA = 100;
 
     // For photo picker selection:
-    public static final int ID_PHOTO_PICKER_FROM_GALLERY = 1;
+    public static final int ID_PHOTO_PICKER_FROM_GALLERY = 200;
     private static final String IMAGE_UNSPECIFIED = "image/*";
     private static final String URI_INSTANCE_STATE_KEY = "saved_uri";
 
@@ -478,47 +480,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
         outState.putParcelable(URI_INSTANCE_STATE_KEY, mImageCaptureUri);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (resultCode != activity.RESULT_OK) {
-            return;
-        }
-        switch (requestCode) {
-            case CAMERA_REQUEST:
-                // Send image taken from camera for cropping
-                cropImage();
-                break;
-            case CODE_CROP_PHOTO_REQUEST:
-                Bundle extras = data.getExtras();
-                // Set the picture image in UI
-                if (extras != null) {
-                    registerImage.setImageBitmap((Bitmap) extras.getParcelable("data"));
-                }
-                if(!isTakenFromCamera){
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-                    Cursor cursor = activity.getContentResolver().query(mImageCaptureUri, filePathColumn, null, null, null);
-
-                    if (cursor != null) {
-                        cursor.moveToFirst();
-                    }
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imagePath = cursor.getString(columnIndex);
-                }
-                else  {
-                    imagePath = mImageCaptureUri.getPath();
-//                    File f = new File(mImageCaptureUri.getPath());
-//                    if (f.exists())
-//                        f.delete();
-                }
-                break;
-            case ID_PHOTO_PICKER_FROM_GALLERY:
-                // Send image taken from camera for cropping
-                mImageCaptureUri = data.getData();
-                cropImage();
-                break;
-        }
-    }
 
     // ******* Photo picker dialog related functions ************//
 
@@ -527,6 +489,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
             // Uploading AsyncTask
             if (Utils.checkConnection(activity)) {
                 /******************Retrofit***************/
+                Snackbar.make(mView, "connection ok", Snackbar.LENGTH_INDEFINITE).show();
                 uploadImage();
                 return true;
             } else {
@@ -576,7 +539,9 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
                 // Take photo from camera，Construct an intent with action MediaStore.ACTION_IMAGE_CAPTURE
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // Construct temporary image path and name to save the taken photo
-                mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
+               // mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
+                mImageCaptureUri = FileProvider.getUriForFile(activity, "app.projectlevapplication.provider",
+                       new File(Environment.getExternalStorageDirectory(), "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg"));
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
                 intent.putExtra("return-data", true);
                 try {
@@ -609,12 +574,54 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (resultCode != activity.RESULT_OK) {
+            return;
+        }
+        switch (requestCode) {
+            case CAMERA_REQUEST:
+                // Send image taken from camera for cropping
+                cropImage();
+                break;
+            case CODE_CROP_PHOTO_REQUEST:
+                Bundle extras = data.getExtras();
+                // Set the picture image in UI
+                if (extras != null) {
+                    registerImage.setImageBitmap((Bitmap) extras.getParcelable("data"));
+                }
+                if(!isTakenFromCamera){
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = activity.getContentResolver().query(mImageCaptureUri, filePathColumn, null, null, null);
+
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                    }
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    imagePath = cursor.getString(columnIndex);
+                }
+                else  {
+                    imagePath = mImageCaptureUri.getPath();
+//                    File f = new File(mImageCaptureUri.getPath());
+//                    if (f.exists())
+//                        f.delete();
+                }
+                break;
+            case ID_PHOTO_PICKER_FROM_GALLERY:
+                // Send image taken from camera for cropping
+                mImageCaptureUri = data.getData();
+                cropImage();
+                break;
+        }
+    }
+
 
     // Crop and resize the image for profile
     private void cropImage() {
         // Use existing crop activity.
         Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(mImageCaptureUri, IMAGE_UNSPECIFIED);
+       intent.setDataAndType(mImageCaptureUri, IMAGE_UNSPECIFIED);
 
         // Specify image size
         intent.putExtra("outputX", 100);
@@ -644,8 +651,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
         // MultipartBody.Part is used to send also the actual file name
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("uploaded_file", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", file.getName(), requestFile);
 
         Call<Result> resultCall = service.uploadImage(body);
 
@@ -655,6 +661,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
             public void onResponse(Call<Result> call, Response<Result> response) {
                 loading.dismiss();
                 // Response Success or Fail
+               // Toast.makeText(activity,response.body().getResult(),Toast.LENGTH_LONG).show();
                 if (response.isSuccessful()) {
                     if (!response.body().getResult().equals("error")) {
                         imageForNewMember = response.body().getResult();
@@ -670,6 +677,7 @@ public class RegisterDialog extends DialogFragment implements DatePickerDialog.O
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
                 loading.dismiss();
+                Toast.makeText(activity,call.toString(),Toast.LENGTH_LONG).show();
             }
         });
     }

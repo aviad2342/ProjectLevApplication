@@ -90,13 +90,16 @@ public class MemberProfileFragment extends Fragment {
         birthDate.setText(Utils.getBirthDate(memberToDisplay.getBirthDate()));
         mail.setText(memberToDisplay.getEmail());
         gender.setText(memberToDisplay.getMemberGender());
-        if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
-            adminViewStatus.setVisibility(View.VISIBLE);
-            adminViewSubscription.setVisibility(View.VISIBLE);
-            loadMemberPhoneForAdmin();
-        }else {
-            loadMemberPhone();
+        if(Utils.getInstance().loadMemberFromPrefs(context) != null) {
+            if (Utils.getInstance().loadMemberFromPrefs(context).isAdmin()) {
+                adminViewStatus.setVisibility(View.VISIBLE);
+                adminViewSubscription.setVisibility(View.VISIBLE);
+                loadMemberPhoneForAdmin();
+            } else {
+                loadMemberPhone();
+            }
         }
+
         txtMemberAddress.setText(memberToDisplay.getMemberAddress());
         txtMemberJoinDate.setText(Utils.eventToDateString(memberToDisplay.getRegistrationDate()));
         txtMemberStatus.setText(memberToDisplay.getMemberStatus());

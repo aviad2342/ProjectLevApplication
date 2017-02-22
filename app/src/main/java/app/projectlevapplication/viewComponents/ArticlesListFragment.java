@@ -71,23 +71,23 @@ public class ArticlesListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.activity_articles_list, container, false);
+        View view = inflater.inflate(R.layout.activity_articles_list, container, false);
         start = System.currentTimeMillis();
         context = view.getContext();
-        activity= getActivity();
+        activity = getActivity();
         fragmentManager = activity.getFragmentManager();
 
         list = (ListView) view.findViewById(R.id.articlesList);
         searchArticle = (TextView) view.findViewById(R.id.searchInArticels);
         searchArticle.addTextChangedListener(filterTextWatcher);
-        newItemBtn  = (Button) view.findViewById(R.id.new_article_btn);
-        if(Utils.getInstance().loadMemberFromPrefs(context) != null){
-            if(Utils.getInstance().loadMemberFromPrefs(context).isAdmin()){
+        newItemBtn = (Button) view.findViewById(R.id.new_article_btn);
+        if (Utils.getInstance().loadMemberFromPrefs(context) != null) {
+            if (Utils.getInstance().loadMemberFromPrefs(context).isAdmin()) {
                 newItemBtn.setVisibility(View.VISIBLE);
-            }
-        }else{
+            } else {
             newItemBtn.setVisibility(View.INVISIBLE);
         }
+    }
         loadArticleList();
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
