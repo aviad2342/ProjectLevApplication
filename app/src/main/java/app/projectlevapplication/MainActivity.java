@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -390,42 +391,6 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         }
     }
 
-    private void getData() {
-
-        loading = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
-
-        String url = JSON_URL;
-
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                loading.dismiss();
-                //txt.setText(response);
-                showJSON(response);
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void showJSON(String response){
-        try {
-           JSONObject jsonObject = new JSONObject(response);
-            //JSONArray result = jsonObject.getJSONArray(response);
-            //JSONArray result = new JSONArray(response);
-           // txt.setText(Utils.getInstance().responseToMember(response).toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -460,6 +425,12 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
         // Handle action bar actions click
         switch (item.getItemId()) {
             case R.id.logIn:
+                if( mDrawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                    mDrawerLayout.closeDrawers();
+                }
+                if( mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+                    mDrawerLayout.closeDrawers();
+                }
                 getFragmentManager().beginTransaction().replace(R.id.frame_container, new HomeFragment()).commit();
                 if(Utils.getInstance().loadMemberFromPrefs(this) == null) {
                     LogInDialog dialog = new LogInDialog();
@@ -468,6 +439,12 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
                     //getPreferences(MODE_PRIVATE).edit().clear().apply();
                     Utils.getInstance().writeMemberToPrefs(null,this);
                     MemberLogin.setIcon(R.drawable.ic_input_white_24dp);
+                   if( mDrawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                       mDrawerLayout.closeDrawers();
+                   }
+                    if( mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+                        mDrawerLayout.closeDrawers();
+                    }
                     navDrawerItems.clear();
                     // Home
                     navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
