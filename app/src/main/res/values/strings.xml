@@ -6,7 +6,7 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
 
-    <!-- Nav Drawer Menu Items -->
+     Nav Drawer Menu Items
     <string-array name="nav_drawer_items">
         <item>בית</item>
         <item>חברי קהילה</item>
@@ -15,6 +15,21 @@
         <item>בקרוב</item>
         <item>אודות</item>
     </string-array>
+
+    <!--<string-array name="nav_drawer_items">-->
+        <!--<item>בית</item>-->
+        <!--<item>מוניטור</item>-->
+        <!--<item>ביצוע בדיקות</item>-->
+        <!--<item>זימון תורים</item>-->
+        <!--<item>תוצאות בדיקות</item>-->
+        <!--<item>מרשמים ותרופות</item>-->
+        <!--<item>היסטוריה רפואית</item>-->
+        <!--<item>ניהול התראות</item>-->
+        <!--<item>ניהול תזכורות</item>-->
+        <!--<item>המלצות רופא</item>-->
+        <!--<item>ניהול משתמשים</item>-->
+        <!--<item>מצב חירום</item>-->
+    <!--</string-array>-->
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->

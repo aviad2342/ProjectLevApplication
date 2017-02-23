@@ -101,6 +101,29 @@ public class MainActivity extends AppCompatActivity implements LogInDialog.Dialo
 
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], R.mipmap.ic_home_image));
+//        // Community Members
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], R.mipmap.ic_launcher));
+//        // Community Articles
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], R.mipmap.ic_nurse));
+//        // Community events
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], R.mipmap.ic_clock));
+//        // Pages
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], R.mipmap.ic_resalt));
+//        // About
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], R.mipmap.ic_prescription));
+//
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], R.mipmap.ic_his));
+//        // Community Members
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], R.mipmap.ic_notifications));
+//        // Community Articles
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], R.mipmap.ic_events, true, "5"));
+//        // Community events
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], R.mipmap.ic_doc));
+//        // Pages
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], R.mipmap.ic_members));
+//        // About
+//        navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], R.mipmap.ic_ambulanc));
 
         if(Utils.getInstance().loadMemberFromPrefs(this) != null) {
 

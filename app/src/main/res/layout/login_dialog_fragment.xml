@@ -22,7 +22,8 @@
         android:hint="@string/login_user_name_label"
         android:layout_gravity="right"
         android:layout_weight="1"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layoutDirection="ltr" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,7 +36,8 @@
         android:textDirection="rtl"
         android:layout_gravity="right"
         android:layout_marginTop="5dp"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:layoutDirection="ltr" />
 
     <Button
         android:text="@string/login_log_btn"
@@ -45,8 +47,7 @@
         android:layout_weight="1"
         android:layout_gravity="right"
         android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp" />
+        android:textSize="18sp" />
 
     <Button
         android:text="@string/login_cancel_log_btn"

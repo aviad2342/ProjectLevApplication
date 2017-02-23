@@ -115,27 +115,27 @@ public class LogInDialog extends DialogFragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(validate(new EditText[]{userName, password, password})) {
+                    loading = ProgressDialog.show(activity, getString(R.string.progress_dialog_message), getString(R.string.progress_dialog_title), false, false);
+                    String name = userName.getText().toString();
+                    String pass = password.getText().toString();
 
-                loading = ProgressDialog.show(context,getString(R.string.progress_dialog_message),getString(R.string.progress_dialog_title),false,false);
-                String name = userName.getText().toString();
-                String pass = password.getText().toString();
-
-                    String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=0&user="+name+"&pass="+pass;
+                    String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=0&user=" + name + "&pass=" + pass;
 
                     StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             loading.dismiss();
                             Member member;
-                            if(response.length() > 0){
+                            if (response.length() > 0) {
                                 member = Utils.getInstance().responseToMember(response);
-                                Utils.getInstance().writeMemberToPrefs(member,activity);
+                                Utils.getInstance().writeMemberToPrefs(member, activity);
                                 mListener.onDialogPositiveClick(LogInDialog.this);
                                 dismiss();
-                            }else{
+                            } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                                 builder.setMessage(R.string.login_error_dialog_message);
-                                builder. setTitle(R.string.login_error_dialog_title);
+                                builder.setTitle(R.string.login_error_dialog_title);
                                 builder.setPositiveButton(R.string.login_error_dialog_ok, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
 
@@ -143,7 +143,7 @@ public class LogInDialog extends DialogFragment {
                                 });
                                 builder.setNegativeButton(R.string.login_error_dialog_abort, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        Toast.makeText(context, getString(R.string.login_error_abort),Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, getString(R.string.login_error_abort), Toast.LENGTH_SHORT).show();
                                         mListener.onDialogNegativeClick(LogInDialog.this);
                                         dismiss();
                                     }
@@ -165,7 +165,9 @@ public class LogInDialog extends DialogFragment {
                     RequestQueue requestQueue = Volley.newRequestQueue(activity);
                     requestQueue.add(stringRequest);
                 }
+                }
         });
+
 
         Button btnCancel = (Button)view.findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +189,28 @@ public class LogInDialog extends DialogFragment {
 
         return view;
     }
+    private boolean validate(EditText[] fields){
+        for(int i=0; i<fields.length; i++){
+            if(fields[i].length()== 0){
+                fields[i].setError("חובה למלא שדה זה!");
+                fields[i].requestFocus();
+                AlertDialog();
+                return false;
+            }
+        }
+        return true;
+    }
 
+    public void AlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.error_validation_must_fill_all_fields);
+        builder.setTitle(R.string.error_validation_alert_dialog_title);
+        builder.setPositiveButton(R.string.error_validation_alert_dialog_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
