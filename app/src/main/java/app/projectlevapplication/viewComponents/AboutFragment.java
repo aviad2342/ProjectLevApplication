@@ -86,21 +86,18 @@ public class AboutFragment extends Fragment implements Html.ImageGetter {
 
     @Override
     public Drawable getDrawable(String source) {
-        int id = R.drawable.personal_small;
+        int id = R.drawable.heart;
 
-        if(source.equals("http://arianlev.com/gallery/personal_small.jpg")){
-            id = R.drawable.personal_small;
+        if(source.equals("../public/img/uploads/q5GgfJVzi3mYHZY18034167_10212399298478715_2047634216301656024_n.jpg")){
+            id = R.drawable.ortal_image;
             // id= activity.getResources().getIdentifier("collegel_small", "drawable",activity.getPackageName());
         }
 
-        if(source.equals("http://arianlev.com/gallery/collegel_small.jpg")){
-            id = R.drawable.collegel_small;
-           // id= activity.getResources().getIdentifier("collegel_small", "drawable",activity.getPackageName());
-        }
+       if(source.equals("http://ortalitah.com/public/ckeditor-full/plugins/smiley/images/heart.png")){
+           id = R.drawable.heart;
+         // id= activity.getResources().getIdentifier("collegel_small", "drawable",activity.getPackageName());
+     }
 
-        if(source.equals("http://arianlev.com/gallery/business_small.jpg")){
-            id = R.drawable.business_small;
-        }
         LevelListDrawable d = new LevelListDrawable();
         Drawable empty = activity.getDrawable(id);;
         d.addLevel(0, 0, empty);
