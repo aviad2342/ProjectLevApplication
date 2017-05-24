@@ -65,13 +65,13 @@
             android:layoutDirection="rtl">
 
             <ImageView
+                android:id="@+id/registerImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/registerImage"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:layoutDirection="rtl"
-                android:layout_marginTop="5dp" />
+                app:srcCompat="@drawable/default_image" />
 
             <Button
                 android:text="@string/ui_register_choose_image"
