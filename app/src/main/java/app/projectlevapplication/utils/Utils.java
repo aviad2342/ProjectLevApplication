@@ -37,51 +37,51 @@ public class Utils {
 
     // --------------------------------------------------------Data URLs----------------------------------------------------------------------------
 
-    public static final String ALL_COMMUNITY_MEMBERS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=1";
+    public static final String ALL_COMMUNITY_MEMBERS = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=1";
 
-    public static final String ALL_COMMUNITY_ARTICLES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=6";
+    public static final String ALL_COMMUNITY_ARTICLES = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=6";
 
-    public static final String ALL_COMMUNITY_EVENTS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=8";
+    public static final String ALL_COMMUNITY_EVENTS = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=8";
 
-    public static final String ALL_COMMENTS_FOR_ARTICLE = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=7&art=";
+    public static final String ALL_COMMENTS_FOR_ARTICLE = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=7&art=";
 
-    public static final String COMMUNITY_MEMBER_PHONES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
+    public static final String COMMUNITY_MEMBER_PHONES = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=3&ID=";
 
-    public static final String COMMUNITY_ABOUT = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=5";
+    public static final String COMMUNITY_ABOUT = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=5";
 
-    public static final String ALL_ARTICLE_IMAGES = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
+    public static final String ALL_ARTICLE_IMAGES = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=9&evn=";
 
-    public static final String NUMBER_OF_EVENTS = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=16";
+    public static final String NUMBER_OF_EVENTS = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=16";
 
-    public static final String COMMUNITY_OPENING_STATEMENT = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=4";
+    public static final String COMMUNITY_OPENING_STATEMENT = "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=4";
 
 
     // -----------------------------------------------------Post Data URLs---------------------------------------------------------------------------
-    public static final String POST_COMMENT_FOR_ARTICLE = "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=11";
+    public static final String POST_COMMENT_FOR_ARTICLE = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=11";
 
-    public static final String ADD_NEW_MEMBER =  "http://ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=12";
+    public static final String ADD_NEW_MEMBER =  "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=12";
 
-    public static final String ADD_NEW_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=13";
+    public static final String ADD_NEW_EVENT =  "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=13";
 
-    public static final String POST_ARTICLE_IS_WATCHED = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=17";
+    public static final String POST_ARTICLE_IS_WATCHED = "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=17";
 
-    public static final String POST_USAGE_STATISTICS = "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=18";
+    public static final String POST_USAGE_STATISTICS = "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=18";
 
-    public static final String ADD_NEW_ARTICLE =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=15";
+    public static final String ADD_NEW_ARTICLE =  "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=15";
 
-    public static final String REMOVE_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=19";
+    public static final String REMOVE_EVENT =  "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=19";
 
-    public static final String REMOVE_ARTICLE =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=20";
+    public static final String REMOVE_ARTICLE =  "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=20";
 
-    public static final String EDIT_EVENT =  "http://www.ortalitah.com/arianLev/api/api.php?key=W2jFgx1leQ&opt=21";
+    public static final String EDIT_EVENT =  "http://www.ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=21";
 
    // ---------------------------------------------------------Image UELs----------------------------------------------------------------------------
 
-    public static final String MEMBER_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/members/";
+    public static final String MEMBER_IMAGE = "http://ortalitah.com/public/img/uploads/members/";
 
-    public static final String EVENTS_IMAGE = "http://ortalitah.com/arianLev/public/img/uploads/events/";
+    public static final String EVENTS_IMAGE = "http://ortalitah.com/public/img/uploads/events/";
 
-    public static final String DEFAULT_IMAGE = "http://ortalitah.com/arianLev/public/img/profile.jpg";
+    public static final String DEFAULT_IMAGE = "http://ortalitah.com/public/img/profile.jpg";
 
     public static final String NEW_MEMBER_DEFAULT_IMAGE = "null_profile.jpg";
 
