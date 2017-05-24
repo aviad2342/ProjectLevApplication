@@ -120,7 +120,7 @@ public class LogInDialog extends DialogFragment {
                     String name = userName.getText().toString();
                     String pass = password.getText().toString();
 
-                    String url = "http://arianlev.esy.es/ArianLev_Community/api/api.php?key=W2jFgx1leQ&opt=0&user=" + name + "&pass=" + pass;
+                    String url = "http://ortalitah.com/api/api.php?key=W2jFgx1leQ&opt=0&user=" + name + "&pass=" + pass;
 
                     StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
                         @Override
