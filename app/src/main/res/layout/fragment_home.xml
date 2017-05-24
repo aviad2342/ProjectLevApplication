@@ -2,20 +2,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.projectlevapplication.viewComponents.HomeFragment"
-    android:background="@drawable/opening_backgrounds"
-    android:layoutDirection="rtl">
+    android:background="@android:color/background_light"
+    android:layoutDirection="rtl"
+    tools:context="app.projectlevapplication.viewComponents.HomeFragment">
 
     <TextView
+        android:id="@+id/txtOpening"
         android:layout_width="230dp"
         android:layout_height="258dp"
-        android:text="text"
-        android:textDirection="rtl"
-        android:id="@+id/txtOpening"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:gravity="center_vertical|center_horizontal"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:textColor="@android:color/black" />
+        android:gravity="center_vertical|center_horizontal"
+        android:text="text"
+        android:textColor="@android:color/black"
+        android:textDirection="rtl"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </FrameLayout>
