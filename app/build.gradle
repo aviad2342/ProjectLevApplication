@@ -7,8 +7,8 @@ android {
         applicationId "app.projectortalapplication"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "1.0"
+        versionCode 4
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        manifestPlaceholders = [onesignal_app_id: "fc8fda3d-3107-4bba-bcdd-ac43064addb0",
 //                                // Project number pulled from dashboard, local value is ignored.
