@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.projectlevapplication.viewComponents.AboutFragment"
+    tools:context="app.projectortalapplication.viewComponents.AboutFragment"
     android:textDirection="rtl"
     android:background="@drawable/app_back_1">
 

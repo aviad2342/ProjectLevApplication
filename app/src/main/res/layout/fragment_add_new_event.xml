@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/off_white"
-    tools:context="app.projectlevapplication.viewComponents.AddNewEventFragment"
+    tools:context="app.projectortalapplication.viewComponents.AddNewEventFragment"
     android:layoutDirection="rtl">
 
 

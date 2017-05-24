@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/npn_back"
     android:layoutDirection="rtl"
-    tools:context="app.projectlevapplication.viewComponents.HomeFragment">
+    tools:context="app.projectortalapplication.viewComponents.HomeFragment">
 
     <TextView
         android:id="@+id/txtOpening"

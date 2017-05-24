@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/off_white"
-    tools:context="app.projectlevapplication.viewComponents.MemberProfileFragment"
+    tools:context="app.projectortalapplication.viewComponents.MemberProfileFragment"
     android:layout_weight="1"
     android:layoutDirection="rtl">
 

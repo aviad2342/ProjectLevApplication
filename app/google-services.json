@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "733733630951",
+    "firebase_url": "https://ortalitah-4dd44.firebaseio.com",
+    "project_id": "ortalitah-4dd44",
+    "storage_bucket": "ortalitah-4dd44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733733630951:android:87a6f54edeb9488f",
+        "android_client_info": {
+          "package_name": "app.projectortalapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733733630951-fsc1nnomc7jideminm2f90omgdmbp5p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7vo8NAIQ7oCP5_n1FKF_nJrZceo2XGi4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

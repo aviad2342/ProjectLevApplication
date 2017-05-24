@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="app.projectlevapplication.viewComponents.ArticleFragment"
+    tools:context="app.projectortalapplication.viewComponents.ArticleFragment"
     android:textDirection="rtl"
     android:focusable="true"
     android:background="@drawable/off_white"
